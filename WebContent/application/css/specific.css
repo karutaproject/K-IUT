@@ -1410,6 +1410,13 @@ button.js-zeroclipboard {
  	display:none;
  }
  
+
 .profile-etudiant {
 	margin-top:10px;
 }
+
+#superviseur-nom-etudiant{
+ 	margin-top:10px;
+ 	margin-left:15px;
+ }
+
