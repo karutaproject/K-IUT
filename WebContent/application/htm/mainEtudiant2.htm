@@ -88,6 +88,7 @@
 	<script src="../js/formation.js"></script>
 	<script src="../js/alternance.js"></script>
 	<script src="../js/projet.js"></script>
+	<script src="../js/situation.js"></script>
 	<script src="../js/contact.js"></script>
 	<script src="../js/fullcontact.js"></script>
 	<script src="../js/competence.js"></script>
@@ -184,8 +185,9 @@
 							<div class='row-fluid'>
 								<div class="span6">
 									<div class="alert alert-orange alert-block">
-										<h3 align="center">Mes formations académiques</h3>
+										<h3 align="center">Formations académiques</h3>
 										<div id="diplomes-short_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/> <script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+										<div id="situations-short_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/> <script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 									</div>
 		
 									<div class="alert alert-block alert-bleu">
@@ -222,6 +224,7 @@
 						<div class='row-fluid'>
 							<div class="span12">
 								<div id="diplomes-detail_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+								<div id="situations-detail_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 							</div>
 						</div>
 					</div>
@@ -407,7 +410,7 @@
 					<li><a href="#description_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['description']);" class="text-noir">Ma description</a></li>
 					<li><a href="#competence_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['competence']);" class="text-vert">Mes compétences préférées</a></li>
 					<li><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
-					<li><a href="#carte_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['carte']);loadBubbleTreeMap();" class="text-violet">Ma carte</a></li>
+					<li><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);document.getElementById('freerome_iframe').style.height='100%';" class="text-bleu">Mon environnement pro</a></li>
 				</ul>
 	
 				<div id="tab-content_projet" class="tab-content">
@@ -453,7 +456,7 @@
 					<div class="tab-pane" id="metier_projet">
 						<div class='row-fluid'>
 							<div class="span12">
-								<div class='titre1'>Trouver mon métier<span id='help-projet-metier-label'></span></div>
+								<div class='titre1'>Ressources métiers<span id='help-projet-metier-label'></span></div>
 								<div class="alert alert-bleu alert-block">
 									<div id="metier_detail_projet"><p>L'IUT2 développera cette rubrique prochainement pour que vous puissiez comparer vos compétences préférées
 									 à celle du métier que vous voulez viser.</p><p>Vous pouvez dès à présent consulter la <strong><a target="_blank" href="http://www.iut2.upmf-grenoble.fr/metiers/les-principaux-domaines-de-metiers/les-principaux-domaines-de-metiers-173131.htm">carte des métiers</a></strong>
@@ -463,12 +466,57 @@
 						</div>
 					</div>
 					<!-- ================================================================== -->
-					<div class="tab-pane" id="carte_projet">
+					<div class="tab-pane" id="freerome_projet" style="height:500px">
+						<iframe id='freerome_iframe' class='freerome_iframe' src="../htm/freerome.htm" height="100%" width='100%'></iframe>
+					</div>
+					<!-- ================================================================== -->
+				</div>
+			</div>
+		</div>
+		<!-- ==================================================================================================== -->
+		<!-- ==================================================================================================== -->
+		<!-- ======================================= CV ========================================================= -->
+		<!-- ==================================================================================================== -->
+		<!-- ==================================================================================================== -->
+		<div id='cv' name='page' class='hide'>
+			<ol class="breadcrumb">
+				<li><a id='accueil' href="#" onclick="show_view('accueil');">Accueil</a><span class="divider">/</span></li>
+				<li class="active">Mes cvs<span class="divider">/</span></li>
+				<li id='view_label_cv' class="active"></li>
+			</ol>
+	
+			<h3 class="align-left"><i class="fa fa-star"></i> MA VALORISATION</h3>
+	
+			<!-- ====================================================================== -->
+			<div id="portfolio_cv">
+				<!-- ================================================================== -->
+				<ul id="tabs_cv" class="nav nav-tabs" data-tabs="tabs">
+					<li><a href="#list_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['list_cv']);" class="text-noir">Lister les cvs</a></li>
+					<li><a href="#create_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['create_cv']);" class="text-vert">Créer un cv</a></li>
+					<li><a href="#carte_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['carte']);loadBubbleTreeMap();" class="text-vert">Ma carte</a></li>
+				</ul>
+				<div id="tab-content_cv" class="tab-content">
+					<div class="tab-pane" id="list_cv">
+						<div class='row-fluid'>
+							<div class="span12">
+								<div id="list_cvs_short"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="create_cv">
+						<div class='row-fluid'>
+							<div class="span12">
+								<div id="list_cvs_detail"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+							</div>
+						</div>
+					</div>
+					<!-- ================================================================== -->
+					<div class="tab-pane" id="carte_cv">
 						<div class='row'>
 							<div class="span12">
 								<div id='mode-emploi-button' class='badge' onclick='$("#carte_detail_projet").html(UICom.structure["ui"][helps_bycode["help-projet-mode-emploi"].id].resource.getView())'>Mode d'emploi</div>								
 								<div class='titre1'>Ma carte de profil<span id='help-projet-carte-label'></span></div>
-								<div class="alert alert-violet alert-block">
+								<div class="alert alert-vert alert-block">
 									<div class='row'>
 										<div class='span6'>
 											<iframe id="bubble_iframe" src='bubble.html'></iframe>
@@ -488,46 +536,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- ================================================================== -->
-				</div>
-			</div>
-		</div>
-		<!-- ==================================================================================================== -->
-		<!-- ==================================================================================================== -->
-		<!-- ======================================= CV ========================================================= -->
-		<!-- ==================================================================================================== -->
-		<!-- ==================================================================================================== -->
-		<div id='cv' name='page' class='hide'>
-			<ol class="breadcrumb">
-				<li><a id='accueil' href="#" onclick="show_view('accueil');">Accueil</a><span class="divider">/</span></li>
-				<li class="active">Mes cvs<span class="divider">/</span></li>
-				<li id='view_label_cv' class="active"></li>
-			</ol>
-	
-			<h3 class="align-left"><i class="fa fa-book"></i> MES CV</h3>
-	
-			<!-- ====================================================================== -->
-			<div id="portfolio_cv">
-				<!-- ================================================================== -->
-				<ul id="tabs_cv" class="nav nav-tabs" data-tabs="tabs">
-					<li><a href="#list_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['list_cv']);" class="text-noir">Lister les cvs</a></li>
-					<li><a href="#create_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['create_cv']);" class="text-vert">Créer un cv</a></li>
-				</ul>
-				<div id="tab-content_cv" class="tab-content">
-					<div class="tab-pane" id="list_cv">
-						<div class='row-fluid'>
-							<div class="span12">
-								<div id="list_cvs_short"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane" id="create_cv">
-						<div class='row-fluid'>
-							<div class="span12">
-								<div id="list_cvs_detail"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -542,7 +550,7 @@
 				<li id='view_label' class="active">Mon suivi</li>
 			</ol>
 	
-			<h3 class="align-left"><i class="fa fa-tasks"></i> MON SUIVI</h3>
+			<h3 class="align-left"><i class="fa fa-question"></i> MON SUIVI</h3>
 	
 			<!-- ====================================================================== -->
 			<div id="feedback-section">

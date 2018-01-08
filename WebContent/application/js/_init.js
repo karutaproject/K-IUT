@@ -4,7 +4,7 @@ var application_date = "2016-08-23";
 //----------------------------------
 var appliname = 'iut2';
 //----------------------------------
-var karuta_site = 'iut2'; //-- eportfolium iut2 savoie
+var karuta_site = 'local'; //-- eportfolium iut2 local
 //---------
 var bckname = '';
 var serverBCK = "";
@@ -34,6 +34,12 @@ if (karuta_site == 'iut2') {
 	//---------
 	elgg_url_base = 'elgg/';
 	elgg_auth_cas = true;
+}
+if (karuta_site == 'local') {
+	bckname = '';
+	serverBCK = "karuta-backend"+bckname+"/rest/api";
+	serverFIL = "karuta-backend"+bckname;
+	serverVER = "karuta-backend"+bckname;
 }
 //----------------------------------
 var languages = [];

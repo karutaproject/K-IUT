@@ -35,6 +35,12 @@ function getNavbar(portfolioid) {
 	var navbar = "";
 	var ids = "portfolioid="+portfolioid;
 	navbar += "<div class='navbar'>";
+	navbar += "    <div id='header-top' class='navbar-inner'>";
+	navbar += "          <ul class='nav pull-right'>";
+	navbar += "                <li><a id='mon-profil' href='#' onclick=\"javascript:show_view('profil','')\"><em class='fa fa-user'></em> Mon profil</a></li>";
+	navbar += "               <li><a id='se-deconnecter' href='../..'><em class='fa fa-times'></em> Se déconnecter</a></li>";
+	navbar += "          </ul>";
+	navbar += "    </div>";
 	navbar += "    <div class='navbar-inner'>";
 	navbar += "      <div class='container-fluid'>";
 	navbar += "        <a data-target='.navbar-responsive-collapse' data-toggle='collapse' class='btn btn-navbar'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></a>";
@@ -42,9 +48,9 @@ function getNavbar(portfolioid) {
 		navbar += "        <a href='#' onclick=\"javascript:show_view('accueil');\" class='brand'>";
 	if (l_userrole=='superviseur')
 		navbar += "        <a href='mainSuperviseur.htm?"+ids+"' class='brand'>";
-	navbar += "        <em class='icon-fixed-width icon-home'></em> E<strong>&middot;</strong>portfolio4*</a>";
+	navbar += "        <img id='header-logo' src='../img/karuta-iut-logo.png'></a>";
 	navbar += "        <div class='nav-collapse collapse navbar-responsive-collapse'>";
-	navbar += "          <ul class='nav'>";
+	navbar += "          <ul id='header-menu' class='nav pull-right'>";
 	navbar += "            <!-- <li class='active'><a href='#'><em class='icon-fixed-width icon-home'></em>Accueil</a> </li>-->";
 
 	if (l_userrole=='etudiant'){
@@ -79,21 +85,22 @@ function getNavbar(portfolioid) {
 		navbar += "            <li class='dropdown'>";
 		navbar += "              <a data-toggle='dropdown' class='dropdown-toggle' href='#'><i class='fa fa-rocket'></i> Mon projet<strong class='caret'></strong></a>";
 		navbar += "              <ul class='dropdown-menu'>";
-		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['description']);show_view('projet','description')\">Ma description</a></li>";
+		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['description']);show_view('projet','description')\">Ma fiche projet</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['competence']);show_view('projet','competence')\">Mes compétences préférées</a></li>";
-		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['metier']);show_view('projet','metier')\">Mon métier</a></li>";
-		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['carte']);show_view('projet','carte');loadBubbleTreeMap();\">Ma carte</a></li>";
+		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['metier']);show_view('projet','metier')\">Ressources métiers</a></li>";
+		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['frerome']);show_view('projet','freerome');document.getElementById('freerome_iframe').style.height='100%';\">Mon environnement pro</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
 		navbar += "            <li class='dropdown'>";
-		navbar += "              <a data-toggle='dropdown' class='dropdown-toggle' href='#'><em class='fa fa-book'></em> Mes CV<strong class='caret'></strong></a>";
+		navbar += "              <a data-toggle='dropdown' class='dropdown-toggle' href='#'><em class='fa fa-star'></em> Ma valorisation<strong class='caret'></strong></a>";
 		navbar += "              <ul class='dropdown-menu'>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_cv').html(view_label['list_cv']);show_view('cv','list')\">Lister les CV</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_cv').html(view_label['create_cv']);show_view('cv','create')\">Créer un CV</a></li>";
+		navbar += "                <li><a href='#' onclick=\"$('#view_label_cv').html(view_label['carte']);show_view('cv','carte');loadBubbleTreeMap();\">Ma carte portfolio</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
 		if (g_userrole=='etudiant') {
-			navbar += "            <li><a href='#' onclick=\"javascript:show_view('suivi')\"><i class='fa fa-tasks'></i> Mon suivi</a></li>";
+			navbar += "            <li><a href='#' onclick=\"javascript:show_view('suivi')\"><i class='fa fa-question'></i> Mon suivi</a></li>";
 		}
 	}
 	if (l_userrole=='superviseur'){
@@ -104,7 +111,7 @@ function getNavbar(portfolioid) {
 	}
 	
 	navbar += "          </ul>";
-	navbar += "          <ul class='nav pull-right'>";
+/*	navbar += "          <ul class='nav pull-right'>";
 	navbar += "           <li><a data-toggle='dropdown' class='dropdown-toggle' href='#'>"+USER.firstname_node.text()+" "+USER.lastname_node.text()+" <em class='icon-cog'></em></a>";
 	navbar += "              <ul class='dropdown-menu'>";
 	navbar += "               <li><a href='../..'><em class='fa fa-times'></em> Se déconnecter</a></li>";
@@ -113,6 +120,7 @@ function getNavbar(portfolioid) {
 	navbar += "              <br/> ";
 	navbar += "            </li>";
 	navbar += "          </ul>";
+	*/
 	navbar += "        </div>";
 	navbar += "      </div>";
 	navbar += "    </div>";
@@ -639,9 +647,14 @@ function selectPortfolio(data)
 			UICom.parseStructure(data);
 			//===========HISTOIRE==================
 			$("#info-window-body").html("Traitement Mon histoire...");
+			//--------------------
 			UIFactory["Diploma"].parse(data);
 			Diplomas_Display('diplomes-short_histo','short');
 			Diplomas_Display('diplomes-detail_histo','detail',$("asmStructure:has(metadata[semantictag='diplomas'])", data).attr('id'));
+			//--------------------
+			UIFactory["SituApp"].parse(data);
+			SituApps_Display('situations-short_histo','short');
+			SituApps_Display('situations-detail_histo','detail',$("asmStructure:has(metadata[semantictag='situations'])", data).attr('id'));
 			//--------------------
 			UIFactory["Formation"].parse(data);
 			Formations_Display('formations-short_histo','short');
