@@ -42,12 +42,18 @@ UIFactory["Profile"].prototype.displayView = function(destid,type,lang)
 		var photo = UICom.structure["ui"][this.photo_nodeid].resource.getView(destid+"_short_photo");
 		var firstname = UICom.structure["ui"][this.firstname_nodeid].resource.getView(destid+"_short_firstname");
 		var lastname = UICom.structure["ui"][this.lastname_nodeid].resource.getView(destid+"_short_lastname");
-		html += "<span id='"+destid+"_short_photo'>"+photo+"</span> ";
-		html += "<h4 class='media-heading'>Bonjour,</h4>";
-		html += "<h4 class='media-heading'>";
-		html += "<span id='"+destid+"_short_firstname'>"+firstname+"</span> ";
-		html += "<span id='"+destid+"_short_lastname'>"+lastname+"</span> ";
-		html += "</h4>";
+		html += "<div class='row-fluid'>";
+		html += "  <div class='span3'>";
+		html += "    <span id='"+destid+"_short_photo' style='border-radius:50%'>"+photo+"</span> ";
+		html += "  </div>";
+		html += "  <div class='span6'>";
+		html += "    <h3 class='media-heading' style='vertical-align:middle'>Bienvenue ";
+		html += "      <span id='"+destid+"_short_firstname'>"+firstname+"</span> ";
+		html += "      <span id='"+destid+"_short_lastname'>"+lastname+"</span> ";
+		html += "      dans votre ePortfolio KARUTA IUT";
+		html += "    </h3>";
+		html += "  </div>";
+		html += "</div>";
 	}
 	if (type==null || type=='photo') {
 		var photo = UICom.structure["ui"][this.photo_nodeid].resource.getView(destid+"_short_photo");

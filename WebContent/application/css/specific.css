@@ -7,8 +7,10 @@
 	border-radius:0px;
 }
 
-#container {padding-top:120px}
-
+#container {padding-top:10px;}
+@media screen and (min-width: 980px) {
+	#container {padding-top:150px}
+}
 #tabs_histo.nav,
 #tabs_projet.nav,
 #tabs_cv.nav,
@@ -70,6 +72,14 @@ color:rgba(12, 175, 204, 0.82)
 #header-menu{
 	margin-top:20px;
 }
+
+/* --------------------------*/
+footer {
+	background-color:black;
+	color:white;
+	padding:20px;
+}
+
 /* --------------------------*/
 .row-padded {
   padding: 35px;
@@ -520,17 +530,35 @@ label.comp-attestation {
 	margin-bottom:15px;
 }
 
+#demarche-img, #objectif-img {
+	width:60px;
+}
 #demarche .panel {
   margin-bottom: 20px;
-  background-color: #ffffff;
   border: 1px solid transparent;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 #demarche .panel-body {
+  font-size:16px;
+  font-weight:300;
   padding: 15px;
+}
+
+#demarche h2,
+#profile-short h3,
+#demarche h4 {
+	font-weight:500;
+}
+
+#demarche ul {
+  font-size:16px;
+  font-weight:300;
+}
+.accueil-p {
+  margin-top:20px;
+  font-size:16px;
+  font-weight:300;
+  text-align:justify;
 }
 
 #demarche .panel-body:before,
@@ -626,9 +654,7 @@ label.comp-attestation {
 
 #demarche .panel-heading {
   padding: 10px 15px;
-  border-bottom: 1px solid transparent;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-bottom: #dddddd;
 }
 
 #demarche .panel-heading > .dropdown .dropdown-toggle {
@@ -679,13 +705,9 @@ label.comp-attestation {
   border-bottom: 1px solid #dddddd;
 }
 
-#demarche .panel-default {
-  border-color: #dddddd;
-}
 
 #demarche .panel-default > .panel-heading {
   color: #333333;
-  background-color: #f5f5f5;
   border-color: #dddddd;
 }
 
