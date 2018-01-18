@@ -304,6 +304,15 @@ UIFactory["SituApp"].refresh = function(parentid,destid)
 UIFactory["SituApp"].parse = function(data) 
 //==================================
 {
+	//------------for backward compatibility----------------
+	if ($("asmStructure:has(metadata[semantictag='situations'])", data).length==0) {
+		var targetid = $("asmRoot", data).attr('id');
+		var srcecode = "IUT2portfolios.IUT2-portfolio-";
+		var srcetag = "situations";
+		importBranch(targetid,srcecode,srcetag);
+	}
+		
+	//--------------------------------------------------
 	situations_byid = {};
 	situations_list = [];
 	var units = $("asmUnit:has(metadata[semantictag='situation-unit'])",data);

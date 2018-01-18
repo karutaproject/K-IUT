@@ -127,7 +127,7 @@ UIFactory["Projet"].prototype.displayView = function(destid,type,lang,parentid)
 		html += "<div>"+UICom.structure["ui"][this.realizations_nodeid].resource.getView()+"</div>";
 		html += "</div><!-- span -->";
 		html += "<div class='span6 organisme attributs'>";
-		html += "<h5>Contacts professionnelles des organisations avec lesquelles vous avez collaboré</h5>"
+		html += "<h5>Contacts professionnels des organisations avec lesquelles vous avez collaboré</h5>"
 		html += "<div class='item'>(commenditaires, partenaires, fournisseurs, ...)</div><br/>";
 		//------------------ Tuteur ------------------
 		if (this.referent_prenom_nodeid!=undefined) {
@@ -261,7 +261,7 @@ UIFactory["Projet"].prototype.displayEditor = function(destid,type,lang) {
 		displayControlGroup_getEditor("formB_"+this.id,"Courriel","email_"+this.id,this.referent_email_nodeid);
 	}
 	//------------------ Contacts ---------------------------------
-	$("#formB_"+this.id).append($("<h5>Contacts professionnels des organisations avec lesquels vous avez collaborén</h5>"));
+	$("#formB_"+this.id).append($("<h5>Contacts professionnels des organisations avec lesquels vous avez collaboré</h5>"));
 	$("#formB_"+this.id).append($("<div class='item'>(commenditaires, partenaires, fournisseurs, ...)</div><br/>"));
 	$("#formB_"+this.id).append($("<div class='control-group'><label class='control-label'>Contact </label><div class='controls'><hr style='margin-top:11px;'></div></div>"));
 	this.contacts[0].displayEditor(this.id,"formB_"+this.id,'detail',false);

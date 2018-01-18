@@ -46,7 +46,7 @@ UIFactory["Profile"].prototype.displayView = function(destid,type,lang)
 		html += "  <div class='span3'>";
 		html += "    <span id='"+destid+"_short_photo' style='border-radius:50%'>"+photo+"</span> ";
 		html += "  </div>";
-		html += "  <div class='span6'>";
+		html += "  <div class='span9'>";
 		html += "    <h3 class='media-heading' style='vertical-align:middle'>Bienvenue ";
 		html += "      <span id='"+destid+"_short_firstname'>"+firstname+"</span> ";
 		html += "      <span id='"+destid+"_short_lastname'>"+lastname+"</span> ";

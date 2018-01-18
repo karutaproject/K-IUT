@@ -184,7 +184,7 @@ function getNavbar2(portfolioid) {
 //	navbar += "            <li><a href='#'><em class='icon-fixed-width icon-flag'></em>(10)</a></li>";
 	navbar += "           <li><a data-toggle='dropdown' class='dropdown-toggle' href='#'>"+USER.firstname_node.text()+" "+USER.lastname_node.text()+"&nbsp;<em class='icon-cog'></em></a>";
 	navbar += "              <ul class='dropdown-menu'>";
-	navbar += "               <li><a href='accueil_eportfolio/index.html'><em class='icon-signout'></em> Se déconnecter</a></li>";
+	navbar += "               <li><a href='index.html'><em class='icon-signout'></em> Se déconnecter</a></li>";
 	navbar += "                <li><a href='profile.htm?"+ids+"'><em class='icon-fixed-width icon-user'></em> Mon compte</a></li>";
 	navbar += "              </ul>";
 	navbar += "              <br/> ";
