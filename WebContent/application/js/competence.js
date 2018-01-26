@@ -43,6 +43,10 @@ evaltype_exp['ExperiencePerso']= new Array();
 evaltype_exp['ExperiencePerso'][0]=['autoeval'];
 evaltype_exp['ExperiencePerso'][1]=['autoeval'];
 
+evaltype_exp['SituApp']= new Array();
+evaltype_exp['SituApp'][0]=['autoeval','evaluateur'];
+evaltype_exp['SituApp'][1]=['autoeval','evaluateur'];
+
 
 var ref = {}; // références aux units contenant les compétences
 

@@ -88,6 +88,7 @@
 	<script src="../js/formation.js"></script>
 	<script src="../js/alternance.js"></script>
 	<script src="../js/projet.js"></script>
+	<script src="../js/situation.js"></script>
 	<script src="../js/contact.js"></script>
 	<script src="../js/fullcontact.js"></script>
 	<script src="../js/competence.js"></script>
@@ -145,144 +146,116 @@
 		<!-- ==================================================================================================== -->
 		<div id='accueil' name='page'>
 			<div class='row-fluid'>
-				<div id="socialnetwork" class="span8">
-					<a href="#"><img alt="" src="../img/logo-eportfolio4.jpg" /></a>
-					<p class="lead">
-						Bienvenue dans E<strong>&middot;</strong>portfolio4*, l'environnement numérique de professionnalisation 
-						de l'apprenant pour repérer ses compétences, suivre leur évolution et les valoriser.
-					</p>
-					<div class='row-fluid'>
-						<div class="span3">
-							<div id='profile-short' class="media"></div>
-						</div>
-						<div class="span9">
-							<div id='xxx-socialnetwork-head'>
-							</div>
-						</div>
-					</div>
-					<div id="xxx-socialnetwork-body">
-					</div>
+				<div class="span6">
+					<div id='profile-short' class="media"></div>
+					<p class='accueil-p'>KARUTA IUT Portfolio a pour objectif de faciliter votre démarche compétences et métiers afin que vous puissiez construire votre projet personnel professionnel efficacement.
+					 Vous y aurez accès pendant vos études mais également un fois diplômé, si vous le souhaitez, dans une logique de formation tout au long de la vie pour faciliter votre insertion 
+					 et votre future évolution professionnelle.</p>
+					 <div class='alert alert-block alert-bleu'>
+					 	<h5>Changez votre photo de profil</h5>
+					 	Changez votre photo de profil (affichée en page d’accueil et CV) en haut à droite 
+					 	en cliquant sur Mon profil.
+					 </div>
+					 <div class='alert alert-block alert-vert'>
+					 	<h5>L'outil ne fait pas tout</h5>
+						Cet outil est facilitateur mais pour réussir votre projet vous aurez besoin d’un bon accompagnement 
+						et de vous engager activement dans votre démarche.
+					 </div>
 				</div>
 				<!-- ================================================================== -->
-				<div id='demarche' class='span4'>
-					<h2>La démarche <small>en 4 étapes</small></h2>
+				<div id='demarche' class='span6'>
+					<h2><img id='demarche-img' src='../img/compass.png'/> Votre démarche</h2>
 					<div class="panel-group" id="panel-demarche">
 						<div class="panel panel-default">
 							<div class="panel-heading">
+								
 								<a class="panel-title" data-toggle="collapse"
-									data-parent="#panel-demarche" href="#panel-element-reperercomp">Repérer ses compétences</a>
+									data-parent="#panel-demarche" href="#panel-element-reperercomp"><i class="fa fa-plus-circle" aria-hidden="true" style='float:right'></i>Repérer vos compétences</a>
 							</div>
 							<div id="panel-element-reperercomp"
 								class="panel-collapse collapse">
 								<div class="panel-body">
-									<p>&nbsp;</p>
-									<p>
-										Dans la rubrique "Mon e-portfolio &gt; Mon histoire", vous êtes invités à raconter votre vie :-D
-										<br>
-										<br>Détaillez vos différentes expériences (de formations académiques, autres formations, de situations professionnelles ou personnelles ainsi que votre expérience globale en terme de langues étrangères).
-										<br>
-										<br>Pour chacune d'entre elles, vous pourrez rajouter des compétences que vous avez acquises et mobilisées de deux types : "métiers" ou "transversales, de l'innovation, personnelles" et ce depuis un référentiel ou de manière libre.
-										<br> 
-										<br>Astuce : n'oubliez pas que les expériences personnelles peuvent être, elles aussi, riches en compétences.
-									</p>
-									<p>&nbsp;</p>
+									<p style="text-align: justify;">Dans la rubrique Mon e-portfolio &gt; Mon histoire, vous êtes invité à <strong>raconter votre histoire</strong>.</p>
+									<p style="text-align: justify;"><strong>Détaillez vos différentes expériences</strong> (formations académiques ou autre formations, situations professionnelles et personnelles, expérience globale en terme de langues étrangères…).</p>
+									<p style="text-align: justify;">Pour chacune d’entre elles, vous pourrez <strong>rajouter des compétences</strong> que vous avez acquises et mobilisées de 2 types : «&nbsp;métiers&nbsp;» ou «&nbsp;transversales et personnelles&nbsp;» et ce depuis un référentiel ou de manière libre. Ensuite vous pourrez vous évaluer.</p>
+									<blockquote>
+									<p style="text-align: justify;">Astuce : n’oubliez pas que les expériences personnelles peuvent être, elles aussi, riches en compétences.</p>
+									<p style="text-align: justify;">NB : toutes les compétences pour lesquelles votre évaluation est positive se retrouvera dans votre bilan et votre CV.</p>
+									</blockquote>
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<a class="panel-title" data-toggle="collapse"
-									data-parent="#panel-demarche" href="#panel-element-suivrecomp">Suivre l'évolution de ses compétences</a>
+									data-parent="#panel-demarche" href="#panel-element-suivrecomp"><i class="fa fa-plus-circle" aria-hidden="true" style='float:right'></i>Faites votre bilan</a>
 							</div>
 							<div id="panel-element-suivrecomp"
 								class="panel-collapse collapse">
 								<div class="panel-body">
-									<p>&nbsp;</p>
-									<p>
-										Les expériences que vous aurez décrites dans "Mon e-portfolio > Mon histoire" vous auront permis de repérer et formaliser vos compétences. 
-										<br>
-										<br>La rubrique "Mon e-portfolio > Mes compétences" n'est pas éditable. 
-										<br>
-										<br>Cependant elle vous permettra d'avoir une vue d'ensemble de vos compétences présentées par compétences métier, compétences transversales et de l'innovation, langues...
-										<br>
-										<br>Faites le bilan de vos compétences!
-									</p>
-									<p>&nbsp;</p>
+								<div class="et_pb_toggle_content clearfix" style="display: block;">
+								<div style="display: block;" class="elementor-tab-content elementor-clearfix elementor-active" data-tab="1">
+								<p style="text-align: justify;">Dans la rubrique Mon e-portfolio &gt; Mon bilan, vous êtes invité à <strong>faire </strong>(ou plutôt à prendre connaissance de) <strong>votre bilan.<br>
+								</strong></p>
+								<p style="text-align: justify;">Toutes vos compétences vous seront d’abord présentées non plus par expériences mais <strong>par domaines métiers d’un part et d’autre part par compétences transversales, langues et autres personnelles.</strong> Même si par exemple vous suiviez des formations de gestionnaire vous pourriez observer l’acquisition de compétences également dans le domaine métier de l’information et de la communication.</p>
+								<blockquote><p>Grâce à ce bilan vous prendrez conscience progressivement que votre univers des possibles en termes de métiers s’agrandit au fur et à mesure de l’acquisition de compétences.</p></blockquote>
+								</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<a class="panel-title" data-toggle="collapse"
-									data-parent="#panel-demarche" href="#panel-element-cartecomp">Valoriser ses compétences et les relier à ses motivations : carte
+									data-parent="#panel-demarche" href="#panel-element-cartecomp"><i class="fa fa-plus-circle" aria-hidden="true" style='float:right'></i>Valoriser ses compétences et les relier à ses motivations : carte
 									interactive personnelle</a>
 							</div>
 							<div id="panel-element-cartecomp" class="panel-collapse collapse">
 								<div class="panel-body">
-									<p>&nbsp;</p>
-									<p>
-										<br>Elle permet à l'apprenant de représenter ses grands pôles de compétences et d'intérêt sous forme de carte conceptuelle interactive.
-										Chacun de ces pôles sera présenté sous forme de bulles de couleur plus ou moins grandes en fonction de son intérêt personnel. 
-										L'apprenant pourra les illustrer par des compétences issues de son e-portfolio, par des savoir-être, ou par des réalisations.
-									</p>
-									<p>&nbsp;</p>
+
+										<div style="display: block;" class="elementor-tab-content elementor-clearfix elementor-active" data-tab="1">
+										<p style="text-align: justify;">Dans la rubrique Mon e-portfolio &gt; Mon projet vous aller affiner votre Projet Personnel Professionnel.</p>
+										<p style="text-align: justify;">Si vous avez déjà bien réfléchi votre projet, commencez à écrire ce que vous visez. Ensuite, réfléchissez aux compétences que vous préférez, celles qui vous donnent envie de vous engager en terme d’action ! <strong>Faites votre top 10 de compétences métiers, transversales et personnelles</strong> !<strong><br>
+										</strong></p>
+										<p>Par la sous-rubrique «&nbsp;Mes ressources métiers&nbsp;» parcourez les domaines métiers de l’IUT2 (lien vers site web IUT2 Grenoble Alpes rubrique METIERS), et les fiches métiers. Lorsque vous trouvez des<strong> fiches métiers qui vous intéressent comparez les compétences attendues à vos compétences préférées</strong> et essayer de vous situer.</p>
+										<p style="text-align: justify;">La sous-rubrique «&nbsp;Mon environnement pro&nbsp;» est en cours de développement. Dans un 1er temps un démonstrateur sera mis en place afin de vous <strong>permettre d’établir votre profil personnel professionnel</strong>. Par la suite, vous pourrez voir apparaître une carte qui <strong>affiche en fonction de votre profil des fiches métiers et offres d’emploi proches de vos motivations</strong>. Dans tous les cas vous serez libre d’explorer cette carte et de vous éloigner des propositions automatiques. Par la suite, vous verrez également apparaître les <strong>parcours de formations possibles pour atteindre les métiers qui vous motivent</strong> ainsi les <strong>parcours d’expériences et ou de formation de vos pairs</strong>.</p>
+										<blockquote><p>Cette rubrique «&nbsp;Mon projet&nbsp;» est très stratégique pour vous. Elle ne remplacera pas l’accompagnement par vos référents PPP mais elle vous permettra de devenir encore plus acteur de votre choix de vie.</p></blockquote>
+										</div>
+
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<a class="panel-title" data-toggle="collapse"
-									data-parent="#panel-demarche" href="#panel-element-cvcomp">Valoriser ses compétences en réalisant des CV intelligents</a>
+									data-parent="#panel-demarche" href="#panel-element-cvcomp"><i class="fa fa-plus-circle" aria-hidden="true" style='float:right'></i>Valoriser ses compétences en réalisant des CV intelligents</a>
 							</div>
 							<div id="panel-element-cvcomp" class="panel-collapse collapse">
 								<div class="panel-body">
-									<p>&nbsp;</p>
-									<p>Vous pouvez réaliser la base de votre CV intelligent grâce à ce e-portfolio. 
-										<br>
-										<br>Une fois que vous avez complété votre histoire, puis consulté l'affichage de vos compétences, cliquez sur "Mes CV&nbsp;&gt;&nbsp;Créer un CV". Pensez à profiler votre CV selon le poste visé. Ces informations sont conservées dans votre e-portfolio.
-										<br>
-										<br>Exportez ensuite votre CV soit en RTF (éditable dans Word) ou en PDF (non éditable). La liste de tous vos CV créés est consultable dans la sous-rubrique "Mes CV&nbsp;&gt;&nbsp;Lister mes CV".
-										<br>
-										<br>Prochainement vous pourrez exporter vos CV à la norme Europass (norme européene). Un peu de patience ;-)
-										<br>
-										<br>Valorisez vos compétences à travers un CV qui parle de vraies compétences ;-)
-									</p>
-									<p>&nbsp;</p>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default" style='display:none'>
-							<div class="panel-heading">
-								<a class="panel-title" data-toggle="collapse"
-									data-parent="#panel-demarche"
-									href="#panel-element-reseausocial">Bien communiquer et commencer à créer son réseau pro.</a>
-							</div>
-							<div id="panel-element-reseausocial"
-								class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>&nbsp;</p>
-									<p>
-										Cette plateforme intègre le réseau social interne de l'IUT2 et l'apprenant est invité à l'utiliser, dans le respect du règlement de l'IUT2 et dans le respect de chacun pour bien communiquer avec les étudiants, les anciens et les enseignants.
-										<br>
-										<br>C'est bien souvent dès l'IUT que se crée le premier réseau de futurs collaborateurs ou recruteurs.
-										<br>
-										<br>Par ailleurs, cette expériences permettra à l'apprenant de réaliser l'importance de l'identité numérique et des traces qu'il peut laisser sur ce genre de réseau.
-									</p>
-									<p>&nbsp;</p>
+
+									<div class="et_pb_toggle_content clearfix" style="display: block;">
+														<div style="display: block;" class="elementor-tab-content elementor-clearfix elementor-active" data-tab="1">
+									<p style="text-align: justify;">Dans la rubrique Mon e-portfolio &gt; Ma valorisation, vous êtes invité à <strong>communiquer sur votre profil d’expériences, de compétences et plus !</strong></p>
+									<p>Il est important d’investir du temps sur certains réseaux sociaux professionnels tels que LinkedIN et à moindre mesure Viadéo pour optimiser ses chances d’être recruté, maîtriser son identité numérique (professionnelle) et développer son réseau (en plus de celui de la sphère humaine non virtuelle). Mais ce n’est pas suffisant ! <strong>Certains outils de valorisation doivent être travaillés de manière cohérente avec votre projet personnel professionnel et en cohérence avec vos profils sur les réseaux sociaux pro.</strong></p>
+									<p style="text-align: justify;">L’un des premiers outils de valorisation de son potentiel professionnel reste toujours le CV. Dans la sous-rubrique <strong>«&nbsp;Créer un CV&nbsp;» vous verrez apparaitre automatiquement tout le travail réalisé dans le ePortfolio</strong> sous forme de CV qu’il faudra compléter avec vos autres données personnelles. Ce n’est pas un CV que vous pourrez transmettre tel quel à un recruteur mais une base de CV qui vous permettra d’en construire plusieurs autres adaptés aux postes que vous visez. Vous pourrez exporter votre CV au format PDF ou RTF (Word).</p>
+									<p>Nous avons également implémenté dans ce ePortfolio un outil interactif de «&nbsp;Marketing de soi&nbsp;» pour vous permettre de mettre en scène et de justifier vos compétences, expériences et de les relier à vos motivations. Il s’agit de votre «&nbsp;<strong>Carte personnelle ePortfolio</strong>«&nbsp;. Vous pourrez créer des bulles cliquables plus ou moins grosses qui représenteront vos intérêts personnels et ou professionnels. A l’intérieur de ces bulles vous pourrez rajouter d’autres bulles qui contiennent des compétences, des bulles qui les illustrent par des réalisations significatives (liens vers des fichiers, vers un blog, ou insertion d’images…), etc. Vous pourrez diffuser cette carte sur votre résumé LinkedIN, par lien web ou encore par QR-Code sur votre CV imprimé.</p>
+									<blockquote><p>Plutôt que de laisser le recruteur se faire une image de vous en vous «&nbsp;Googlelisant&nbsp;» lorsque vous candidatez à une offre d’emploi ou de stage, reprenez la main en enrichissant votre CV d’une carte ePortfolio personnelle et interactive qu’il pourra consulter pour en savoir plus sur vous. Développez également vos réseaux !</p></blockquote>
+									</div>
+													</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
-					<br /><br />
-					<div id='network-rapid-access' style='display:none'>
-						<h3>Accès rapides</h3>
-		  				<div id="email-groups">
-		    				<div class='unread-label'><a id='unread_link' href=''  target='_blank'><span class='icon-envelope'></span> Mes messages non lus <span class='badge badge-danger'><span id='numberunreadmessages'></span></a></div>
-							<hr style='width:75%''>
-							<div class='groups-label'>Mes groupes</div>
-							<div id='mesgroupes'></div>
-		    			</div>
-	    			</div>
+					<h2><img id='objectif-img' src='../img/objectif.png'/> Vos objectifs</h2>
+					
+					<h4>Vous connaitre en terme de profil professionnel et être capable de :</h4>
+							<ul>
+							<li>verbaliser vos compétences préférées<strong></strong></li>
+							<li>construire efficacement son parcours&nbsp; personnel professionnel</li>
+							<li>valoriser votre profil professionnel pour un recrutement</li>
+							</ul>
+				
     			</div>
  			</div>
 			<div class='row-fluid'>
@@ -328,8 +301,9 @@
 							<div class='row-fluid'>
 								<div class="span6">
 									<div class="alert alert-orange alert-block">
-										<h3 align="center">Mes formations académiques</h3>
+										<h3 align="center">Formations académiques</h3>
 										<div id="diplomes-short_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/> <script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+										<div id="situations-short_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/> <script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 									</div>
 		
 									<div class="alert alert-block alert-bleu">
@@ -366,6 +340,7 @@
 						<div class='row-fluid'>
 							<div class="span12">
 								<div id="diplomes-detail_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+								<div id="situations-detail_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 							</div>
 						</div>
 					</div>
@@ -551,7 +526,7 @@
 					<li><a href="#description_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['description']);" class="text-noir">Ma description</a></li>
 					<li><a href="#competence_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['competence']);" class="text-vert">Mes compétences préférées</a></li>
 					<li><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
-					<li><a href="#carte_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['carte']);loadBubbleTreeMap();" class="text-violet">Ma carte</a></li>
+					<li><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);document.getElementById('freerome_iframe').style.height='100%';" class="text-bleu">Mon environnement pro</a></li>
 				</ul>
 	
 				<div id="tab-content_projet" class="tab-content">
@@ -597,7 +572,7 @@
 					<div class="tab-pane" id="metier_projet">
 						<div class='row-fluid'>
 							<div class="span12">
-								<div class='titre1'>Trouver mon métier<span id='help-projet-metier-label'></span></div>
+								<div class='titre1'>Ressources métiers<span id='help-projet-metier-label'></span></div>
 								<div class="alert alert-bleu alert-block">
 									<div id="metier_detail_projet"><p>L'IUT2 développera cette rubrique prochainement pour que vous puissiez comparer vos compétences préférées
 									 à celle du métier que vous voulez viser.</p><p>Vous pouvez dès à présent consulter la <strong><a target="_blank" href="http://www.iut2.upmf-grenoble.fr/metiers/les-principaux-domaines-de-metiers/les-principaux-domaines-de-metiers-173131.htm">carte des métiers</a></strong>
@@ -607,12 +582,57 @@
 						</div>
 					</div>
 					<!-- ================================================================== -->
-					<div class="tab-pane" id="carte_projet">
+					<div class="tab-pane" id="freerome_projet" style="height:500px">
+						<iframe id='freerome_iframe' class='freerome_iframe' src="../htm/freerome.htm" height="100%" width='100%'></iframe>
+					</div>
+					<!-- ================================================================== -->
+				</div>
+			</div>
+		</div>
+		<!-- ==================================================================================================== -->
+		<!-- ==================================================================================================== -->
+		<!-- ======================================= CV ========================================================= -->
+		<!-- ==================================================================================================== -->
+		<!-- ==================================================================================================== -->
+		<div id='cv' name='page' class='hide'>
+			<ol class="breadcrumb">
+				<li><a id='accueil' href="#" onclick="show_view('accueil');">Accueil</a><span class="divider">/</span></li>
+				<li class="active">Mes cvs<span class="divider">/</span></li>
+				<li id='view_label_cv' class="active"></li>
+			</ol>
+	
+			<h3 class="align-left"><i class="fa fa-star"></i> MA VALORISATION</h3>
+	
+			<!-- ====================================================================== -->
+			<div id="portfolio_cv">
+				<!-- ================================================================== -->
+				<ul id="tabs_cv" class="nav nav-tabs" data-tabs="tabs">
+					<li><a href="#list_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['list_cv']);" class="text-noir">Lister les cvs</a></li>
+					<li><a href="#create_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['create_cv']);" class="text-vert">Créer un cv</a></li>
+					<li><a href="#carte_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['carte']);loadBubbleTreeMap();" class="text-vert">Ma carte</a></li>
+				</ul>
+				<div id="tab-content_cv" class="tab-content">
+					<div class="tab-pane" id="list_cv">
+						<div class='row-fluid'>
+							<div class="span12">
+								<div id="list_cvs_short"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="create_cv">
+						<div class='row-fluid'>
+							<div class="span12">
+								<div id="list_cvs_detail"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
+							</div>
+						</div>
+					</div>
+					<!-- ================================================================== -->
+					<div class="tab-pane" id="carte_cv">
 						<div class='row'>
 							<div class="span12">
 								<div id='mode-emploi-button' class='badge' onclick='$("#carte_detail_projet").html(UICom.structure["ui"][helps_bycode["help-projet-mode-emploi"].id].resource.getView())'>Mode d'emploi</div>								
 								<div class='titre1'>Ma carte de profil<span id='help-projet-carte-label'></span></div>
-								<div class="alert alert-violet alert-block">
+								<div class="alert alert-vert alert-block">
 									<div class='row'>
 										<div class='span6'>
 											<iframe id="bubble_iframe" src='bubble.html'></iframe>
@@ -632,46 +652,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- ================================================================== -->
-				</div>
-			</div>
-		</div>
-		<!-- ==================================================================================================== -->
-		<!-- ==================================================================================================== -->
-		<!-- ======================================= CV ========================================================= -->
-		<!-- ==================================================================================================== -->
-		<!-- ==================================================================================================== -->
-		<div id='cv' name='page' class='hide'>
-			<ol class="breadcrumb">
-				<li><a id='accueil' href="#" onclick="show_view('accueil');">Accueil</a><span class="divider">/</span></li>
-				<li class="active">Mes cvs<span class="divider">/</span></li>
-				<li id='view_label_cv' class="active"></li>
-			</ol>
-	
-			<h3 class="align-left"><i class="fa fa-book"></i> MES CV</h3>
-	
-			<!-- ====================================================================== -->
-			<div id="portfolio_cv">
-				<!-- ================================================================== -->
-				<ul id="tabs_cv" class="nav nav-tabs" data-tabs="tabs">
-					<li><a href="#list_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['list_cv']);" class="text-noir">Lister les cvs</a></li>
-					<li><a href="#create_cv" data-toggle="tab" onclick="$('#view_label_cv').html(view_label['create_cv']);" class="text-vert">Créer un cv</a></li>
-				</ul>
-				<div id="tab-content_cv" class="tab-content">
-					<div class="tab-pane" id="list_cv">
-						<div class='row-fluid'>
-							<div class="span12">
-								<div id="list_cvs_short"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane" id="create_cv">
-						<div class='row-fluid'>
-							<div class="span12">
-								<div id="list_cvs_detail"><h4><img src='../../karuta/img/ajax-loader.gif'><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -686,7 +666,7 @@
 				<li id='view_label' class="active">Mon suivi</li>
 			</ol>
 	
-			<h3 class="align-left"><i class="fa fa-tasks"></i> MON SUIVI</h3>
+			<h3 class="align-left"><i class="fa fa-question"></i> MON SUIVI</h3>
 	
 			<!-- ====================================================================== -->
 			<div id="feedback-section">
@@ -724,8 +704,24 @@
 		<!-- ==================================================================================================== -->
 	</div>
 	<!-- ====================================================================== -->
-	<div id="footer" class="container-fluid" ></div>
-	<!-- ====================================================================== -->
+<footer id="main-footer">
+				
+	<div class="container">
+		<div style="font-size: 14px; text-align: center; margin-left: 25px;float:left;margin-top:10px">
+			<a style="color: rgba(18, 151, 188, 0.8);"  href="https://goo.gl/forms/sYro01q7HCzHuz0n1">Votre avis &nbsp;</a>
+			  &nbsp; |&nbsp;&nbsp;&nbsp;
+			<a style="color: rgba(18, 151, 188, 0.8);" href="https://docs.google.com/document/d/1YRAMsuUwO5VtKca1Jo7mDJMyuxZ0Dnvc44TAB2weRa0/edit?usp=sharing">Mentions légales</a>
+			  &nbsp; &nbsp;&nbsp; |&nbsp; &nbsp;
+			<a style="color: rgba(18, 151, 188, 0.8);" href="https://docs.google.com/document/d/1qhi7Uf_ZMsJpDNzfdvvy-Ii_bt4ztaBUansbjNQxumQ/edit"> Aide à l’utilisation</a>
+			  &nbsp; &nbsp;&nbsp; |&nbsp; &nbsp;
+			<a style="color: rgba(18, 151, 188, 0.8);" href="mailto :eric.giraudin@iut2.univ-grenoble-alpes.fr"> Contacter l’administrateur</a>
+		</div>
+		<div style="text-align:center;">
+			Développé par l'IUT2 Grenoble &amp; propulsé par <a target="_blank" href="http://karuta-france-portfolio.fr" rel="noopener"><img src="../img//logo-karuta-transp-minimini.png" width="200" height="42"></a>
+		</div>
+	</div>	<!-- .container -->
+</footer>
+				<!-- ====================================================================== -->
 	<!-- ==================== activite box ==================================== -->
 	<div id='activite-window' class='modal hide fade alert alert-block'>
 		<div id='activite-window-header' class='modal-header' style='text-align:right'></div>
