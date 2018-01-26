@@ -1793,7 +1793,6 @@ function getDetailCompetencies(tableau,position,prefix,edit,type,objid,destid,mo
 				html += "<input id='"+level1_code_previous+"' type='checkbox' label=\""+level1_label_previous+"\" value='"+level1_code_previous+"' portfoliocode='' code='"+level1_code_previous+"' onchange='javascript:toggleChildren(this);'>";
 			html += level1_label_previous+" <span class='level'>("+nb_level2+")</span> </h5>";
 		}
-		html += temp_html;
 	}
 	html += temp_html;
 	html += "</div>";

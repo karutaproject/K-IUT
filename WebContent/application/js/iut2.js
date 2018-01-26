@@ -130,21 +130,6 @@ function getNavbar(portfolioid) {
 }
 
 
-
-
-var footer = "";
-footer += "<div class='row row-padded'>";
-/*
-footer += "<div class='muted' style='float:right'>propulsé par Karuta</div>";
-footer += "<p class='muted' align='center'>E-portfolio4* - copyright IUT 2 Grenoble 2014 -<a href=''>Mentions l&eacute;gales</a> -<a href=''>Cr&eacute;dits</a> -<a href=''>Contact</a></p>";
-*/
-//footer += "<table style='width: 100%;'><tr><td align='left'><img src='../img/logoiut2footer.png'/></td><td align='center'><span class='muted' align='center'>E-portfolio4*&nbsp;&mdash;&nbsp;copyright IUT 2 Grenoble 2014&nbsp;&mdash;&nbsp;<a href=''>Mentions l&eacute;gales</a>&nbsp;&mdash;&nbsp;<a href=''>Cr&eacute;dits</a>&nbsp;&mdash;&nbsp;<a href=''>Contact</a></span></td>";
-footer += "<table style='width: 100%;'><tr><td align='left'><img src='../img/logoiut2footer.png'/></td><td align='center'><span class='muted' align='center'>E<strong>&middot;</strong>portfolio4*&nbsp;&mdash;&nbsp;copyright IUT 2 Université Grenoble Alpes 2014-2016</span></td>";
-footer += "<td align='right'><img src='../img/logokarutafooter.png'/></td>";
-footer += "</tr></table>";
-footer += "</div>";
-
-
 //================================
 function getNavbar2(portfolioid) {
 //================================
