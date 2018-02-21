@@ -1,15 +1,15 @@
 //----------------------------------
-var application_version = "2.0";
-var application_date = "2016-08-23";
+var application_version = "3.0";
+var application_date = "2018-02-21";
 //----------------------------------
-var appliname = 'iut2';
+var appliname = 'k-iut';
 //----------------------------------
-var karuta_site = 'iut2'; //-- eportfolium iut2 local
+var karuta_site = 'k-iut'; //-- eportfolium iut2 local
 //---------
 var bckname = '';
-var serverBCK = "";
-var serverFIL = "";
-var serverVER = "";
+var serverBCK = "karuta-backend"+bckname+"/rest/api";
+var serverFIL = "karuta-backend"+bckname;
+var serverVER = "karuta-backend"+bckname;
 //----ELGG-----
 var elgg_installed = false;
 var elgg_url_base = '';
@@ -18,29 +18,6 @@ var elgg_auth_cas = false;
 var g_elgg_refreshing = 120000; // 120s 
 //---------
 var serverCMP = 'http://referentiels.iut2.upmf-grenoble.fr/app_dev/api';
-//---------
-if (karuta_site == 'eportfolium') {
-	serverBCK = "iut2-backend/rest/api";
-	serverFIL = "iut2-backend";
-	serverVER = "iut2-backend";
-	//---------
-	elgg_url_base = '../../../elgg112/';
-}
-if (karuta_site == 'iut2') {
-	bckname = '-iut2';
-	serverBCK = "karuta-backend"+bckname+"/rest/api";
-	serverFIL = "karuta-backend"+bckname;
-	serverVER = "karuta-backend"+bckname;
-	//---------
-	elgg_url_base = 'elgg/';
-	elgg_auth_cas = true;
-}
-if (karuta_site == 'local') {
-	bckname = '';
-	serverBCK = "karuta-backend"+bckname+"/rest/api";
-	serverFIL = "karuta-backend"+bckname;
-	serverVER = "karuta-backend"+bckname;
-}
 //----------------------------------
 var languages = [];
 var languages_name = [];

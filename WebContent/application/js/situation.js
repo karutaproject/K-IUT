@@ -175,7 +175,7 @@ UIFactory["SituApp"].prototype.displayEditor = function(destid,type,lang) {
 	html += "Quitter le mode édition";
 	html += "</a>";
 	$(div).append($(html));
-	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>Votre rôle dans l'action </label>"));
+	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>Intitulè de votre situation </label>"));
 	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getNodeLabelEditor());
 	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span6'></div><div id='B_"+this.id+"' class='span6'></div></div>";
 	$(div).append($(row));
@@ -186,7 +186,7 @@ UIFactory["SituApp"].prototype.displayEditor = function(destid,type,lang) {
 	displayControlGroup_getEditor("formA_"+this.id,"Durée","fin_"+this.id,this.duration_nodeid);
 	displayControlGroup_displayEditor("formA_"+this.id,"Domaine métiers<span id='help-domaine-metier'></span>","dommet_"+this.id,this.domaine_metier_nodeid,"select");
 	$("#formA_"+this.id).append($("<hr></hr>"));
-	$("#formA_"+this.id).append($("<label class='inline'>Description</label>"));
+	$("#formA_"+this.id).append($("<label class='inline'>Description de la situation, problème à résoudre, démarche,..</label>"));
 	UICom.structure["ui"][this.description_nodeid].resource.displayEditor("formA_"+this.id,'x100');
 
 	$("#B_"+this.id).append($("<form id='formB_"+this.id+"' class='form-horizontal'></form>"));
@@ -452,7 +452,7 @@ function envoyerFormulaireEvaluation(uuid,destid,email,role,lang,type) {
 		url : urlS,
 		uuid : uuid,
 		success : function (data){
-			urlS = "../../../"+serverFIL+'/direct?uuid='+uuid+'&email='+email+'&role='+role+'&l=3&d=720';
+			urlS = "../../../"+serverFIL+'/direct?uuid='+uuid+'&email='+email+'&role='+role+'&l=3&d=720&shareroles=etudiant,all,all,4,500,partager@fr';
 			$.ajax({
 				type : "POST",
 				dataType : "text",
