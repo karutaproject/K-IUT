@@ -542,6 +542,7 @@ label.comp-attestation {
 	color:#53b9d2;
 }
 
+#metier_projet .alert,
 #accueil .alert {
 	color:black;
 	font-weight:300;
@@ -556,6 +557,7 @@ label.comp-attestation {
 	border-left: 5px solid #10769c
 }
 
+#metier_projet .alert-vert,
 #accueil .alert-vert {
 	border-left: 5px solid #7db00e;
 }
@@ -1469,3 +1471,14 @@ button.js-zeroclipboard {
  	margin-left:15px;
  }
 
+#metier_projet_exploration_ss_titre,
+#metier_projet_ss_titre {
+	font-size:14px;
+	font-weight: bold;
+	margin-bottom:10px;
+}
+
+#metier_projet p {
+	font-size:14px;
+	font-weight:300;
+}

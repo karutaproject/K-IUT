@@ -925,7 +925,7 @@ function envoyerFormulaireStage(uuid,destid,email,role,lang) {
 		url : urlS,
 		uuid : uuid,
 		success : function (data){
-			urlS = "../../../"+serverFIL+'/direct?uuid='+uuid+'&email='+email+'&role='+role+'&l=3&d=720&shareroles=etudiant,all,all,4,500,partager@fr';
+			urlS = "../../../"+serverFIL+"/direct?uuid="+uuid+"&email="+email+"&shareroles=etudiant&role="+role+"&l=3&d=720&type=showtorole&showtorole="+role;
 			$.ajax({
 				type : "POST",
 				dataType : "text",

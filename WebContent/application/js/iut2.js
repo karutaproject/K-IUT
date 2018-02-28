@@ -7,6 +7,7 @@ obj_label['internship-unit'] = "Stage";
 obj_label['alternance-unit'] = "Alternance";
 obj_label['experience_perso-unit'] = "Expérience personnelle";
 obj_label['project-unit'] = "Action étudiante";
+obj_label['situation-unit'] = "Situation d'apprentissage";
 
 var view_label = new Array();
 view_label['resume'] = "Vue d'ensemble";
@@ -784,7 +785,7 @@ function selectPortfolio(data)
 					UIFactory["Bubble"].parse(data);
 					dataBubble = Bubble_list[0].data;
 					g_current_mapid = Bubble_list[0].id;
-					var urlS = "../../../"+serverFIL+'/direct?uuid='+g_current_mapid+'&role=all&lang=fr&l=4&d=500&shareroles=etudiant,all,all,4,500,partager@fr';
+					var urlS = "../../../"+serverFIL+'/direct?uuid='+g_current_mapid+'&role=all&lang=fr&l=4&d=500&type=showtorole&showtorole=all';
 					$.ajax({
 						type : "POST",
 						dataType : "text",

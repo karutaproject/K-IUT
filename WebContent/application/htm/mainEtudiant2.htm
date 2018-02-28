@@ -573,13 +573,29 @@
 					<!-- ================================================================== -->
 					<div class="tab-pane" id="metier_projet">
 						<div class='row-fluid'>
-							<div class="span12">
+							<div class="span7">
 								<div class='titre1'>Ressources métiers<span id='help-projet-metier-label'></span></div>
-								<div class="alert alert-bleu alert-block">
-									<div id="metier_detail_projet"><p>L'IUT2 développera cette rubrique prochainement pour que vous puissiez comparer vos compétences préférées
-									 à celle du métier que vous voulez viser.</p><p>Vous pouvez dès à présent consulter la <strong><a target="_blank" href="http://www.iut2.upmf-grenoble.fr/metiers/les-principaux-domaines-de-metiers/les-principaux-domaines-de-metiers-173131.htm">carte des métiers</a></strong>
-									  préparés par les formations de l'IUT2 et prendre connaissances des principales activités et compétences attendues.</p></div>
+								<div id='metier_projet_ss_titre'>
+									Notre Centre de Compétences et des Métiers met à votre disposition sur le site de l’IUT2 une carte des métiers préparés par les formations de ses différents départements.
 								</div>
+								<p>
+									1) Rendez-vous sur <a href='http://iut2.univ-grenoble-alpes.fr dans la rubrique'>http://iut2.univ-grenoble-alpes.fr</a> dans la rubrique <b>MÉTIERS</b> et cliquez sur le lien <b>Liste non exhaustive de nos métiers...</b>b>
+								</p>
+								<p>
+									2) Parcourez les domaines métiers et trouvez les fiches métiers qui vous intéressent.
+								</p>
+								<p>
+									3) Comparez vos compétences préférées à celles attendues par le métier que vous visez, explorez les formations conseillées et les évolutions possibles pour construire votre parcours. 
+								</p>
+								<div class='alert alert-block alert-vert'>
+									<div id='metier_projet_exploration_ss_titre'>Explorez encore plus de possibles !</div>
+									<p>
+										N’hésitez pas à parcourir les fiches métiers de Pôle Emploi qui contiennent tous les fiches  du ROME (Répertoire Opérationnel des Métiers et des Emplois).  Dans la rubrique Mon environnement pro de ce ePortfolio vous pouvez accéder, après un test en ligne à une carte des métiers et des emplois possibles proches de votre spectre personnel professionnel.
+									</p>
+								</div>
+							</div>
+							<div class="span5">
+								<img src='../img/carte-des-metiers.jpg'/>
 							</div>
 						</div>
 					</div>
@@ -802,10 +818,8 @@
 		$("#spin-add").spin({top:'60%'});
 		moment.locale('fr');
 		show_view('accueil');
-//		$("#footer").html(footer);
 		//----------------
 		fetchPPNmetier();
-		$.ajaxSetup({async: false});
 		$.ajax({
 			type : "GET",
 			dataType : "xml",
@@ -821,6 +835,37 @@
 						loadLanguages(function(){ g_elgg_key = Cookies.get('elgg_token');displaySocialNetworkIUT2('socialnetwork'); });
 				} else
 					loadLanguages();
+				var urlS = "../../../"+serverBCK+"/portfolios?active=1";
+				if (usercode!=null && usercode!="")
+					urlS += "&search="+usercode;
+				$.ajax({
+					Accept: "application/xml",
+					contentType: "application/xml",
+					type : "GET",
+					dataType : "xml",
+					url : urlS,
+					success : function(data) {
+						selectPortfolio(data);
+						if (l_userrole=='etudiant' && g_userrole=='etudiant'){
+							for (var i=0; i<3;i++){
+								$("#menu-add-projet-comp-"+i).css("display", "block");
+							}
+						}
+						$.ajax({
+							type : "GET",
+							dataType : "xml",
+							url : "../../../"+serverBCK+"/portfolios/portfolio/code/IUT2referentiels.help?resources=true",
+							success : function(data) {
+								UICom.parseStructure(data);
+								UIFactory["Help"].parse(data);
+								UIFactory["Help"].displayAll();
+							}
+						});
+					}
+				});
+				fetchDomaineMetier();
+				$("#carte_metiers_url").attr('href',carte_metiers_url);
+				$("#freerome_iframe").attr('src',freerome_url+USER.username_node.text());
 			},
 			error : function(jqxhr,textStatus) {
 				loadLanguages(function(data) {alert(karutaStr[LANG]['not-logged']);});
@@ -828,37 +873,6 @@
 			}
 		});
 		//----------------
-		$.ajaxSetup({async: true});
-		var urlS = "../../../"+serverBCK+"/portfolios?active=1";
-		if (usercode!=null && usercode!="")
-			urlS += "&search="+usercode;
-		$.ajax({
-			Accept: "application/xml",
-			contentType: "application/xml",
-			type : "GET",
-			dataType : "xml",
-			url : urlS,
-			success : function(data) {
-				selectPortfolio(data);
-				if (l_userrole=='etudiant' && g_userrole=='etudiant'){
-					for (var i=0; i<3;i++){
-						$("#menu-add-projet-comp-"+i).css("display", "block");
-					}
-				}
-				$.ajax({
-					type : "GET",
-					dataType : "xml",
-					url : "../../../"+serverBCK+"/portfolios/portfolio/code/IUT2referentiels.help?resources=true",
-					success : function(data) {
-						UICom.parseStructure(data);
-						UIFactory["Help"].parse(data);
-						UIFactory["Help"].displayAll();
-					}
-				});
-			}
-		});
-		fetchDomaineMetier();
-//		$("#freerome_iframe").attr('src','http://freerome.mugeco.com/plugin?uid=1973');
 	});
 	
 	//====================================

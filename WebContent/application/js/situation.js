@@ -175,7 +175,7 @@ UIFactory["SituApp"].prototype.displayEditor = function(destid,type,lang) {
 	html += "Quitter le mode édition";
 	html += "</a>";
 	$(div).append($(html));
-	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>Intitulè de votre situation </label>"));
+	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>Intitulé de votre situation </label>"));
 	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getNodeLabelEditor());
 	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span6'></div><div id='B_"+this.id+"' class='span6'></div></div>";
 	$(div).append($(row));
@@ -452,7 +452,7 @@ function envoyerFormulaireEvaluation(uuid,destid,email,role,lang,type) {
 		url : urlS,
 		uuid : uuid,
 		success : function (data){
-			urlS = "../../../"+serverFIL+'/direct?uuid='+uuid+'&email='+email+'&role='+role+'&l=3&d=720&shareroles=etudiant,all,all,4,500,partager@fr';
+			urlS = "../../../"+serverFIL+"/direct?uuid="+uuid+"&email="+email+"&shareroles=etudiant&role="+role+"&l=3&d=720&type=showtorole&showtorole="+role;
 			$.ajax({
 				type : "POST",
 				dataType : "text",
