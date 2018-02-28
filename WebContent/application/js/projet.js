@@ -716,126 +716,81 @@ UIFactory["Projet"].prototype.displayEditor_demandeEval= function(destid,type,la
 	if (lang==null) lang_local=LANGCODE;
 	var submittednode = ($("metadata-wad",this.node).attr('submitted')=='Y')? true:false;
 	var html = "";
-	$("#"+destid).html("");
-	var div = $("<div class='alert alert-vert alert-block edition'></div>");
+	$("#"+destid).html(html);
+	var div = "";
+	if (this.referent_prenom_nodeid!=undefined)
+		div = $("<div class='alert alert-vert alert-block edition'></div>");
+	else
+		div = $("<div class='alert alert-vert alert-block edition old-project'></div>");
 	$("#"+destid).append(div);
-	if (submittednode && g_userrole=='tuteur' && writenode) {
-		html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:projets_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
-		html += appStr[languages[lang_local]]['cancel'];
-		html += "</a>";
-		html += "<span id='sendEval2_"+this.id+"'></span>";
-	}
-	$(div).append($(html));
-	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>"+appStr[languages[lang_local]]['post-label']+" </label>"));
-	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getView("#libelle_"+this.id));
-	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span5'></div><div id='B_"+this.id+"' class='span5'></div></div>";
+	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>Rôle dans l'action : </label>"));
+	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getLabel());
+	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span6'></div><div id='B_"+this.id+"' class='span6'></div></div>";
 	$(div).append($(row));
 
 	$("#A_"+this.id).append($("<form id='formA_"+this.id+"' class='form-horizontal'></form>"));
 	$("#formA_"+this.id).append($("<hr></hr>"));
-
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['year-start'],"debut_"+this.id,this.begin_nodeid);
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['duration'],"fin_"+this.id,this.duration_nodeid);
-	displayControlGroup_displayView("formA_"+this.id,appStr[languages[lang_local]]['business-domain'],"dommet_"+this.id,this.domaine_metier_nodeid,"select",null,lang_local);
+	displayControlGroup_getView("formA_"+this.id,"Année de début","debut_"+this.id,this.begin_nodeid);
+	displayControlGroup_getView("formA_"+this.id,"Durée","fin_"+this.id,this.duration_nodeid);
+	displayControlGroup_displayView("formA_"+this.id,"Domaine métiers<span id='help-domaine-metier'></span>","dommet_"+this.id,this.domaine_metier_nodeid,"select");
 	$("#formA_"+this.id).append($("<hr></hr>"));
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['organism-provenance'],"school_"+this.id,this.school_nodeid);
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['formation-context'],"statut_"+this.id,this.cadre_nodeid);
-	if ($(UICom.structure["ui"][this.rapport_nodeid].resource.filename_node[LANGCODE]).text()!="")
-		displayControlGroup_displayView("formA_"+this.id,"Rapport","attestation_"+this.id,this.attestation_nodeid);
+	displayControlGroup_getView("formA_"+this.id,"Organisme de formation<span id='help-organisme-formation'></span>","school_"+this.id,this.school_nodeid);
+	displayControlGroup_getView("formA_"+this.id,"Dans le cadre de la formation","statut_"+this.id,this.cadre_nodeid);
+	displayControlGroup_getView("formA_"+this.id,"Rapport","rapport_"+this.id,this.rapport_nodeid);
 
 	$("#formA_"+this.id).append($("<hr></hr>"));
-	$("#formA_"+this.id).append($("<label class='inline'>"+appStr[languages[lang_local]]['main-tasks']+"</label>"));
-	$("#formA_"+this.id).append($("<div>"+UICom.structure["ui"][this.missions_nodeid].resource.getView()+"</div>"));
+	$("#formA_"+this.id).append($("<label class='inline'>Principales missions</label></p>"));
+	var mission = "<div>"+UICom.structure.ui[this.missions_nodeid].resource.getView()+"</div>";
+	$("#formA_"+this.id).append($(mission));
 	$("#formA_"+this.id).append($("<hr></hr>"));
-	$("#formA_"+this.id).append($("<label class='inline'>"+appStr[languages[lang_local]]['main-accomplishments']+"</label>"));
-	$("#formA_"+this.id).append($("<div>"+UICom.structure["ui"][this.realizations_nodeid].resource.getView()+"</div>"));
-
+	$("#formA_"+this.id).append($("<label class='inline'>Principales réalisations</label>"));
+	$("#formA_"+this.id).append($("<div>"+UICom.structure.ui[this.realizations_nodeid].resource.getView()+"</div>"));
 	$("#B_"+this.id).append($("<form id='formB_"+this.id+"' class='form-horizontal'></form>"));
-	$("#formB_"+this.id).append($("<hr></hr>"));
+	
 	//------------------ Tuteur ------------------
-	var html2 = "<div class='control-group'><label class='control-label'>Évaluateur</label><div class='controls'><hr style='margin-top:11px;'></hr></div></div>";
-	html2 += "<div class='control-group'>"
-	html2 += "	<div class='controls'>"+UICom.structure["ui"][this.referent_prenom_nodeid].resource.getView();
-	html2 += " "+UICom.structure["ui"][this.referent_nom_nodeid].resource.getView();
-	html2 += "	</div>";
-	html2 += "</div>";
-	html2 += "<div class='control-group'>"
-	html2 += "	<div class='controls'><a href='mailto:"+UICom.structure["ui"][this.referent_email_nodeid].resource.getView()+"'>"+UICom.structure["ui"][this.referent_email_nodeid].resource.getView()+"</a>";
-	html2 += "	</div>";
-	html2 += "</div>";
-	//------------------ Contacts ------------------
-	if (this.contacts.length>0) {
-		html2 += "<div class='control-group'><label class='control-label'>Contact(s)</label><div class='controls'><hr style='margin-top:11px;'></hr></div></div>";
-		html2 += "<div class='control-group'>";
-		for (var i=0; i<this.contacts.length; i++){
-			if (i>0)
-				html2 += "<div class='controls'><hr style='margin-top:11px;'></hr></div>";
-			html2 += "<div class='controls' id='"+this.contacts[i].id+"'></div>";
-		}
-		html2 += "</div>";		
+	if (this.referent_prenom_nodeid!=undefined) {
+		$("#formB_"+this.id).append($("<div class='control-group'><label class='control-label'>Évaluateur</label><div class='controls'><hr style='margin-top:11px;'></div></div>"));
+		displayControlGroup_getView("formB_"+this.id,"Prénom","refprenom"+this.id,this.referent_prenom_nodeid);
+		displayControlGroup_getView("formB_"+this.id,"Nom","refnom"+this.id,this.referent_nom_nodeid);
+		displayControlGroup_getView("formB_"+this.id,"Courriel","email_"+this.id,this.referent_email_nodeid);
 	}
-	var obj = $(html2);
-	$("#formB_"+this.id).append(obj);
+	//---------------- Contacts ------------------
+	if (this.contacts.length)
+		var html = "<div class='titre-contacts'>Contact(s) :</div>";
+	html += "<div class='contacts'>"
 	for (var i=0; i<this.contacts.length; i++){
-		this.contacts[i].displayView(this.contacts[i].id,'detail',lang_local);
+		html += "<div class='contact' id='"+this.contacts[i].id+"'></div>";
 	}
+	html += "</div><!-- contacts -->";
+	//-----------------------------------
+	var obj = $(html);
+	$("#formB_"+this.id).append(obj);
+	//--------------------------------------------------
+	for (var i=0; i<this.contacts.length; i++){
+		this.contacts[i].displayView(this.contacts[i].id,'detail');
+	}
+
+	//+ autre contact
+
 	$("#formB_"+this.id).append($("<hr style='margin-top:15px;'></hr>"));
-	$("#formB_"+this.id).append($("<label class='inline'>"+appStr[languages[lang_local]]['contribution-project']+"</label>"));
-	$("#formB_"+this.id).append($("<div>"+UICom.structure["ui"][this.apport_nodeid].resource.getView()+"</div>"));
+	$("#formB_"+this.id).append($("<label class='inline'>Apport de cette expérience dans mon projet personnel professionel</label>"));
+	$("#formB_"+this.id).append($("<div>"+UICom.structure.ui[this.apport_nodeid].resource.getView()+"</div>"));
 	//----------------------------------------------------------------------------------------------------
-	if (writenode){
-		eval_competences = new Array();
-		view_eval_competences = new Array();
-		html = getSectionCompetences(this.id,destid,this.ppn_nodeid,this.ref_nodeid,this.dom_nodeid,this.dom2a_nodeid,this.dom2b_nodeid,this.dom2c_nodeid,this.comps_metiers_node,this.comps2_metiers_node,this.comps_autres_node,this.comps2_autres_node2a,this.comps2_autres_node2b,this.comps2_autres_node2c,"Compétences","Projet","projets-detail_histo_","vert","projets_byid",null,lang_local,this.comp_traduction_nodeid);
-		//-----------------------------------------------------------------------
-		html += getEvaluationCodes_bytypes(['evaluateur','autoeval'],lang_local);
-		//----------------------------------------------------------------------------------------------------
-		$(div).append($(html));
-		//------------------ evaluation----------------------------------------
-		getEvaluations_display(view_eval_competences,eval_competences,lang_local);
-	} else {
-		//==================================================================
-		html = "<div class='row-fluid competences-titre'>";
-		//-----------------------------------------------------------------------
-		view_eval_competences = new Array();
-		html += "<span class='span6'><h4>Compétencesn</h4></span>";
-		html += "</div>";
-		html += "<div class='row-fluid'>";
-		html += "<span class='span6'>";
-		html += "<h5>Compétences métiers</h5>";
-		html += getEvalTableau_begin(1,this.id,destid,'Projet',0);
-		//---------------------------------------------
-		var tableauActivitesMetierPPN = getTableauActivitesMetierPPN(this.comps_metiers_node,'activite','competence-metier');
-		var tableauActivitesMetierFree = getTableauActivitesMetierFree(this.comps2_metiers_node,'dom-metier-ref','free-comp-metier');
-		var tableauActivitesMetier = tableauActivitesMetierPPN.concat(tableauActivitesMetierFree);
-		var tableauActivitesMetierTrie = tableauActivitesMetier.sort(sortOn1);
-		html += getCompetencies3(tableauActivitesMetierTrie,false,'Projet',this.id,destid,0);
-		//---------------------------------------------
-		html += getEvalTableau_end();
-		html += "</span>";
-		//-----------------------------------------------------------------------
-		html += "<span class='span6'>";
-		html += "<h5>"+appStr['fr']['competencies-other']+"</h5>";
-		html += getEvalTableau_begin(1,this.id,destid,'Projet',1);
-		//---------------------------------------------
-		html += getCompetencies2(this.comps_autres_node,false,'Projet',this.id,destid,'activite','competence-trans',1);
-		html += getCompetencies2(this.comps2_autres_node2a,false,'Projet',this.id,destid,'dom-autre-ref','free-comp-autre',1);
-		html += getCompetencies2(this.comps2_autres_node2b,false,'Projet',this.id,destid,'dom-autre-ref','free-comp-autre',1);
-		html += getCompetencies2(this.comps2_autres_node2c,false,'Projet',this.id,destid,'dom-autre-ref','free-comp-autre',1);
-		//---------------------------------------------
-		html += getEvalTableau_end();
-		html += "</span>";
-		//-----------------------------------------------------------------------
-		html += "</div>";
-		//-----------------------------------------------------------------------
+	eval_competences = new Array();
+	view_eval_competences = new Array();
+	html = getSectionCompetences(this.id,destid,this.ppn_nodeid,this.ref_nodeid,this.dom_nodeid,this.dom2a_nodeid,this.dom2b_nodeid,this.dom2c_nodeid,this.comps_metiers_node,this.comps2_metiers_node,this.comps_autres_node,this.comps2_autres_node2a,this.comps2_autres_node2b,this.comps2_autres_node2c,"Compétences liées à cette action","Projet","projets-detail_histo_","vert","projets_byid");
+	//-----------------------------------------------------------------------
+	if (this.referent_prenom_nodeid!=undefined)
 		html += getEvaluationCodes_bytypes(['evaluateur','autoeval']);
-		//----------------------------------------------------------------------------------------------------
-		html += "</div><!-- class='panel-collapse collapse in'-->";
-		html += "</div><!-- class=''panel ...'-->";
-		$(div).append($(html));
-		getEvaluations_displayView(view_eval_competences);
-		//=====================================================
-	}
+	else
+		html += getEvaluationCodes_bytypes(['autoeval']);
+	//----------------------------------------------------------------------------------------------------
+	$(div).append($(html));
+	//------------------ evaluation----------------------------------------
+	getEvaluations_display(view_eval_competences,eval_competences);
+	//---------------------------------------------------------------------
+	if ($('#scroll_'+this.id).hasVerticalScrollBar())  // si scrollbar décaler en-têtes évaluations
+		$('#ethead_'+this.id).css('width','97%');
 	var buttons_senEval ="";
 	if (g_userrole=='tuteur') {
 		html = "<div class='row-fluid'><span class='span10'><form id='formC_"+this.id+"' class='form-horizontal'></form></span></div>";
@@ -844,9 +799,6 @@ UIFactory["Projet"].prototype.displayEditor_demandeEval= function(destid,type,la
 		if (submittednode && writenode) {
 			UICom.structure["ui"][this.comments_nodeid].resource.displayEditor("formC_"+this.id,'x200');			
 			html = "<div class='row-fluid'>";
-			html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:projets_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
-			html += appStr[languages[lang_local]]['cancel'];
-			html += "</a>";
 			if (eval_competences.length>0 ||this.eval_qualites_perso.length>0) {
 				html += "<span id='sendEval1_"+this.id+"'>";
 				buttons_senEval += "<a id='sendEval1_btn_"+this.id+"' class='btn btn-mini btn-vert editbutton' onclick=\"javascript:setMessageBox('"+appStr[languages[lang_local]]['sending']+"');showMessageBox();envoyerEvaluation('"+this.id+"','"+destid+"',"+lang_local+")\" data-title='formulaire' rel='tooltip'>";
@@ -892,7 +844,5 @@ function envoyerEvaluation(uuid,destid,lang,type) {
 			});
 		}
 	});
-//	window.location.reload();
-//	UIFactory['Stage'].reloadparse(null,null,uuid);
 }
 

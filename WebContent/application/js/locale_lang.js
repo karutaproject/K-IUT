@@ -170,10 +170,18 @@ appStr['en']['phone']="Phone";
 //----------------------------------------------------
 //Demande d'évaluation
 //----------------------------------------------------
-appStr['fr']['evaluation-request']="DEMANDE D'ÉVALUATION DE STAGE";
-appStr['fr']['student']="Etudiant";
-appStr['fr']['demandeeval-alert']="Le stagiaire mentionné sur cette fiche vous a envoyé une demande d'évaluation / validation des compétences qu'il a mobilisées lors de son stage au sein de votre organisation.<br/>À l'aide des champs déroulants dans le paragraphe «Compétences liées à ce stage» et dans la colonne «entreprise» vous pouvez évaluer les compétences qui font déjà l'objet d'une autoévaluation par l'étudiant.<br/><br/>Une fois l'évaluation terminée, vous pouvez rajouter des commentaires et cliquer sur «Envoyer l'évaluation».";
+appStr['fr']['Stage-evaluation-request']="DEMANDE D'ÉVALUATION DE STAGE";
+appStr['fr']['Stage-student']="Stagiaire";
+appStr['fr']['Stage-demandeeval-alert']="Le stagiaire mentionné sur cette fiche vous a envoyé une demande d'évaluation / validation des compétences qu'il a mobilisées lors de son stage au sein de votre organisation.<br/>À l'aide des champs déroulants dans le paragraphe «Compétences liées à ce stage» et dans la colonne «entreprise» vous pouvez évaluer les compétences qui font déjà l'objet d'une autoévaluation par l'étudiant.<br/><br/>Une fois l'évaluation terminée, vous pouvez rajouter des commentaires et cliquer sur «Envoyer l'évaluation».";
 //----------------------------------------------------
-appStr['en']['evaluation-request']="INTERNSHIP EVALUATION REQUEST";
-appStr['en']['student']="Student";
-appStr['en']['demandeeval-alert']="The intern mentioned on this form has sent you a request for evaluation / validation of competency aquired during their internship in your organisation.<br/>Using the drop-down boxes in the Skills section and in the 'Entreprise' column, you can evaluate the competencies that are already self-evaluated by the intern.<br/><br/>Once the evaluation is complete, you can add comments and click the 'Send Evaluation' button.";
+appStr['en']['Stage-evaluation-request']="INTERNSHIP EVALUATION REQUEST";
+appStr['en']['Stage-student']="Student";
+appStr['en']['Stage-demandeeval-alert']="The intern mentioned on this form has sent you a request for evaluation / validation of competency aquired during their internship in your organisation.<br/>Using the drop-down boxes in the Skills section and in the 'Entreprise' column, you can evaluate the competencies that are already self-evaluated by the intern.<br/><br/>Once the evaluation is complete, you can add comments and click the 'Send Evaluation' button.";
+//----------------------------------------------------
+appStr['fr']['Projet-evaluation-request']="DEMANDE D'ÉVALUATION";
+appStr['fr']['Projet-student']="Étudiant";
+appStr['fr']['Projet-demandeeval-alert']="L'étudiant mentionné sur cette fiche vous a envoyé une demande d'évaluation / validation des compétences qu'il a mobilisées lors de son action.<br/>À l'aide des champs déroulants dans le paragraphe «Compétences liées à ce stage» et dans la colonne «entreprise» vous pouvez évaluer les compétences qui font déjà l'objet d'une autoévaluation par l'étudiant.<br/><br/>Une fois l'évaluation terminée, vous pouvez rajouter des commentaires et cliquer sur «Envoyer l'évaluation».";
+//----------------------------------------------------
+appStr['fr']['SituApp-evaluation-request']="DEMANDE D'ÉVALUATION";
+appStr['fr']['SituApp-student']="Étudiant";
+appStr['fr']['SituApp-demandeeval-alert']="L'étudiant mentionné sur cette fiche vous a envoyé une demande d'évaluation / validation des compétences qu'il a mobilisées lors dans sa situation d'apprentissage.<br/>À l'aide des champs déroulants dans le paragraphe «Compétences liées à ce stage» et dans la colonne «entreprise» vous pouvez évaluer les compétences qui font déjà l'objet d'une autoévaluation par l'étudiant.<br/><br/>Une fois l'évaluation terminée, vous pouvez rajouter des commentaires et cliquer sur «Envoyer l'évaluation».";

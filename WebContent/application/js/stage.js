@@ -428,6 +428,9 @@ UIFactory["Stage"].prototype.displayEditor_demandeEval= function(destid,type,lan
 	//---------
 	appStr['en']['sending']="Sending ...";
 
+	var writenode = ($("asmContext:has(metadata[semantictag='comments-tuteur'])",this.node).attr('write')=='Y')? true:false;
+	if (writenode)
+		$("#alert-window").modal('show');
 	var lang_local = lang;
 	if (lang==null) lang_local=LANGCODE;
 	var submittednode = ($("metadata-wad",this.node).attr('submitted')=='Y')? true:false;
@@ -435,14 +438,8 @@ UIFactory["Stage"].prototype.displayEditor_demandeEval= function(destid,type,lan
 	$("#"+destid).html("");
 	var div = $("<div class='alert alert-vert alert-block edition'></div>");
 	$("#"+destid).append(div);
-	if (submittednode && g_userrole=='tuteur') {
-		html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:stages_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
-		html += appStr[languages[lang_local]]['cancel'];
-		html += "</a>";
-		html += "<span id='sendEval2_"+this.id+"'></span>";
-	}
 	$(div).append($(html));
-	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>"+appStr[languages[lang_local]]['post-label']+" </label>"));
+	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'></label>"));
 	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getView("#libelle_"+this.id));
 	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span5'></div><div id='B_"+this.id+"' class='span5'></div></div>";
 	$(div).append($(row));
@@ -548,12 +545,12 @@ UIFactory["Stage"].prototype.displayEditor_demandeEval= function(destid,type,lan
 		html = "<div class='row-fluid'><span class='span10'><form id='formC_"+this.id+"' class='form-horizontal'></form></span></div>";
 		$(div).append($(html));
 		$("#formC_"+this.id).append($("<h4 class='title'>"+appStr[languages[lang_local]]['comments-tutor']+"</h4>"));
-		if (submittednode) {
+		if (submittednode && writenode) {
 			UICom.structure["ui"][this.comments_nodeid].resource.displayEditor("formC_"+this.id,'x200');			
 			html = "<div class='row-fluid'>";
-			html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:stages_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
-			html += appStr[languages[lang_local]]['cancel'];
-			html += "</a>";
+//			html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:stages_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
+//			html += appStr[languages[lang_local]]['cancel'];
+//			html += "</a>";
 			if (eval_competences.length>0 ||this.eval_qualites_perso.length>0) {
 				html += "<span id='sendEval1_"+this.id+"'>";
 				buttons_senEval += "<a id='sendEval1_btn_"+this.id+"' class='btn btn-mini btn-vert editbutton' onclick=\"javascript:setMessageBox('"+appStr[languages[lang_local]]['sending']+"');showMessageBox();envoyerEvaluationStage('"+this.id+"','"+destid+"',"+lang_local+")\" data-title='formulaire' rel='tooltip'>";
@@ -947,7 +944,7 @@ function envoyerFormulaireStage(uuid,destid,email,role,lang) {
 //==================================
 function sendMail_Stage(serverURL,encodeddata,email,lang) {
 //==================================
-	var url = serverURL+"/"+appliname+"/application/htm/demande-evaluation-stage.htm?i="+encodeddata+"&amp;page=stage&amp;lang="+languages[lang];
+	var url = serverURL+"/"+appliname+"/application/htm/demande-evaluation.htm?i="+encodeddata+"&amp;type=Stage&amp;lang="+languages[lang];
 	appStr['fr']['hello']="Bonjour";
 	appStr['fr']['see']="Voir";
 
@@ -1014,15 +1011,14 @@ function sendMail_Stage(serverURL,encodeddata,email,lang) {
 	xml +="</node>";
 	$.ajax({
 		type : "POST",
-		dataType : "xml",
+		contentType : "xml",
 		url : "../../../"+serverFIL+"/mail",
 		data: xml,
 		success : function(data) {
-//			alertHTML(karutaStr[LANG]['email-sent']);
-//			alert("Envoie de courriel - OK !\nURL="+url);
+			alertHTML(karutaStr[LANG]['email-sent']);
 		},
 		error : function(jqxhr,textStatus) {
-//			alertHTML("Error in sendMail_Stage "+textStatus+" : "+jqxhr.responseText);
+			alertHTML("Error in sendMail_Stage "+textStatus+" : "+jqxhr.responseText);
 		}
 	});
 }
@@ -1042,21 +1038,9 @@ function envoyerEvaluationStage(uuid,destid,lang) {
 		url : urlS,
 		uuid : uuid,
 		success : function (data){
-			$.ajax({
-				type : "GET",
-				dataType : "xml",
-				url : "../../../"+serverBCK+"/nodes/node/" + g_uuid,
-				success : function(data) {
-					UICom.parseStructure(data);
-					UIFactory["Stage"].parse(data);
-					stages_list[0].displayEditor_demandeEval('stages-detail',null,lang);
-					hideMessageBox();
-				}
-			});
+			window.location.reload();
 		}
 	});
-//	window.location.reload();
-//	UIFactory['Stage'].reloadparse(null,null,uuid);
 }
 
 //==================================

@@ -74,6 +74,8 @@
 	<!-- =============================================================== -->
 	<script src="../js/iut2.js"></script>
 	<script src="../js/locale_lang.js"></script>
+	<script src="../js/stage.js"></script>
+	<script src="../js/situation.js"></script>
 	<script src="../js/projet.js"></script>
 	<script src="../js/contact.js"></script>
 	<script src="../js/competence.js"></script>
@@ -84,13 +86,13 @@
 	
 </head>
 <body>
-	<div id="container" class="container">
+	<div id="container" class="container" style='padding-top:10px'>
 		<div id="navbar" class="navbar navbar-fixed-top"></div>
 		<div>
 		<div class="row">
 			<div class="span6">
 				<h4><img src='../img/picto-eval-stage.gif'/><span id="evaluation-request-label"></span></h4>
-				<div class="nom-etudiant"><span id="etudiant-label"></span> :<span id="nom-etudiant"></span></div>
+				<div style='font-size:16px;font-weight:bold;margin-bottom:15px;'><span id="etudiant-label"></span> :<span id="nom-etudiant"></span></div>
 			</div>
 			<div class="span6">
 			</div>
@@ -103,13 +105,13 @@
 		</div>
 	</div>
 	<div id="footer" class="container-fluid" ></div>
-				<!-- ==================== alert box ==================================== -->
-				<div id='alert-window' class='modal hide fade alert alert-block'>
-					<div id='alert-window-header' style='float:right'>
-                    <span class='btn btn-mini btn-small' onclick="javascript:$('#alert-window').modal('hide')">x</span>
-					</div>
-					<div id='alert-window-body' class='modal-body'></div>
-				</div>
+	<!-- ==================== alert box ==================================== -->
+	<div id='alert-window' class='modal hide fade alert alert-block'>
+		<div id='alert-window-header' style='float:right'>
+                 <span class='btn btn-mini btn-small' onclick="javascript:$('#alert-window').modal('hide')">x</span>
+		</div>
+		<div id='alert-window-body' class='modal-body'></div>
+	</div>
 	
 	<script>document.write(MessageBox());</script>
 	<script language='javascript'>
@@ -136,18 +138,17 @@
 		}
 	
 		$(document).ready(function() {
-			$("#footer").html(footer);
-			var texte = "L'étudiant mentionné sur cette fiche vous a envoyé une demande d'évaluation / validation des compétences qu'il a mobilisées lors de son action.<br/>À l'aide des champs déroulants dans le paragraphe \"Compétences\" et dans la colonne \"Évaluateur\" vous pouvez évaluer les compétences qui font déjà l'objet d'une autoévaluation par l'étudiant.<br/><br/>Une fois l'évaluation terminée, vous pouvez rajouter des commentaires et cliquer sur «Envoyer l'évaluation».";
-			$("#alert-window-body").html(texte);
-			$("#evaluation-request-label").html("Demande d'évaluation");
-			$("#etudiant-label").html(appStr[languages[langcode_request]]['student']);
-			fetchDomaineMetier();
-			fetchPPNmetier();
-			$.ajaxSetup({async: false});
+//			$("#footer").html(footer);
+//			fetchDomaineMetier();
+//			fetchPPNmetier();
+			$("#alert-window-body").html(appStr[languages[langcode_request]][type+'-demandeeval-alert']);
+			$("#evaluation-request-label").html(appStr[languages[langcode_request]][type+'-evaluation-request']);
+			$("#etudiant-label").html(appStr[languages[langcode_request]][type+'-student']);
 			//----------------
 			$.ajax({
 				type : "GET",
 				url : "../../../"+serverFIL+"/direct?i=" + iid,
+				dataType : "text",
 				success : function(data) {
 					g_uuid = data;
 					//----------------
@@ -170,7 +171,7 @@
 										UIFactory["Stage"].parse(data);
 										var etudiant_nodeid  = $("asmContext:has(metadata[semantictag='nom-etudiant'])",stages_list[0].node).attr('id');
 										$("#nom-etudiant").html("&nbsp;"+UICom.structure["ui"][etudiant_nodeid].resource.getView("#nom-etudiant"));
-										stages_list[0].displayEditor_demandeEval('evaluations-detail',type,langcode_request);
+										stages_list[0].displayEditor_demandeEval('evaluations-detail',null,langcode_request);
 									}
 									//---------------------------------
 									if (type=='Projet') {
@@ -178,6 +179,13 @@
 										var etudiant_nodeid  = $("asmContext:has(metadata[semantictag='nom-etudiant'])",projets_list[0].node).attr('id');
 										$("#nom-etudiant").html("&nbsp;"+UICom.structure["ui"][etudiant_nodeid].resource.getView("#nom-etudiant"));
 										projets_list[0].displayEditor_demandeEval('evaluations-detail',type,langcode_request);
+									}
+									//---------------------------------
+									if (type=='SituApp') {
+										UIFactory["SituApp"].parse(data);
+										var etudiant_nodeid  = $("asmContext:has(metadata[semantictag='nom-etudiant'])",situations_list[0].node).attr('id');
+										$("#nom-etudiant").html("&nbsp;"+UICom.structure["ui"][etudiant_nodeid].resource.getView("#nom-etudiant"));
+										situations_list[0].displayEditor_demandeEval('evaluations-detail',type,langcode_request);
 									}
 									//---------------------------------
 								}
@@ -189,7 +197,6 @@
 				}
 			});
 			//----------------
-			$.ajaxSetup({async: true});
 		});
 		
 	</script>

@@ -92,7 +92,9 @@ UIFactory["SituApp"].prototype.displayView = function(destid,type,lang,parentid)
 		html += "<div class='item'>Domaine métiers : <span class='value'>"+UICom.structure["ui"][this.domaine_metier_nodeid].resource.getView()+"</span></div>";
 		html += "<h6>Description</h6>"
 		html += "<div>"+UICom.structure["ui"][this.description_nodeid].resource.getView()+"</div>";
+		html += "</div><!-- span -->";
 		//------------------ Tuteur ------------------
+		html += "<div class='span6 attributs'>";
 		if (this.referent_prenom_nodeid!=undefined) {
 			html += "<div class='titre-tuteur'>Évaluateur</div>";
 			html += "<div class='tutor'>"
@@ -104,6 +106,7 @@ UIFactory["SituApp"].prototype.displayView = function(destid,type,lang,parentid)
 			html += "</div>";
 		}
 		html += "</div><!-- span -->";
+
 		html += "</div><!-- row -->";
 		//----------------------------------------------------------------------------------------------------
 		html += "<div class='row-fluid competences-titre'>";
@@ -305,7 +308,7 @@ UIFactory["SituApp"].parse = function(data)
 //==================================
 {
 	//------------for backward compatibility----------------
-	if ($("asmStructure:has(metadata[semantictag='situations'])", data).length==0) {
+	if ($("asmStructure", data)>0 && $("asmStructure:has(metadata[semantictag='situations'])", data).length==0) {
 		var targetid = $("asmRoot", data).attr('id');
 		var srcecode = "IUT2portfolios.IUT2-portfolio-";
 		var srcetag = "situations";
@@ -534,11 +537,11 @@ function sendMail_Evaluation(serverURL,encodeddata,email,lang,type) {
 	xml +="</node>";
 	$.ajax({
 		type : "POST",
-		dataType : "xml",
+		contentType : "xml",
 		url : "../../../"+serverFIL+"/mail",
 		data: xml,
 		success : function(data) {
-			alert("Envoi de courriel - OK ");
+			alertHTML(karutaStr[LANG]['email-sent']);
 		},
 		error : function(jqxhr,textStatus) {
 			alertHTML("Error in sendMail_Stage "+textStatus+" : "+jqxhr.responseText);
@@ -634,126 +637,50 @@ UIFactory["SituApp"].prototype.displayEditor_demandeEval= function(destid,type,l
 	if (lang==null) lang_local=LANGCODE;
 	var submittednode = ($("metadata-wad",this.node).attr('submitted')=='Y')? true:false;
 	var html = "";
-	$("#"+destid).html("");
-	var div = $("<div class='alert alert-orange alert-block edition'></div>");
+	$("#"+destid).html(html);
+	var div = "";
+	if (this.referent_prenom_nodeid!=undefined)
+		div = $("<div class='alert alert-orange alert-block edition'></div>");
+	else
+		div = $("<div class='alert alert-orange alert-block edition old-project'></div>");
 	$("#"+destid).append(div);
-	if (submittednode && g_userrole=='tuteur' && writenode) {
-		html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:situations_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
-		html += appStr[languages[lang_local]]['cancel'];
-		html += "</a>";
-		html += "<span id='sendEval2_"+this.id+"'></span>";
-	}
-	$(div).append($(html));
-	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'>"+appStr[languages[lang_local]]['post-label']+" </label>"));
-	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getView("#libelle_"+this.id));
-	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span5'></div><div id='B_"+this.id+"' class='span5'></div></div>";
+	$(div).append($("<label id='libelle_"+this.id+"' class='inline titre'></label>"));
+	$("#libelle_"+this.id).append(UICom.structure["ui"][this.id].getView());
+	var row = "<div class='row-fluid'><div id='A_"+this.id+"' class='span6'></div><div id='B_"+this.id+"' class='span6'></div></div>";
 	$(div).append($(row));
 
 	$("#A_"+this.id).append($("<form id='formA_"+this.id+"' class='form-horizontal'></form>"));
 	$("#formA_"+this.id).append($("<hr></hr>"));
-
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['year-start'],"debut_"+this.id,this.begin_nodeid);
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['duration'],"fin_"+this.id,this.duration_nodeid);
-	displayControlGroup_displayView("formA_"+this.id,appStr[languages[lang_local]]['business-domain'],"dommet_"+this.id,this.domaine_metier_nodeid,"select",null,lang_local);
+	displayControlGroup_getView("formA_"+this.id,"Année de début","debut_"+this.id,this.begin_nodeid);
+	displayControlGroup_getView("formA_"+this.id,"Durée","fin_"+this.id,this.duration_nodeid);
+	displayControlGroup_displayView("formA_"+this.id,"Domaine métiers<span id='help-domaine-metier'></span>","dommet_"+this.id,this.domaine_metier_nodeid,"select");
 	$("#formA_"+this.id).append($("<hr></hr>"));
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['organism-provenance'],"school_"+this.id,this.school_nodeid);
-	displayControlGroup_getView("formA_"+this.id,appStr[languages[lang_local]]['formation-context'],"statut_"+this.id,this.cadre_nodeid);
-	if ($(UICom.structure["ui"][this.rapport_nodeid].resource.filename_node[LANGCODE]).text()!="")
-		displayControlGroup_displayView("formA_"+this.id,"Rapport","attestation_"+this.id,this.attestation_nodeid);
-
-	$("#formA_"+this.id).append($("<hr></hr>"));
-	$("#formA_"+this.id).append($("<label class='inline'>"+appStr[languages[lang_local]]['main-tasks']+"</label>"));
-	$("#formA_"+this.id).append($("<div>"+UICom.structure["ui"][this.missions_nodeid].resource.getView()+"</div>"));
-	$("#formA_"+this.id).append($("<hr></hr>"));
-	$("#formA_"+this.id).append($("<label class='inline'>"+appStr[languages[lang_local]]['main-accomplishments']+"</label>"));
-	$("#formA_"+this.id).append($("<div>"+UICom.structure["ui"][this.realizations_nodeid].resource.getView()+"</div>"));
+	$("#formA_"+this.id).append($("<label class='inline'>Description de la situation, problème à résoudre, démarche,..</label>"));
+	UICom.structure["ui"][this.description_nodeid].resource.getView("formA_"+this.id,'x100');
 
 	$("#B_"+this.id).append($("<form id='formB_"+this.id+"' class='form-horizontal'></form>"));
-	$("#formB_"+this.id).append($("<hr></hr>"));
+	
 	//------------------ Tuteur ------------------
-	var html2 = "<div class='control-group'><label class='control-label'>Évaluateur</label><div class='controls'><hr style='margin-top:11px;'></hr></div></div>";
-	html2 += "<div class='control-group'>"
-	html2 += "	<div class='controls'>"+UICom.structure["ui"][this.referent_prenom_nodeid].resource.getView();
-	html2 += " "+UICom.structure["ui"][this.referent_nom_nodeid].resource.getView();
-	html2 += "	</div>";
-	html2 += "</div>";
-	html2 += "<div class='control-group'>"
-	html2 += "	<div class='controls'><a href='mailto:"+UICom.structure["ui"][this.referent_email_nodeid].resource.getView()+"'>"+UICom.structure["ui"][this.referent_email_nodeid].resource.getView()+"</a>";
-	html2 += "	</div>";
-	html2 += "</div>";
-	//------------------ Contacts ------------------
-	if (this.contacts.length>0) {
-		html2 += "<div class='control-group'><label class='control-label'>Contact(s)</label><div class='controls'><hr style='margin-top:11px;'></hr></div></div>";
-		html2 += "<div class='control-group'>";
-		for (var i=0; i<this.contacts.length; i++){
-			if (i>0)
-				html2 += "<div class='controls'><hr style='margin-top:11px;'></hr></div>";
-			html2 += "<div class='controls' id='"+this.contacts[i].id+"'></div>";
-		}
-		html2 += "</div>";		
+	if (this.referent_prenom_nodeid!=undefined) {
+		$("#formB_"+this.id).append($("<div class='control-group'><label class='control-label'>Évaluateur</label><div class='controls'><hr style='margin-top:11px;'></div></div>"));
+		displayControlGroup_getView("formB_"+this.id,"Prénom","refprenom"+this.id,this.referent_prenom_nodeid);
+		displayControlGroup_getView("formB_"+this.id,"Nom","refnom"+this.id,this.referent_nom_nodeid);
+		displayControlGroup_getView("formB_"+this.id,"Courriel","email_"+this.id,this.referent_email_nodeid);
 	}
-	var obj = $(html2);
-	$("#formB_"+this.id).append(obj);
-	for (var i=0; i<this.contacts.length; i++){
-		this.contacts[i].displayView(this.contacts[i].id,'detail',lang_local);
-	}
-	$("#formB_"+this.id).append($("<hr style='margin-top:15px;'></hr>"));
-	$("#formB_"+this.id).append($("<label class='inline'>"+appStr[languages[lang_local]]['contribution-project']+"</label>"));
-	$("#formB_"+this.id).append($("<div>"+UICom.structure["ui"][this.apport_nodeid].resource.getView()+"</div>"));
 	//----------------------------------------------------------------------------------------------------
-	if (writenode){
-		eval_competences = new Array();
-		view_eval_competences = new Array();
-		html = getSectionCompetences(this.id,destid,this.ppn_nodeid,this.ref_nodeid,this.dom_nodeid,this.dom2a_nodeid,this.dom2b_nodeid,this.dom2c_nodeid,this.comps_metiers_node,this.comps2_metiers_node,this.comps_autres_node,this.comps2_autres_node2a,this.comps2_autres_node2b,this.comps2_autres_node2c,"Compétences","SituApp","situations-detail_histo_","vert","situations_byid",null,lang_local,this.comp_traduction_nodeid);
-		//-----------------------------------------------------------------------
-		html += getEvaluationCodes_bytypes(['evaluateur','autoeval'],lang_local);
-		//----------------------------------------------------------------------------------------------------
-		$(div).append($(html));
-		//------------------ evaluation----------------------------------------
-		getEvaluations_display(view_eval_competences,eval_competences,lang_local);
-	} else {
-		//==================================================================
-		html = "<div class='row-fluid competences-titre'>";
-		//-----------------------------------------------------------------------
-		view_eval_competences = new Array();
-		html += "<span class='span6'><h4>Compétencesn</h4></span>";
-		html += "</div>";
-		html += "<div class='row-fluid'>";
-		html += "<span class='span6'>";
-		html += "<h5>Compétences métiers</h5>";
-		html += getEvalTableau_begin(1,this.id,destid,'SituApp',0);
-		//---------------------------------------------
-		var tableauActivitesMetierPPN = getTableauActivitesMetierPPN(this.comps_metiers_node,'activite','competence-metier');
-		var tableauActivitesMetierFree = getTableauActivitesMetierFree(this.comps2_metiers_node,'dom-metier-ref','free-comp-metier');
-		var tableauActivitesMetier = tableauActivitesMetierPPN.concat(tableauActivitesMetierFree);
-		var tableauActivitesMetierTrie = tableauActivitesMetier.sort(sortOn1);
-		html += getCompetencies3(tableauActivitesMetierTrie,false,'SituApp',this.id,destid,0);
-		//---------------------------------------------
-		html += getEvalTableau_end();
-		html += "</span>";
-		//-----------------------------------------------------------------------
-		html += "<span class='span6'>";
-		html += "<h5>"+appStr['fr']['competencies-other']+"</h5>";
-		html += getEvalTableau_begin(1,this.id,destid,'SituApp',1);
-		//---------------------------------------------
-		html += getCompetencies2(this.comps_autres_node,false,'SituApp',this.id,destid,'activite','competence-trans',1);
-		html += getCompetencies2(this.comps2_autres_node2a,false,'SituApp',this.id,destid,'dom-autre-ref','free-comp-autre',1);
-		html += getCompetencies2(this.comps2_autres_node2b,false,'SituApp',this.id,destid,'dom-autre-ref','free-comp-autre',1);
-		html += getCompetencies2(this.comps2_autres_node2c,false,'SituApp',this.id,destid,'dom-autre-ref','free-comp-autre',1);
-		//---------------------------------------------
-		html += getEvalTableau_end();
-		html += "</span>";
-		//-----------------------------------------------------------------------
-		html += "</div>";
-		//-----------------------------------------------------------------------
+	eval_competences = new Array();
+	view_eval_competences = new Array();
+	html = getSectionCompetences(this.id,destid,this.ppn_nodeid,this.ref_nodeid,this.dom_nodeid,this.dom2a_nodeid,this.dom2b_nodeid,this.dom2c_nodeid,this.comps_metiers_node,this.comps2_metiers_node,this.comps_autres_node,this.comps2_autres_node2a,this.comps2_autres_node2b,this.comps2_autres_node2c,"Compétences liées à cette action","SituApp","situations-detail_histo_","vert","situations_byid");
+	//-----------------------------------------------------------------------
+	if (this.referent_prenom_nodeid!=undefined)
 		html += getEvaluationCodes_bytypes(['evaluateur','autoeval']);
-		//----------------------------------------------------------------------------------------------------
-		html += "</div><!-- class='panel-collapse collapse in'-->";
-		html += "</div><!-- class=''panel ...'-->";
-		$(div).append($(html));
-		getEvaluations_displayView(view_eval_competences);
-		//=====================================================
-	}
+	else
+		html += getEvaluationCodes_bytypes(['autoeval']);
+	//----------------------------------------------------------------------------------------------------
+	$(div).append($(html));
+	//------------------ evaluation----------------------------------------
+	getEvaluations_display(view_eval_competences,eval_competences);
+	//---------------------------------------------------------------------	
 	var buttons_senEval ="";
 	if (g_userrole=='tuteur') {
 		html = "<div class='row-fluid'><span class='span10'><form id='formC_"+this.id+"' class='form-horizontal'></form></span></div>";
@@ -762,9 +689,6 @@ UIFactory["SituApp"].prototype.displayEditor_demandeEval= function(destid,type,l
 		if (submittednode && writenode) {
 			UICom.structure["ui"][this.comments_nodeid].resource.displayEditor("formC_"+this.id,'x200');			
 			html = "<div class='row-fluid'>";
-			html += "<a  class='btn btn-mini btn-danger editbutton' onclick=\"javascript:situations_byid['"+this.id+"'].displayView('"+destid+"','detail');$('#collapse"+this.id+"').collapse('show');toggleZoom('"+this.id+"')\" data-title='éditer' rel='tooltip'>";
-			html += appStr[languages[lang_local]]['cancel'];
-			html += "</a>";
 			if (eval_competences.length>0 ||this.eval_qualites_perso.length>0) {
 				html += "<span id='sendEval1_"+this.id+"'>";
 				buttons_senEval += "<a id='sendEval1_btn_"+this.id+"' class='btn btn-mini btn-vert editbutton' onclick=\"javascript:setMessageBox('"+appStr[languages[lang_local]]['sending']+"');showMessageBox();envoyerEvaluation('"+this.id+"','"+destid+"',"+lang_local+")\" data-title='formulaire' rel='tooltip'>";
@@ -781,8 +705,6 @@ UIFactory["SituApp"].prototype.displayEditor_demandeEval= function(destid,type,l
 		}			
 	}
 	showHeaderEvaluationTable();
-	//--------------------------------------------------------------------------
-	
 };
 
 //==================================
@@ -810,7 +732,5 @@ function envoyerEvaluation(uuid,destid,lang,type) {
 			});
 		}
 	});
-//	window.location.reload();
-//	UIFactory['Stage'].reloadparse(null,null,uuid);
 }
 
