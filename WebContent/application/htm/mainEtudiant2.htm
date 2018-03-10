@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Accueil du Eportfolio 4 &eacute;toiles</title>
+	<title>K-IUT Eportfolio 4 &eacute;toiles</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	<meta HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="http://freerome.mugeco.com"/>
@@ -20,7 +20,7 @@
 	<script src='../../other/wysihtml5/wysihtml5-0.3.0.js'> </script>
 	<script src='../../other/wysihtml5/parser.js'> </script>
 	<script src="../../other/js/jquery.browser.js"></script>
-	<script src="../../other/js/jquery-iframe-auto-height.js"></script>
+	<!--script src="../../other/js/jquery-iframe-auto-height.js"></script-->
 	<!--[if lt IE 9]>
 		<script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
 	<![endif]-->
@@ -528,7 +528,7 @@
 					<li><a href="#description_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['description']);" class="text-noir">Ma description</a></li>
 					<li><a href="#competence_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['competence']);" class="text-vert">Mes compétences préférées</a></li>
 					<li><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
-					<li><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);document.getElementById('freerome_iframe').style.height='100%';" class="text-bleu">Mon environnement pro</a></li>
+					<li><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);" class="text-bleu">Mon environnement pro</a></li>
 				</ul>
 	
 				<div id="tab-content_projet" class="tab-content">
@@ -600,8 +600,8 @@
 						</div>
 					</div>
 					<!-- ================================================================== -->
-					<div class="tab-pane" id="freerome_projet" style="height:800px">
-						<iframe id='freerome_iframe' class='freerome_iframe' src="../htm/freerome.htm" height="800px" width="1200px"></iframe>
+					<div class="tab-pane" id="freerome_projet">
+						<iframe id='freerome_iframe' class='freerome_iframe' src="../htm/freerome.htm" style="display:block; margin:auto; border:none; width:1200px; height:1400px"></iframe>
 					</div>
 					<!-- ================================================================== -->
 				</div>
@@ -812,7 +812,7 @@
 
 	$(window).load(function() {
 		$("#main-footer").html(getFooter());
-		$('iframe').iframeAutoHeight({debug: true});
+//		$('iframe').iframeAutoHeight({debug: true});
 		$("#wait-spin").spin();
 		$("#info-spin").spin({top:'60%'});
 		$("#spin-add").spin({top:'60%'});

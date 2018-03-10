@@ -34,7 +34,7 @@ UIFactory["Profile"] = function(node)
 UIFactory["Profile"].prototype.displayView = function(destid,type,lang)
 //==================================
 {
-	var profile = $('iframe').contents();
+//	var profile = $('iframe').contents();
 
 	var html = "";
 	$("#"+destid).html(html);  // on vide html
