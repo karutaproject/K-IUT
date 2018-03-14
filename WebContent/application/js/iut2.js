@@ -796,7 +796,14 @@ function selectPortfolio(data)
 									$("#qrcode-carte").qrcode({text:g_carte_url,size:100,background: 'white'});
 									var text = document.getElementById("qrcode-carte").toDataURL("image/jpeg");
 									putQRcodePourCV(text);
-
+									$("#carte-link").attr('href',g_carte_url);
+									$("#copy-button").attr('data-clipboard-text',g_carte_url);
+									var urlcopybutton = new ZeroClipboard( $("#copy-button") );
+									urlcopybutton.on( "ready", function( readyEvent ) {
+										urlcopybutton.on( "aftercopy", function( event ) {
+											alert("L'URL a été copié");
+										} );
+									} );
 								}
 							});
 							$("#info-window").hide();
@@ -806,14 +813,7 @@ function selectPortfolio(data)
 				}
 			});
 			//-------------------------------------------------
-			$("#carte-link").attr('href',g_carte_url);
-			$("#copy-button").attr('data-clipboard-text',g_carte_url);
-			var urlcopybutton = new ZeroClipboard( $("#copy-button") );
-			urlcopybutton.on( "ready", function( readyEvent ) {
-				urlcopybutton.on( "aftercopy", function( event ) {
-					alert("L'URL a été copié");
-				} );
-			} );		}
+		}
 	});
 
 	//-------------------------------------------------
