@@ -579,7 +579,7 @@
 									Notre Centre de Compétences et des Métiers met à votre disposition sur le site de l’IUT2 une carte des métiers préparés par les formations de ses différents départements.
 								</div>
 								<p>
-									1) Rendez-vous sur <a href='http://iut2.univ-grenoble-alpes.fr dans la rubrique'>http://iut2.univ-grenoble-alpes.fr</a> dans la rubrique <b>MÉTIERS</b> et cliquez sur le lien <b>Liste non exhaustive de nos métiers...</b>b>
+									1) Rendez-vous sur <a href='http://iut2.univ-grenoble-alpes.fr dans la rubrique'>http://iut2.univ-grenoble-alpes.fr</a> dans la rubrique <b>MÉTIERS</b> et cliquez sur le lien <b>Liste non exhaustive de nos métiers...</b>
 								</p>
 								<p>
 									2) Parcourez les domaines métiers et trouvez les fiches métiers qui vous intéressent.
@@ -846,11 +846,6 @@
 					url : urlS,
 					success : function(data) {
 						selectPortfolio(data);
-						if (l_userrole=='etudiant' && g_userrole=='etudiant'){
-							for (var i=0; i<3;i++){
-								$("#menu-add-projet-comp-"+i).css("display", "block");
-							}
-						}
 						$.ajax({
 							type : "GET",
 							dataType : "xml",

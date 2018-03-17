@@ -623,6 +623,11 @@ function selectPortfolio(data)
 					}
 				}
 			});
+			if (l_userrole=='etudiant' && g_userrole=='etudiant'){
+				for (var i=0; i<3;i++){
+					$("#menu-add-projet-comp-"+i).css("display", "block");
+				}
+			}
 			$.ajax({
 				type : "GET",
 				dataType : "xml",
