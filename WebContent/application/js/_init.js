@@ -1,6 +1,6 @@
 //----------------------------------
 var application_version = "3.0";
-var application_date = "2018-02-21";
+var application_date = "2018-03-17";
 //----------------------------------
 var appliname = 'iut2';
 //---------

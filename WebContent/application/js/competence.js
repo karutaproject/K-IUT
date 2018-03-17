@@ -1771,7 +1771,10 @@ function getDetailCompetencies(tableau,position,prefix,edit,type,objid,destid,mo
 						else
 							units = ref[level2_label].split('/');
 						for (var k=0;k<units.length;k++){
-							temp_html += "<li>"+obj_label[UICom.structure["ui"][units[k]].semantictag]+" : "+UICom.structure["ui"][units[k]].getLabel(null,'span')+"</li>";
+							var semtag = UICom.structure["ui"][units[k]].semantictag;
+							if (semtag.indexOf('diploma-unit IUT2')>-1)
+								semtag = 'diploma-unit IUT2';
+							temp_html += "<li>"+obj_label[semtag]+" : "+UICom.structure["ui"][units[k]].getLabel(null,'span')+"</li>";
 						}
 						temp_html += "</ul>";
 					}

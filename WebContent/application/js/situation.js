@@ -308,9 +308,9 @@ UIFactory["SituApp"].parse = function(data)
 //==================================
 {
 	//------------for backward compatibility----------------
-	if ($("asmStructure", data)>0 && $("asmStructure:has(metadata[semantictag='situations'])", data).length==0) {
+	if ($("asmStructure:has(metadata[semantictag='situations'])", data).length==0) {
 		var targetid = $("asmRoot", data).attr('id');
-		var srcecode = "IUT2portfolios.IUT2-portfolio-";
+		var srcecode = "IUT2portfolios.IUT2-portfolio";
 		var srcetag = "situations";
 		importBranch(targetid,srcecode,srcetag);
 	}
@@ -465,8 +465,8 @@ function envoyerFormulaireEvaluation(uuid,destid,email,role,lang,type) {
 					sendMail_Evaluation(serverURL,data,email,lang,type);
 					if (type=='SituApp')
 						UIFactory['SituApp'].reloadparseone_submitted(uuid,'situations-detail_histo');
-					if (type=='Si')
-						UIFactory['Situation'].reloadparseone_submitted(uuid,'situations-detail_histo');
+					if (type=='Projet')
+						UIFactory['Projet'].reloadparseone_submitted(uuid,'projets-detail_histo');
 					hideMessageBox();
 				},
 				error : function(jqxhr,textStatus) {
@@ -484,7 +484,7 @@ function sendMail_Evaluation(serverURL,encodeddata,email,lang,type) {
 	appStr['fr']['hello']="Bonjour";
 	appStr['fr']['see']="Voir";
 
-	appStr['fr']['request-evaluation']="Demande d'évaluation depuis le ePortfolio KARUTA IUT2 Grenoble";
+	appStr['fr']['request-evaluation']="Demande d'évaluation depuis le ePortfolio KARUTA IUT";
 	appStr['fr']['want-sending-request-evaluation']="une demande d'évaluation";
 	appStr['fr']['request-evaluation-p1']="Vous venez de recevoir une demande d'&amp;eacute;valuation provenant du ePortfolio d'un &amp;eacute;tudiant de l'IUT2 Grenoble.";
 	appStr['fr']['request-evaluation-p2']="&lt;br/&gt;En cliquant sur le lien ci-dessus ou en le copiant dans votre navigateur, vous pourrez acc&amp;eacute;der &amp;agrave; la fiche de l'&amp;eacute;tudiant, et &amp;eacute;valuer les comp&amp;eacute;tences qu'il pense avoir mobilis&amp;eacute;es.";
@@ -549,41 +549,6 @@ function sendMail_Evaluation(serverURL,encodeddata,email,lang,type) {
 	});
 }
 
-//==================================
-function envoyerEvaluationStage(uuid,destid,lang,type) {
-//==================================
-	for (var i=1; i<=2; i++){
-		$("#sendEval"+i+"_"+uuid+" > a").attr('disabled',true);
-		$("#sendEval"+i+"_"+uuid+" > a").attr('onclick','');
-	}
-	var urlS = "../../../"+serverBCK+'/nodes/node/'+uuid+'/action/submit';
-	$.ajax({
-		type : "POST",
-		dataType : "text",
-		contentType: "application/xml",
-		url : urlS,
-		uuid : uuid,
-		success : function (data){
-			$.ajax({
-				type : "GET",
-				dataType : "xml",
-				url : "../../../"+serverBCK+"/nodes/node/" + g_uuid,
-				success : function(data) {
-					UICom.parseStructure(data);
-					if (type=='SituApp') {
-						UIFactory["SituApp"].parse(data);
-						stages_list[0].displayEditor_demandeEval('situations-detail',null,lang);
-					}
-					if (type=='Situation') {
-						UIFactory["Situation"].parse(data);
-						stages_list[0].displayEditor_demandeEval('situations-detail',null,lang);
-					}
-					hideMessageBox();
-				}
-			});
-		}
-	});
-}
 
 //==================================
 UIFactory["SituApp"].prototype.updateOwner = function()
@@ -615,7 +580,7 @@ UIFactory["SituApp"].reloadparseone_submitted = function(uuid,destid)
 		url : "../../../"+serverBCK+"/nodes/node/" + uuid + "?resources=true",
 		success : function(data) {
 			UICom.parseStructure(data);
-			var units = $("asmUnit:has(metadata[semantictag='project-unit'])",data);
+			var units = $("asmUnit:has(metadata[semantictag='situation-unit'])",data);
 			situations_byid[uuid] = new UIFactory["SituApp"](units[0]);
 			$("#"+uuid,g_portfolio_current).replaceWith($(":root",data));
 			situations_byid[uuid].displayView(destid+"_"+uuid,"detail",null,"accordion_"+destid);
@@ -707,30 +672,4 @@ UIFactory["SituApp"].prototype.displayEditor_demandeEval= function(destid,type,l
 	showHeaderEvaluationTable();
 };
 
-//==================================
-function envoyerEvaluation(uuid,destid,lang,type) {
-//==================================
-	for (var i=1; i<=2; i++){
-		$("#sendEval"+i+"_"+uuid+" > a").attr('disabled',true);
-		$("#sendEval"+i+"_"+uuid+" > a").attr('onclick','');
-	}
-	var urlS = "../../../"+serverBCK+'/nodes/node/'+uuid+'/action/submit';
-	$.ajax({
-		type : "POST",
-		dataType : "text",
-		contentType: "application/xml",
-		url : urlS,
-		uuid : uuid,
-		success : function (data){
-			$.ajax({
-				type : "GET",
-				dataType : "xml",
-				url : "../../../"+serverBCK+"/nodes/node/" + g_uuid,
-				success : function(data) {
-					window.location.reload();
-				}
-			});
-		}
-	});
-}
 
