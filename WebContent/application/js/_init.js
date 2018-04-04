@@ -26,6 +26,5 @@ var NONMULTILANGCODE = 0;  // default language if non-multilingual
 var LANGCODE = 0; //default value
 var LANG = languages[LANGCODE]; //default value
 //----------------------------------
-var carte_metiers_url =  "https://iut2.univ-grenoble-alpes.fr/metiers/les-principaux-domaines-de-metiers-de-l-iut2/les-principaux-domaines-de-metiers-239498.kjsp";
+var carte_metiers_url =  "https://iut2.univ-grenoble-alpes.fr/metiers/";
 var freerome_url = "http://freerome.mugeco.com/plugin?uid=";
-//var freerome_url = "http://eportfolio-test.iut2.upmf-grenoble.fr/freerome/plugin?uid=";

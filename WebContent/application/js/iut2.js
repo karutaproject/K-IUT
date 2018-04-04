@@ -575,24 +575,26 @@ function selectPortfolio(data)
 	for ( var i=0;i<portfolios.length;i++)
 	{
 		var current_code = $("code:first",portfolios[i]).text();
-		if (current_code.indexOf(codePortfolio)>-1) {
-			g_portfolioid = $(portfolios[i]).attr("id");
-			portfolioid = g_portfolioid;
-		}
-		if (current_code.indexOf(codeProfile)>-1) {
-			g_profilecode = current_code;
-			g_profileid = $(portfolios[i]).attr("id");
-		}
-		if (current_code.indexOf(codeCV)>-1) {
-			g_cvcode = current_code;
-			g_cvid = $(portfolios[i]).attr("id");
-		}
-		if (current_code.indexOf(codeProjet)>-1) {
-			g_projetcode = current_code;
-			g_projetid = $(portfolios[i]).attr("id");
-		}
-		if (current_code.indexOf(codeTraitsPerso)>-1) {
-			g_traitspersoid = $(portfolios[i]).attr("id");
+		if (current_code.indexOf(USER.username_node.text())>-1) {
+			if (current_code.indexOf(codePortfolio)>-1) {
+				g_portfolioid = $(portfolios[i]).attr("id");
+				portfolioid = g_portfolioid;
+			}
+			if (current_code.indexOf(codeProfile)>-1) {
+				g_profilecode = current_code;
+				g_profileid = $(portfolios[i]).attr("id");
+			}
+			if (current_code.indexOf(codeCV)>-1) {
+				g_cvcode = current_code;
+				g_cvid = $(portfolios[i]).attr("id");
+			}
+			if (current_code.indexOf(codeProjet)>-1) {
+				g_projetcode = current_code;
+				g_projetid = $(portfolios[i]).attr("id");
+			}
+			if (current_code.indexOf(codeTraitsPerso)>-1) {
+				g_traitspersoid = $(portfolios[i]).attr("id");
+			}
 		}
 	}
 	//----------------
