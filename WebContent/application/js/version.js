@@ -1,1 +1,1 @@
-var version = 2.0Beta
+var version = 2.0
