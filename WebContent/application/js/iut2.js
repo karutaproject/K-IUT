@@ -65,7 +65,7 @@ function getNavbar(portfolioid) {
 		navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['experiencespro']);show_view('historique','experiencespro')\" href='#'>Mes expériences pro.</a></li>";
 		navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['experiencesperso']);show_view('historique','experiencesperso')\" href='#'>Mes expériences perso.</a></li>";
 		navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['langues']);show_view('historique','langues')\" href='#'>Mes langues</a></li>";
-		if (g_userrole=='etudiant')
+		if (g_userrole=='etudiant' && quizz_interculturel)
 			navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['traitsperso']);show_view('historique','traitsperso')\" href='#'>Quizz interculturel</a></li>";
 		navbar += "               <li class='divider'><br/></li>";
 		navbar += "                <li class='nav-header'><i class='fa fa-suitcase'></i> Mon bilan</li>";
@@ -74,7 +74,8 @@ function getNavbar(portfolioid) {
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['transinnov']);show_view('competence','autres1')\">Mes compétences transversales</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['autresperso']);show_view('competence','autres2')\">Mes autres compétences personnelles</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['langues']);show_view('competence','langues')\">Mes langues</a></li>";
-		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['traitsperso']);show_view('competence','traitsperso')\">Quizz interculturel</a></li>";
+		if (quizz_interculturel)
+			navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['traitsperso']);show_view('competence','traitsperso')\">Quizz interculturel</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
 //		navbar += "            <li class='dropdown'>";
@@ -89,6 +90,7 @@ function getNavbar(portfolioid) {
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['description']);show_view('projet','description')\">Ma fiche projet</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['competence']);show_view('projet','competence')\">Mes compétences préférées</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['metier']);show_view('projet','metier')\">Ressources métiers</a></li>";
+		if (freerome)
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['frerome']);show_view('projet','freerome');\">Mon environnement pro</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
@@ -790,7 +792,7 @@ function selectPortfolio(data)
 							UIFactory["Bubble"].parse(data);
 							dataBubble = Bubble_list[0].data;
 							g_current_mapid = Bubble_list[0].id;
-							var urlS = "../../../"+serverFIL+'/direct?uuid='+g_current_mapid+'&role=all&lang=fr&l=4&d=500&type=showtorole&showtorole=all';
+							var urlS = "../../../"+serverFIL+'/direct?uuid='+g_current_mapid+'&role=all&lang=fr&l=4&d=35000&type=showtorole&showtorole=all';
 							$.ajax({
 								type : "POST",
 								dataType : "text",

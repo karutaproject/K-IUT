@@ -12,7 +12,8 @@ evaltypes['entreprise2']={'semtag':'eval-1_0','evalrole':'tuteur'};
 
 var evaltype_exp = new Array();
 evaltype_exp['DiplomaIUT2']= new Array();
-evaltype_exp['DiplomaIUT2'][0]=['iut','autoeval'];
+//evaltype_exp['DiplomaIUT2'][0]=['iut','autoeval'];
+evaltype_exp['DiplomaIUT2'][0]=['autoeval'];
 evaltype_exp['DiplomaIUT2'][1]=['autoeval'];
 
 evaltype_exp['Diploma']= new Array();

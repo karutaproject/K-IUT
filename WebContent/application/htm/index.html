@@ -24,7 +24,9 @@
 		//==================================
 		function callCAS() {
 		//==================================
-			window.location = "https://cas-uga.grenet.fr/login?service=http://eportfolio.iut2.upmf-grenoble.fr:8080/karuta-backend-iut2/rest/api/credential/login/cas?redir=http://eportfolio.iut2.upmf-grenoble.fr/iut2/application/htm/main.htm";
+		var url = window.location.href;
+		var serverURL = url.substring(0,url.lastIndexOf(appliname+"/")-1);
+		window.location = cas_url+"/login?service="+serverURL+"/"+serverFIL+"/rest/api/credential/login/cas?redir="+serverURL+"/"+appliname+"/application/htm/main.htm";
 		}
 		//==================================
 		function callSubmit() {
@@ -137,8 +139,10 @@
 			<div class='span6'>
 				<div id='connexion'>
 					<h2><img id='connexion-img' src='../img/login.png'/> Vous connecter</h2>
-					<h5>Connexion avec un compte universitaire (CAS)</h5>
-					<button type="submit" onclick='javascript:callCAS()'>S'identifier</button>
+					<div id='connexion-cas' style='display:none'>
+						<h5>Connexion avec un compte universitaire (CAS)</h5>
+						<button type="submit" onclick='javascript:callCAS()'>S'identifier</button>
+					</div>
 					<h5>Connexion hors compte universitaire</h5>
 					<input id='useridentifier' type="text" placeholder="login">
 					<input id='password' type="password" placeholder="mot de passe">
@@ -167,6 +171,8 @@
 	<script language='javascript'>
 		//------------------------------
 		$(document).ready(function() {
+			if (cas_url!="")
+				$("#connexion-cas").show();
 			$("#main-footer").html(getFooter());
 			var ua = navigator.userAgent;
 			if (ua.indexOf('MSIE')>-1 || ua.indexOf('Trident')>-1 || ua.indexOf('Edge')>-1)

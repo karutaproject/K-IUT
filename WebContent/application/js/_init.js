@@ -11,7 +11,7 @@ var serverVER = "karuta-backend"+bckname;
 //----ELGG-----
 var elgg_installed = false;
 var elgg_url_base = '';
-var elgg_url_absolute = 'http://eportfolio.iut2.upmf-grenoble.fr/elgg/';
+var elgg_url_absolute = '';
 var elgg_auth_cas = false;
 var g_elgg_refreshing = 120000; // 120s 
 //----------------------------------
@@ -27,4 +27,7 @@ var LANGCODE = 0; //default value
 var LANG = languages[LANGCODE]; //default value
 //----------------------------------
 var carte_metiers_url =  "https://iut2.univ-grenoble-alpes.fr/metiers/";
+var freerome = true;
 var freerome_url = "http://freerome.mugeco.com/plugin?uid=";
+var cas_url = "https://cas-uga.grenet.fr";
+var quizz_interculturel = false;

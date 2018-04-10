@@ -293,7 +293,7 @@
 					<li><a href="#experiencespro_histo" data-toggle="tab" onclick="$('#view_label_histo').html(view_label['experiencespro']);" class="text-vert">Expériences pro.</a></li>
 					<li><a href="#experiencesperso_histo" data-toggle="tab" onclick="$('#view_label_histo').html(view_label['experiencesperso']);" class="text-violet">Expériences perso.</a></li>
 					<li><a href="#langues_histo" data-toggle="tab" onclick="$('#view_label_histo').html(view_label['langues']);" class="text-gris">Langues</a></li>
-					<li><a href="#traitsperso_histo" data-toggle="tab" onclick="$('#view_label_histo').html(view_label['traitsperso']);" class="text-rose">Quizz interculturel</a></li>
+					<li id='traitsperso1'><a href="#traitsperso_histo" data-toggle="tab" onclick="$('#view_label_histo').html(view_label['traitsperso']);" class="text-rose">Quizz interculturel</a></li>
 				</ul>
 	
 				<div id="tab-content_histo" class="tab-content">
@@ -329,7 +329,7 @@
 										<h3 align="center">Expériences personnelles</h3>
 										<div id="exp-persos-short_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 									</div>
-									<div class="alert alert-block alert-rose">
+									<div  id='traitsperso2' class="alert alert-block alert-rose">
 										<h3 align="center">Quizz interculturel</h3>
 										<div id="traitsperso-short_histo"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 									</div>
@@ -417,7 +417,7 @@
 					<li><a href="#autres1_comp" data-toggle="tab" onclick="$('#view_label_comp').html(view_label['transinnov']);" class="text-bleu">Compétences transversales</a></li>
 					<li><a href="#autres2_comp" data-toggle="tab" onclick="$('#view_label_comp').html(view_label['autresperso']);" class="text-violet">Autres compétences personnelles</a></li>
 					<li><a href="#langues_comp" data-toggle="tab" onclick="$('#view_label_comp').html(view_label['langues']);" class="text-gris">Langues</a></li>
-					<li><a href="#traitsperso_comp" data-toggle="tab" onclick="$('#view_label_comp').html(view_label['traitsperso']);" class="text-rose">Quizz interculturel</a></li>
+					<li  id='traitsperso3'><a href="#traitsperso_comp" data-toggle="tab" onclick="$('#view_label_comp').html(view_label['traitsperso']);" class="text-rose">Quizz interculturel</a></li>
 				</ul>
 	
 				<div id="tab-content_comp" class="tab-content">
@@ -444,7 +444,7 @@
 										<h3 align="center">Langues étrangères<span id='help-bilan-4'></span></h3>
 									<div id="langues-short_comp"><h4><img src='../../karuta/img/ajax-loader.gif'/> <script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 									</div>
-									<div class="alert alert-block alert-rose">
+									<div  id='traitsperso4' class="alert alert-block alert-rose">
 										<h3 align="center">Quizz interculturel<span id='help-bilan-5'></span></h3>
 										<div id="traitsperso-short_comp"><h4><img src='../../karuta/img/ajax-loader.gif'/><script language = 'javascript'>document.write(karutaStr[LANG]['loading'])</script></h4></div>
 									</div>
@@ -528,7 +528,7 @@
 					<li><a href="#description_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['description']);" class="text-noir">Ma description</a></li>
 					<li><a href="#competence_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['competence']);" class="text-vert">Mes compétences préférées</a></li>
 					<li><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
-					<li><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);" class="text-bleu">Mon environnement pro</a></li>
+					<li id='freerome1'><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);" class="text-bleu">Mon environnement pro</a></li>
 				</ul>
 	
 				<div id="tab-content_projet" class="tab-content">
@@ -818,6 +818,18 @@
 		$("#spin-add").spin({top:'60%'});
 		moment.locale('fr');
 		show_view('accueil');
+		if (!quizz_interculturel) {
+			$("#traitsperso1").hide();
+			$("#traitsperso2").hide();
+			$("#traitsperso3").hide();
+			$("#traitsperso4").hide();
+			$("#traitsperso_comp").hide();
+			$("#traitsperso_histo").hide();
+		}
+		if (!freerome) {
+			$("#freerome1").hide();
+			$("#freerome_projet").hide();
+		}
 		//----------------
 		fetchPPNmetier();
 		$.ajax({
