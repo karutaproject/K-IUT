@@ -481,44 +481,9 @@ function envoyerFormulaireEvaluation(uuid,destid,email,role,lang,type) {
 function sendMail_Evaluation(serverURL,encodeddata,email,lang,type) {
 //==================================
 	var url = serverURL+"/"+appliname+"/application/htm/demande-evaluation.htm?i="+encodeddata+"&amp;type="+type+"&amp;lang="+languages[lang];
-	appStr['fr']['hello']="Bonjour";
-	appStr['fr']['see']="Voir";
-
-	appStr['fr']['request-evaluation']="Demande d'évaluation depuis le ePortfolio KARUTA IUT";
-	appStr['fr']['want-sending-request-evaluation']="une demande d'évaluation";
-	appStr['fr']['request-evaluation-p1']="Vous venez de recevoir une demande d'&amp;eacute;valuation provenant du ePortfolio d'un &amp;eacute;tudiant de l'IUT2 Grenoble.";
-	appStr['fr']['request-evaluation-p2']="&lt;br/&gt;En cliquant sur le lien ci-dessus ou en le copiant dans votre navigateur, vous pourrez acc&amp;eacute;der &amp;agrave; la fiche de l'&amp;eacute;tudiant, et &amp;eacute;valuer les comp&amp;eacute;tences qu'il pense avoir mobilis&amp;eacute;es.";
-	appStr['fr']['request-evaluation-p2']+="&lt;br/&gt;Vous avez aussi &amp;agrave; votre disposition, au bas de cette fiche, une zone de texte libre que vous pourrez remplir si vous souhaitez ajouter un commentaire";
-	appStr['fr']['request-evaluation-p2']+="&lt;br/&gt;Une fois que vous aurez envoy&amp;eacute; cette validation, cette fiche ne sera plus modifiable, ni par vous, ni par l'&amp;eacute;tudiant. L'&amp;eacute;tudiant par contre, conservera des droits d'affichage sur cette fiche avec votre &amp;eacute;valuation et votre commentaire.";
-	appStr['fr']['request-evaluation-p2']+="&lt;br/&gt;Merci par avance pour votre pr&amp;eacute;cieuse collaboration dans le processus de rep&amp;eacute;rage et d'&amp;eacute;valuation des comp&amp;eacute;tences de nos &amp;eacute;tudiants.";
-	appStr['fr']['request-evaluation-p2']+="&lt;br/&gt;";
-	appStr['fr']['request-evaluation-p2']+="&lt;br/&gt;Tr&amp;egrave;s cordialement,";
-	appStr['fr']['request-evaluation-p2']+="&lt;br/&gt;";
-	appStr['fr']['request-evaluation-p3']="&lt;br/&gt;Le responsable du ePortfolio de valorisation des comp&amp;eacute;tences des &amp;eacute;tudiants de l'IUT2 Grenoble.";
-	appStr['fr']['request-evaluation-p3']+="&lt;br/&gt;";
-	appStr['fr']['request-evaluation-p3']+="&lt;br/&gt;Si vous souhaitez me contacter, utiliser l'adresse : eric.giraudin@iut2.univ-grenoble-alpes.fr.";
-	appStr['fr']['request-evaluation-p3']+="&lt;br/&gt;";
-	//---------
-	appStr['en']['hello']="Hello";
-	appStr['en']['see']="See";
-	appStr['en']['request-evaluation']="Internship evaluation request from ePortfolio KARUTA IUT2 Grenoble";
-	appStr['en']['want-sending-request-evaluation']="an internship evaluation request";
-	appStr['en']['request-evaluation-p1']="You have received a request for an internship evaluation from the ePortfolio of a student at IUT2 Grenoble.";
-	appStr['en']['request-evaluation-p2']="&lt;br/&gt;By clicking on the link above or by copying it in your browser, you will be able to access the student's internship record and evaluate the skills that he / she thinks they have acquired. You will also be able to assess the personal qualities of the student.";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;You also have at your disposal, at the bottom of this record, a text box that you can use if you wish to add a comment on the internship, the student's behavior, your appreciation, etc.";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;Once you have sent the evaluation, the intership record will no longer be editable either by you or the student. The student, on the other hand, will retain the possibility to post this record with your evaluation and your comments.";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;The IUT may request this evaluation from the student during the defence jury of said intership.";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;Thank you in advance for your valuable collaboration in the process of identifying and assessing our students' skills.";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;Very cordially,";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;The manager of IUT2 Grenoble's ePortfolio program for the enhancement of student skills.";
-	appStr['en']['request-evaluation-p2']+="&lt;br/&gt;";
-	appStr['en']['request-evaluation-p3']="&lt;br/&gt;";
-	appStr['en']['request-evaluation-p3']+="&lt;br/&gt;If contact me at the following address: eric.giraudin@iut2.univ-grenoble-alpes.fr";
-	appStr['en']['request-evaluation-p3']+="&lt;br/&gt;";
-
-	var message_logo = serverURL+"/"+appliname+"/application/img/logo-eportfolio4.jpg";
-	var message ="&lt;img src='"+message_logo+"' style='width:300px;margin-bottom:4px;margin-top:30px;'&gt;";
+	var message_logo_url = serverURL + "/"+appliname + message_logo;
+	var message = "";
+	message += "&lt;img src='"+message_logo_url+"' style='width:300px;margin-bottom:4px;margin-top:30px;'&gt;";
 	message += "&lt;br/&gt;"+appStr[languages[lang]]['hello']+",&lt;br/&gt;&lt;br/&gt;";
 	message += appStr[languages[lang]]['request-evaluation-p1'];//	message += "&lt;div style='margin:20px;'&gt;";
 	message += "&lt;br/&gt;";
