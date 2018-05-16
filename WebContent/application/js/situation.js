@@ -455,7 +455,7 @@ function envoyerFormulaireEvaluation(uuid,destid,email,role,lang,type) {
 		url : urlS,
 		uuid : uuid,
 		success : function (data){
-			urlS = "../../../"+serverFIL+"/direct?uuid="+uuid+"&email="+email+"&shareroles=etudiant&role="+role+"&l=3&d=720&type=showtorole&showtorole="+role;
+			urlS = "../../../"+serverFIL+"/direct?uuid="+uuid+"&email="+email+"&sharerole=etudiant&role="+role+"&l=3&d=720&type=showtorole&showtorole="+role;
 			$.ajax({
 				type : "POST",
 				dataType : "text",
