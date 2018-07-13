@@ -948,14 +948,14 @@ function sendMail_Stage(serverURL,encodeddata,email,lang) {
 	var message_logo_url = serverURL+"/"+appliname + message_logo;
 	var message ="&lt;img src='"+message_logo_url+"' style='width:300px;margin-bottom:4px;margin-top:30px;'&gt;";
 	message += "&lt;br/&gt;"+appStr[languages[lang]]['hello']+",&lt;br/&gt;&lt;br/&gt;";
-	message += appStr[languages[lang]]['request-eval-internship-p1'];
+	message += appStr[languages[lang]]['request-evaluation-p1'];
 	message += "&lt;br/&gt;";
 	message +="&lt;a href='"+url+"' style='text-decoration: none;color:black;border-radius:4px;background-color:lightgrey'&gt;";
 	message += url;
 	message +="&lt;/a&gt;";
 	message += "&lt;br/&gt;";
-	message += appStr[languages[lang]]['request-eval-internship-p2'];
-	message += appStr[languages[lang]]['request-eval-internship-p3'];
+	message += appStr[languages[lang]]['request-evaluation-p2'];
+	message += appStr[languages[lang]]['request-evaluation-p3'];
 
 	var xml ="<node>";
 	xml +="<sender>"+$(USER.email_node).text()+"</sender>";

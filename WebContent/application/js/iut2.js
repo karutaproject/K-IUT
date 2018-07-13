@@ -792,7 +792,7 @@ function selectPortfolio(data)
 							UIFactory["Bubble"].parse(data);
 							dataBubble = Bubble_list[0].data;
 							g_current_mapid = Bubble_list[0].id;
-							var urlS = "../../../"+serverFIL+'/direct?uuid='+g_current_mapid+'&role=all&lang=fr&l=4&d=35000&type=showtorole&showtorole=all';
+							var urlS = "../../../"+serverFIL+'/direct?uuid='+g_current_mapid+'&sharerole=etudiant&role=all&lang=fr&l=4&d=35000&type=showtorole&showtorole=all';
 							$.ajax({
 								type : "POST",
 								dataType : "text",

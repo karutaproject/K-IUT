@@ -31,3 +31,4 @@ var freerome = false;
 var freerome_url = "";
 var cas_url = "";
 var quizz_interculturel = false;
+var message_logo = "/application/img/logo-eportfolio4.jpg";
