@@ -564,7 +564,7 @@ function clickBubble(node)
 }
 
 //====================================
-function selectPortfolio(data)
+function selectPortfolio(data,usercode)
 //====================================
 {
 	var codePortfolio = "-portfolio";// + useridentifier;
@@ -577,7 +577,7 @@ function selectPortfolio(data)
 	for ( var i=0;i<portfolios.length;i++)
 	{
 		var current_code = $("code:first",portfolios[i]).text();
-		if (current_code.indexOf(USER.username_node.text())>-1) {
+		if (current_code.indexOf(USER.username_node.text())>-1 || current_code.indexOf(usercode)>-1) {
 			if (current_code.indexOf(codePortfolio)>-1) {
 				g_portfolioid = $(portfolios[i]).attr("id");
 				portfolioid = g_portfolioid;
