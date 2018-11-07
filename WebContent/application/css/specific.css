@@ -73,6 +73,9 @@ color:rgba(12, 175, 204, 0.82)
 	margin-top:20px;
 }
 
+.tab-content {
+	min-height:400px;
+}
 /* --------------------------*/
 footer {
 	background-color:black;

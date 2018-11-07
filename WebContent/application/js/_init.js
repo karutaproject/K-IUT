@@ -1,10 +1,10 @@
 //----------------------------------
 var application_version = "3.0";
-var application_date = "2018-03-17";
+var application_date = "2018-09-11";
 //----------------------------------
-var appliname = 'k-iut';
+var appliname = 'iut2';
 //---------
-var bckname = '';
+var bckname = '-iut2';
 var serverBCK = "karuta-backend"+bckname+"/rest/api";
 var serverFIL = "karuta-backend"+bckname;
 var serverVER = "karuta-backend"+bckname;
@@ -27,8 +27,8 @@ var LANGCODE = 0; //default value
 var LANG = languages[LANGCODE]; //default value
 //----------------------------------
 var carte_metiers_url =  "https://iut2.univ-grenoble-alpes.fr/metiers/";
-var freerome = false;
-var freerome_url = "";
-var cas_url = "";
-var quizz_interculturel = false;
+var freerome = true;
+var freerome_url = "http://freerome.mugeco.com/plugin?uid=";
+var cas_url = "https://cas-uga.grenet.fr";
+var quizz_interculturel = true;
 var message_logo = "/application/img/logo-eportfolio4.jpg";

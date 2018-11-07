@@ -82,9 +82,9 @@ UIFactory["Diploma"].prototype.displayView = function(destid,type,lang,parentid)
 		html += "<div class='panel panel-default alert alert-orange alert-block' >";
 		html += "<div class='panel-heading'>";
 		html += "<h4 class='panel-title'>";
-		if (this.semantictag.indexOf('IUT2')<0 && g_userrole=='etudiant'){
+//		if (this.semantictag.indexOf('IUT2')<0 && g_userrole=='etudiant'){
 			html += "<span  class='editbutton' onclick=\"javascript: confirmDel('"+this.id+"','Diploma')\" data-title='supprimer' rel='tooltip'><i class='fa fa-trash-o'></i></span>";
-		}
+//		}
 		if (g_userrole=='etudiant') {
 			html += "<span  class='editbutton' onclick=\"javascript:diplomas_byid['"+this.id+"'].displayEditor('"+destid+"');\" data-title='éditer' rel='tooltip'>";
 			html += "<i class='fa fa-edit'></i>";
@@ -228,17 +228,17 @@ UIFactory["Diploma"].prototype.displayEditor = function(destid,type,lang)
 	} else {
 		html = "";
 		html += "<h4 class='panel-title'>";
-		html += UICom.structure["ui"][this.id].getView()+" ("+UICom.structure["ui"][this.begin_nodeid].resource.getView()+" - "+UICom.structure["ui"][this.end_nodeid].resource.getView()+")";
+		html += UICom.structure["ui"][this.id].getView();
 		html += "</h4>";
 		html += "<div class='row-fluid'>";
 		html += "<div class='span6 attributs'>";
+		html += "<div class='item'>Année de début : <span class='value' id='begin_"+this.id+"'></span></div>";
+		html += "<div class='item'>Année de fin : <span class='value' id='end_"+this.id+"'></span></div>";
 		html += "<div class='item'>Mention : <span class='value'>"+UICom.structure["ui"][this.mention_nodeid].resource.getView()+"</span></div>";
-//		html += "<div class='item'>Spécialité, option : <span class='value'>"+UICom.structure["ui"][this.specialization_nodeid].resource.getView()+"</span></div>";
 		html += "<div class='item'>Spécialité, option : <span class='value' id='specialization_"+this.id+"'></span></div>";
 
 		html += "<div class='item'>Domaine académique : <span class='value'>"+UICom.structure["ui"][this.domaine_academique_nodeid].resource.getView()+"</span></div>";
 		html += "<div class='item'>Domaine métiers : <span class='value'>"+UICom.structure["ui"][this.domaine_metier_nodeid].resource.getView()+"</span></div>";
-//		html += "<br/><div class='item'>Obtention : <span class='value'>"+UICom.structure["ui"][this.obtention_nodeid].resource.getView()+"</span></div>";
 		html += "<br/><div class='item'>Obtention : <span class='value' id='obtention_"+this.id+"'></span></div>";
 
 		html += "<div class='item'>Lien de certification : <span class='value'>"+UICom.structure["ui"][this.certification_nodeid].resource.getView()+"</span></div>";
@@ -260,6 +260,8 @@ UIFactory["Diploma"].prototype.displayEditor = function(destid,type,lang)
 		$(div).append($(html));
 		$("#specialization_"+this.id).append(UICom.structure["ui"][this.specialization_nodeid].resource.getEditor());
 		UICom.structure["ui"][this.obtention_nodeid].resource.displayEditor("obtention_"+this.id,"radio-inline",lang);
+		$("#begin_"+this.id).append(UICom.structure["ui"][this.begin_nodeid].resource.getEditor());
+		$("#end_"+this.id).append(UICom.structure["ui"][this.end_nodeid].resource.getEditor());
 	}
 	//----------------------------------------------------------------------------------------------------
 	eval_competences = new Array();
@@ -409,7 +411,7 @@ function Diplomas_Display(destid,type,parentid) {
 //==================================
 
 	$("#"+destid).html("");
-	var html ="";
+	var html = "";
 	if (type=='detail') {
 		//  if databack is true callback(data,param2,param3,param4) else callback(param2,param3,param4)
 		var databack = false;
@@ -421,7 +423,9 @@ function Diplomas_Display(destid,type,parentid) {
 		if (g_userrole=='etudiant') {
 			html += "<a class='editbutton' href=\"javascript:setMessageBox('Création ...');showMessageBox();importBranch('"+parentid+"','IUT2composantes.IUT2-parts','diploma-unit',"+databack+","+callback+","+param2+","+param3+","+param4+")\">";
 			html += "Ajouter un diplôme <i class='fa fa-plus-square'></i>";
-			html += "</a></div>";
+			html += "</a>";
+			html += menuListeDiplomes(parentid,databack,callback,param2,param3,param4);
+			html += "</div>";
 		}
 	}
 	if (type=='short' &&  diplomas_list.length>0){
@@ -482,4 +486,45 @@ function getEditor(destid,uuid,type)
 	}
 }
 
+//====================================
+function menuListeDiplomes(parentid,databack,callback,param2,param3,param4)
+//====================================
+{
+	// get list of diplomas
+	var diplomes_iut = new Array();
+	$.ajax({
+		async : false,
+		type : "GET",
+		dataType : "xml",
+		url : "../../../"+serverBCK+"/portfolios/portfolio/code/IUT2diplomes.diplomes?resources=true",
+		success : function(data) {
+			var diplome_types = $("asmUnit:has(metadata[semantictag*='diplome-type'])",data);
+			for (var i=0; i<diplome_types.length; i++){
+				diplomes_iut[i] = new Array();
+				diplomes_iut[i][0] = $("label[lang='fr']",$("asmResource[xsi_type='nodeRes']",diplome_types[i])[0]).text();
+				diplomes_iut[i][1] = new Array();
+				var diplome_items = $("asmContext:has(metadata[semantictag*='diplome-item'])",diplome_types[i]);
+				for (var j=0; j<diplome_items.length; j++){
+					var label = $("label[lang='fr']",$("asmResource[xsi_type='Item']",diplome_items[j])).text();
+					var code = $("code",$("asmResource[xsi_type='Item']",diplome_items[j])).text();
+					diplomes_iut[i][1][j] = {code:code,label:label};
+				}
+			}
+		}
+	});
+	// build menu
+	var menu = "";
+	menu += "<span class='dropdown editbutton'>";
+	menu += "	<a data-toggle='dropdown' class='dropdown-toggle editbutton' href='#'>Ajouter mon diplôme IUT <i class='fa fa-caret-square-o-down'></i></strong></a>";
+	menu += "	<ul class='dropdown-menu pull-right'>";
+	for (var i=0; i<diplomes_iut.length; i++){
+		menu += "	<li class='nav-header'>" + diplomes_iut[i][0] + "</li>";
+		for (var j=0; j<diplomes_iut[i][1].length; j++){
+			menu += "	<li><a href=\"javascript:setMessageBox('Création ...');showMessageBox();importBranch('"+parentid+"','IUT2diplomes."+diplomes_iut[i][1][j].code+"','diploma-unit-IUT2',"+databack+","+callback+","+param2+","+param3+","+param4+")\">" + diplomes_iut[i][1][j].code + " - " + diplomes_iut[i][1][j].label + "</a></li>";
+		}
+	}
+	menu += "	</ul>";
+	menu += "</span>";
+	return menu
+}
 
