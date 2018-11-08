@@ -262,7 +262,7 @@
  			</div>
 			<div class='row-fluid'>
 				<div class="span7">
-					Vous pouvez exporter votre portfolio.
+					Pour exporter votre portfolio cliquer sur le lien ci-contre <a id='exporterPortfolios' href='export'>EXPORTER</a>.
 				</div>
 	
 				<div class="span5">
@@ -858,6 +858,8 @@
 					url : urlS,
 					success : function(data) {
 						selectPortfolio(data,usercode);
+						$("#exporterPortfolios").attr("href","../../../"+serverBCK+"/portfolios/zip?portfolios="+g_portfolioid+","+g_profileid+","+g_cvid+","+g_projetid+","+g_traitspersoid);
+						
 						$.ajax({
 							type : "GET",
 							dataType : "xml",
