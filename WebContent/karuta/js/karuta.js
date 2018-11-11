@@ -96,10 +96,10 @@ function getNavBar(type,portfolioid,edit)
 	if (type=='main'){
 		html += "				<li><a href='list.htm?lang="+LANG+"'>"+karutaStr[LANG]['home']+"</a></li>";
 	}
-	html += "				<li><a href='mailto:"+technical_support+"'>"+karutaStr[LANG]['technical_support']+"</a></li>";
+//	html += "				<li><a href='mailto:"+technical_support+"'>"+karutaStr[LANG]['technical_support']+"</a></li>";
 	html += "			</ul>";
 	//----------------------------------------------------------
-	if (languages.length>1) {
+/*	if (languages.length>1) {
 		html += "			<ul class='nav'>";
 	html += "				<li class='dropdown active'><a data-toggle='dropdown' class='dropdown-toggle' href='#'>"+karutaStr[LANG]['language']+"<b class='caret'></b></a>";
 	html += "					<ul class='dropdown-menu'>";
@@ -166,6 +166,7 @@ function getNavBar(type,portfolioid,edit)
 		html += "				</li>";
 		html += "			</ul>";
 	}
+	*/
 	//----------------------------------------------------------
 	html += "			</div><!--/.nav-collapse -->";
 	html += "	</div>";
