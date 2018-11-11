@@ -1,0 +1,394 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eportfolio de l'IUT2 de Grenoble</title>
+	<!-- =========================================== -->
+	<link rel="stylesheet" type="text/css" href="../../other/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../other/css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../other/css/bootstrap-wysihtml5.css" />
+	<link rel="stylesheet" type="text/css" href="../../other/css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="../../other/css/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../other/pick-a-color/css/pick-a-color-1.1.8.min.css" />
+	<!-- =========================================== -->
+	<script src="../../application/js/_init.js"></script>
+	<!-- =========================================== -->
+	<script src="../../other/js/jquery-1.10.2.js"></script>
+	<script src="../../other/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="../../other/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../other/js/jquery.fileupload.js"></script>
+	<script src="../js/specific.js"></script>
+	<script>
+	
+		//==============================
+		function callRegister()
+		//==============================
+		{
+			var ok = true;
+			var useridentifier = $("#useridentifier").val();
+			var firstname = $("#firstname").val();
+			var lastname = $("#lastname").val();
+			var password = $("#password").val();
+			if (useridentifier==""){
+				alert("email is required");
+				ok =false;
+			}
+			if (lastname==""){
+				alert("lastname is required");
+				ok =false;
+			}
+			if (firstname==""){
+				alert("firstname is required");
+				ok =false;
+			}
+			if (ok) {
+				var xml = "";
+				xml +="<?xml version='1.0' encoding='UTF-8'?>";
+				xml +="<users>";
+				xml +="<user>";
+				xml +="	<username>"+useridentifier+"</username>";
+				xml +="	<lastname>"+lastname+"</lastname>";
+				xml +="	<firstname>"+firstname+"</firstname>";
+				xml +="	<email>"+useridentifier+"</email>";
+				xml +="</user>";
+				xml +="</users>";
+				var url = "../../../"+serverFIL+"/register";
+				$.ajax({
+					type : "POST",
+					contentType: "application/xml",
+					dataType : "text",
+					url : url,
+					data : xml,
+					success : function(data) {
+						alert(karutaStr[LANG]['password-sent']);
+						window.location="indexFTLV.htm";
+					}
+				});
+			}
+		}
+		
+		//==============================
+		function getInputs()
+		//==============================
+		{
+			var html = "";
+			html += "<input id='useridentifier' class='form-control' placeholder='"+karutaStr[LANG]['email']+"' type='text'>";
+			html += "<input id='firstname' class='form-control' placeholder='"+karutaStr[LANG]['firstname']+"' type='text'>";
+			html += "<input id='lastname' class='form-control' placeholder='"+karutaStr[LANG]['lastname']+"' type='text'>";
+			html += "<br><button class='btn btn-large btn-primary' onclick='javascript:callSubmit()'>"+karutaStr[LANG]['create_account']+"</button>";
+			return html;
+		}
+	
+		//==================================
+		function callSubmit()
+		//==================================
+		{
+			var username = document.getElementById("useridentifier").value;
+			var password = document.getElementById("password").value;
+			var data = "<credential><login>"+username+"</login><password>"+password+"</password></credential>";
+			$.ajaxSetup({
+				Accept: "application/xml",
+				contentType: "application/xml"
+				});
+			$.ajax({
+				type : "POST",
+				dataType : "xml",
+				url : "../../../../"+serverBCK+"/credential/login",
+				data: data,
+				success : function(data) {
+					displayImport();
+				}
+			});
+		}
+		
+		//==================================
+		function callConnect()
+		//==================================
+		{
+			var username = document.getElementById("useridentifier").value;
+			var password = document.getElementById("password").value;
+			var data = "<credential><login>"+username+"</login><password>"+password+"</password></credential>";
+			$.ajaxSetup({
+				Accept: "application/xml",
+				contentType: "application/xml"
+				});
+			$.ajax({
+				type : "POST",
+				dataType : "xml",
+				url : "../../../../"+serverBCK+"/credential/login",
+				data: data,
+				success : function(data) {
+					window.location='main.htm';
+				}
+			});
+		}
+		
+		//==================================
+		function displayConnection()
+		//==================================
+		{
+			var html = "";
+			html += "<h2><img id='connexion-img' src='../img/login.png'/>Vous connecter</h2>";
+			html += "<h5>Connexion</h5>";
+			html += "<input id='useridentifier' type='text' placeholder='Courriel'>";
+			html += "<input id='password' type='password' placeholder='Mot de passe'>";
+			html += "<button type='submit' onclick='javascript:callConnect()'>Envoyer</button>";
+			html += "<h5>Inscription et Import</h5>";
+			html += "<h6>Vous n'avez pas de compte. Inscrivez-vous et importer votre portfolio</h6>";
+			html += "<button type='submit' onclick='displayRegister()'>Inscrivez-vous!</button>";
+			html += "<button type='submit' onclick='displayConnectionImport()'>Importer</button>";
+			$("#display").html(html);
+		}
+		
+		//==================================
+		function displayRegister()
+		//==================================
+		{
+			var html = "";
+			html += "<h2><img id='connexion-img' src='../img/login.png'/>Vous inscrire</h2>";
+			html += "<h5><span class='libelle'>Courriel</span> <input id='useridentifier' type='text' placeholder='Courriel'></h5>";
+			html += "<h5><span class='libelle'>Prénom</span> <input id='firstname' type='text' placeholder='Prénom'></h5>";
+			html += "<h5><span class='libelle'>Nom</span> <input id='lastname' type='text' placeholder='Nom'></h5>";
+			html += "<button id='register-button' type='submit' onclick='javascript:callRegister()'>Envoyer</button>";
+			$("#display").html(html);
+		}
+
+		//==================================
+		function displayConnectionImport()
+		//==================================
+		{
+			var html = "";
+			html += "<h2><img id='connexion-img' src='../img/login.png'/>Importer votre portfolio</h2>";
+			html += "<h5>1 - Connexion</h5>";
+			html += "<input id='useridentifier' type='text' placeholder='Courriel'>";
+			html += "<input id='password' type='password' placeholder='Mot de passe'>";
+			html += "<button type='submit' onclick='javascript:callSubmit()'>Envoyer</button>";
+			$("#display").html(html);
+		}
+
+		//==================================
+		function displayImport()
+		//==================================
+		{
+			var html = "";
+			html += "<h2><img id='connexion-img' src='../img/login.png'/>Importer votre portfolio</h2>";
+			html += "<h5>2 - Import</h5>";
+			html += "<form id='fileupload' action='../../../karuta-backend-iut2/rest/api/portfolios/zip'>";
+			html += "	<input type='hidden' id='project' name='project' value='ftlv'>";
+			html += "	<input type='hidden' id='instance' name='instance' value='true'>";
+			html += "	<input type='file' id='uploadfile' name='uploadfile'>";
+			html += "</form>";
+			html += "<div id='progress'><div class='bar' style='width: 0%;'></div></div>";
+			$("#display").html(html);
+			$("#fileupload").fileupload({
+				progressall: function (e, data) {
+				$("#progress").css('border','1px solid lightgrey');
+				var progress = parseInt(data.loaded / data.total * 100, 10);
+				$('#progress .bar').css('width',progress + '%');
+				$("#uploadfile").hide();
+				$("#wait-window").show();
+				},
+				success : function(data) {
+					$("#wait-window").hide();
+					// load portfolios and rename it with  ##userid## in the code EX: ftlv.##223##-cv
+					// départager de designer partager etudiant
+					var urlS = "../../../"+serverBCK+"/portfolios?active=1";
+					$.ajax({
+						Accept: "application/xml",
+						contentType: "application/xml",
+						type : "GET",
+						dataType : "xml",
+						url : urlS,
+						success : function(data) {
+							var codePortfolio = "-portfolio";// + useridentifier;
+							var codeProfile = "-profile";
+							var codeCV = "-cv";
+							var codeProjet = "-projet";
+							var codeTraitsPerso = "-TraitsPersonnalite";
+							var portfolios = $("portfolio",data);
+							for ( var i=0;i<portfolios.length;i++)
+							{
+								var current_code = $("code:first",portfolios[i]).text();
+								if (current_code.indexOf(codePortfolio)>-1) {
+									var rootid = $("asmRoot",$(portfolios[i])).attr("id");
+									var xml = "";
+									xml +="<asmResource xsi_type='nodeRes'>";
+									xml +="<code>ftlv.##"+USER.id+"##-portfolio</code>";
+									for (var i=0; i<languages.length;i++){
+										xml +="			<label lang='"+languages[i]+"'>##"+USER.id+"##</label>";	
+									}
+									xml +="		</asmResource>";
+									UICom.query("PUT","../../../"+serverBCK+'/nodes/node/'+rootid+'/noderesource',null,"text",xml);
+									
+								}
+								if (current_code.indexOf(codeProfile)>-1) {
+									g_profilecode = current_code;
+									g_profileid = $(portfolios[i]).attr("id");
+								}
+								if (current_code.indexOf(codeCV)>-1) {
+									g_cvcode = current_code;
+									g_cvid = $(portfolios[i]).attr("id");
+								}
+								if (current_code.indexOf(codeProjet)>-1) {
+									g_projetcode = current_code;
+									g_projetid = $(portfolios[i]).attr("id");
+								}
+								if (current_code.indexOf(codeTraitsPerso)>-1) {
+									g_traitspersoid = $(portfolios[i]).attr("id");
+								}
+							}
+						}
+					});
+					
+					window.location.reload();
+				},
+				error : function(jqxhr,textStatus) {
+					$("#wait-window").hide();
+					alertHTML("Error : "+jqxhr.responseText);
+				}
+			});
+		}
+
+	</script>
+	<style>
+		header {
+			background-color:black;
+			height:20px;
+		}
+		footer {
+			background-color:black;
+			height:80px;
+			padding-top:20px;
+		}
+		#display {
+		margin-top:50px;
+		margin-bottom:50px;
+		padding:20px;
+		background-color:#e4f7fe;
+		border: 2px solid #0099cc;
+		}
+		#connexion-img, #firefox, #support, #help {
+			width:60px;
+		}
+		button {
+			background-color:black;
+			border-radius:0px;
+			color:white;
+			height:40px;
+			padding-left:20px;
+			padding-right:20px;
+			border: 1px solid black;
+			margin-right:4px;
+		}
+		#useridentifier, #password,#firstname, #lastname {
+			border-radius:0px;
+			height:40px;
+			border: 2px solid #0099cc;
+			margin-bottom: 0px;
+			width: 160px;
+			margin-right:4px;
+		}
+		#fsh {
+			margin-top:30px;
+			margin-bottom:30px;
+			text-align:center;
+		}
+		
+		a {
+			color:#53b9d2;
+		}
+		p {
+			padding:10px;
+		}
+		#logo {
+			margin-top:50px;
+		}
+		#accueil .span6 {
+			padding-left:50px;
+			padding-right:50px;
+		}
+		#specifique {
+			border: 1px solid gray;
+		}
+		.libelle {
+			display: inline-block;
+			width:70px;
+		}
+		#register-button{
+		margin-left:75px;
+		}
+	</style>
+</head>
+
+<body>
+	<header></header>
+	<div id='accueil' class="container">
+		<div class='row-fluid'>
+			<div class="span6">
+				<img id='logo' src='../img/iut2-et-K-IUT.jpg'/>
+				<h4><span style='font-size:150%'>F</span>ormation <span style='font-size:150%'>T</span>out au <span style='font-size:150%'>L</span>ong de la <span style='font-size:150%'>V</span>ie</h4>
+				<p>
+					Cette plateforme est développée par le milieu universitaire et grâce à un partenariat
+					 franco-canadien entre l'IUT2 Grenoble et HEC Montréal 
+					 avec la solution <span id='osk'>Open Source KARUTA</span>
+				</p>
+				<div id='specifique'>
+					<img src='../img/accueil-iut-recadre.jpg'/>
+					<p>
+					À l'IUT2 Grenoble cette plateforme ePortfolio est l'outil numérique central de la démarche 
+					de professionnalisation de l'étudiant pour faciliter son insertion à bac + 3 et également 
+					 pour l'alumni dans le cadre de la Formation Tout au Long de La Vie.
+					</p>
+				</div>
+			</div>
+			<!-- ================================================================== -->
+			<div class='span6'>
+				<div id='display'>
+				</div>
+				<div id='fsh' class='row-fluid'>
+					<div class='span4'>
+						<img id='firefox' src='../img/firefox.png'/>
+						<p>Optimisé pour Firefox !<br/>Évitez Internet Explorer !</p>
+					</div>
+					<div class='span4'>
+						<img id='support' src='../img/support.png'/>
+						<p> Votre compte ne fonctionne pas ?<br/><a href='https://goo.gl/forms/FhBdi3VlvQIiPM6J2'>Nous contacter</a></p>
+					</div>
+					<div class='span4'>
+						<img id='help' src='../img/help.png'/>
+						<p><a href='https://docs.google.com/document/d/1qhi7Uf_ZMsJpDNzfdvvy-Ii_bt4ztaBUansbjNQxumQ/edit'>Afficher le <span id='guide'>guide</span> d'utilisation du portfolio</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- /container -->
+		<footer id='main-footer'>
+		</footer>
+
+	<script>
+		//------------------------------
+		$(document).ready(function() {
+			if (cas_url!="")
+				$("#connexion-cas").show();
+			$("#main-footer").html(getFooter());
+			$.ajax({
+				type : "POST",
+				dataType : "xml",
+				url : "../../../../"+serverBCK+"/credential/logout",
+				data: ""
+			});
+			displayConnection();
+			$('#password').keypress(function(e) {
+				var code= (e.keyCode ? e.keyCode : e.which);
+				if (code == 13)
+					callSubmit();
+			});
+		});
+		//------------------------------
+	</script>
+
+</body>
+
+</html>
