@@ -58,6 +58,7 @@ karutaStr['fr']['confirm-password']="Confirmez mot de passe";
 karutaStr['fr']['password-mismatch']="Les deux mots de passe ne correspondent pas.";
 karutaStr['fr']['saved']="Enregistré";
 karutaStr['fr']['password-sent']="Un nouveau mot de passe a été envoyé par courriel.";
+karutaStr['fr']['created-password-sent']="Un mot de passe vous a été envoyé par courriel. Vérifiez les courriels indésirables.";
 karutaStr['fr']['new-account']="Vous n'avez pas de compte? <a href='createAccount.htm?lang=fr'>Inscrivez-vous!</a>";
 karutaStr['fr']['demo-portfolios']="Créer les portfolios démos";
 

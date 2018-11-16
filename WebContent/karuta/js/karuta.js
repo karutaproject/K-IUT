@@ -511,6 +511,24 @@ function importBranch(destid,srcecode,srcetag,databack,callback,param2,param3,pa
 	});
 }
 
+//==================================
+function alertHTML(message,header,footer)
+//==================================
+{
+	if (header!=null) {
+		document.getElementById('alert-window-header').innerHTML = header;
+	}
+	if (footer!=null) {
+		document.getElementById('alert-window-footer').innerHTML = footer;
+	} else {
+		var buttons = "<button class='btn' onclick=\"javascript:$('#alert-window').modal('hide');\">" + karutaStr[LANG]["Close"] + "</button>";
+		document.getElementById('alert-window-footer').innerHTML = buttons;
+	}
+	$('#alert-window-body').html(message);
+	$('#alert-window').modal('show');
+
+}
+
 //=======================================================================
 function edit_displayEditor(uuid,type)
 //=======================================================================

@@ -102,7 +102,7 @@ function getNavbar(portfolioid) {
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_cv').html(view_label['carte']);show_view('cv','carte');loadBubbleTreeMap();\">Ma carte portfolio</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
-		if (g_userrole=='etudiant') {
+		if (g_userrole=='etudiant' && applitype=='KIUT') {
 			navbar += "            <li><a href='#' onclick=\"javascript:show_view('suivi')\"><i class='fa fa-question'></i> Mon suivi</a></li>";
 		}
 	}
@@ -577,7 +577,7 @@ function selectPortfolio(data,usercode)
 	for ( var i=0;i<portfolios.length;i++)
 	{
 		var current_code = $("code:first",portfolios[i]).text();
-		if (current_code.indexOf(USER.username_node.text())>-1 || current_code.indexOf(usercode)>-1 || current_code.indexOf("##"+USER.id+"##")>-1) {
+		if (current_code.indexOf(USER.username_node.text())>-1 || current_code.indexOf(usercode)>-1 || current_code.indexOf("@@"+USER.id+"@@")>-1) {
 			if (current_code.indexOf(codePortfolio)>-1) {
 				g_portfolioid = $(portfolios[i]).attr("id");
 				portfolioid = g_portfolioid;
@@ -988,6 +988,19 @@ function fetchEuropassCriteres()
 		}
 	});
 }
+
+//=======================================================================
+function confirmDelFTLV() 
+// =======================================================================
+{
+	document.getElementById('delete-window-body').innerHTML = karutaStr[LANG]["confirm-delete"];
+	var buttons = "<span class='btn' onclick=\"javascript:$('#delete-window').modal('hide');\">" + karutaStr[LANG]["Cancel"] + "</span>";
+	buttons += "<span class='btn btn-danger' onclick=\"javascript:deletePortfolios()\">" + karutaStr[LANG]["button-delete"] + "</span>";
+	document.getElementById('delete-window-footer').innerHTML = buttons;
+	$('#delete-window').modal('show');
+}
+
+
 
 (function($) {
     $.fn.hasVerticalScrollBar = function() {
