@@ -22,6 +22,11 @@ UIFactory["Profile"] = function(node)
 	this.firstname_nodeid = $("asmContext:has(metadata[semantictag='firstname'])",node).attr('id');
 	this.lastname_nodeid = $("asmContext:has(metadata[semantictag='lastname'])",node).attr('id');
 	this.email_nodeid = $("asmContext:has(metadata[semantictag='email'])",node).attr('id');
+	if (applitype=='FTLV'){
+		$(UICom.structure["ui"][this.firstname_nodeid].resource.text_node[LANGCODE]).text(USER.firstname_node.text());
+		$(UICom.structure["ui"][this.lastname_nodeid].resource.text_node[LANGCODE]).text(USER.lastname_node.text());
+		$(UICom.structure["ui"][this.email_nodeid].resource.text_node[LANGCODE]).text(USER.email_node.text());
+	}
 	this.profil_inter_qs = $("asmContext:has(metadata[semantictag*='profil-inter-question-select'])",node);
 	this.periode_nodeid = $($("asmContext:has(metadata[semantictag*='periode-sejours-etranger'])",node)[0]).attr('id');
 	this.sejours_nodeid = $($("asmContext:has(metadata[semantictag*='total-sejours-etranger'])",node)[0]).attr('id');
@@ -87,29 +92,73 @@ UIFactory["Profile"].prototype.displayView = function(destid,type,lang)
 //==================================
 UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 //==================================
-//	var html = "<div id='profile_"+this.id+"' class='profile alert alert-block'></div>";
-//	$("#"+destid).html(html);
-//	$("#profile_"+this.id).append($("<div>Photo<span id='help-profil-photo'></span></div>"));
-	UICom.structure["ui"][this.photo_nodeid].resource.displayEditor("profil-photo");
-//	$("profil").append($("<br><br><label id='email_profil' class='inline'>Courriel<span id='help-profil-courriel'></span> : </label>"));
-	$("#email_profil").append(UICom.structure["ui"][this.email_nodeid].resource.getEditor());
-	//----------------------
-//	$("#profil").append($("<div class='titre1' >Mon profil interculturel</div>"));
-	for (var i=0; i<this.profil_inter_qs.length;i++){
-		var uuid = $(this.profil_inter_qs[i]).attr("id");
-		html  = "<label class='inline profil_inter'>";
-		html += UICom.structure["ui"][uuid].getLabel() + " <span id='profil_inter_"+uuid+"'></span>";
-		html += "</label>";
-		$("#profil-interculturel").append($(html));
-		UICom.structure["ui"][uuid].resource.displayEditor("profil_inter_"+uuid);
+	if (type==null || type!='FTLV') {
+		var html = "";
+		html += "<div class='row-fluid'>";
+		html += "<div class='span3'>";
+		html += "	<div id='profil-short' class='media'></div>";
+		html += "</div>";
+		html += "<div class='span9'>";
+		html += "	<div id='profil-detail' class='media'>";
+		html += "		<div class='profile alert alert-block'>";
+		html += "			<div>Photo<span id='help-profil-photo'></span></div>";
+		html += "			<div id='profil-photo'></div>";
+		html += "			<br><br><label id='email_profil' class='inline'>Courriel<span id='help-profil-courriel'></span> : </label>";
+		html += "			<div class='titre1' >Mon profil international</div>";
+		html += "			<div id='profil-interculturel'></div>";
+		html += "		</div>";
+		html += "	</div>";
+		html += "</div>";
+		html += "</div>";
+		$("#"+destid).append($(html));
+		UICom.structure["ui"][this.photo_nodeid].resource.displayEditor("profil-photo");
+		$("#email_profil").append(UICom.structure["ui"][this.email_nodeid].resource.getEditor());
+		//----------------------
+		for (var i=0; i<this.profil_inter_qs.length;i++){
+			var uuid = $(this.profil_inter_qs[i]).attr("id");
+			html  = "<label class='inline profil_inter'>";
+			html += UICom.structure["ui"][uuid].getLabel() + " <span id='profil_inter_"+uuid+"'></span>";
+			html += "</label>";
+			$("#profil-interculturel").append($(html));
+			UICom.structure["ui"][uuid].resource.displayEditor("profil_inter_"+uuid);
+		}
+		displayControlGroup_displayEditor("profil-interculturel",UICom.structure["ui"][this.periode_nodeid].getLabel(),"profil_inter_"+this.periode_nodeid,this.periode_nodeid,"radio");
+		$("#profile").append($("<label id='profil_inter_"+this.sejours_nodeid+"' class='inline profil_inter'>"+UICom.structure["ui"][this.sejours_nodeid].getLabel()+" </label>"));
+		$("#profil_inter_"+this.sejours_nodeid).append(UICom.structure["ui"][this.sejours_nodeid].resource.getEditor());
+		//----------------------
+		if (g_userrole!='etudiant'){
+			$('#'+destid+' input, #'+destid+' select').attr("disabled", true);
+			$('#'+destid+' button').prop("disabled", true);
+		}
 	}
-	displayControlGroup_displayEditor("profil-interculturel",UICom.structure["ui"][this.periode_nodeid].getLabel(),"profil_inter_"+this.periode_nodeid,this.periode_nodeid,"radio");
-	$("#profile").append($("<label id='profil_inter_"+this.sejours_nodeid+"' class='inline profil_inter'>"+UICom.structure["ui"][this.sejours_nodeid].getLabel()+" </label>"));
-	$("#profil_inter_"+this.sejours_nodeid).append(UICom.structure["ui"][this.sejours_nodeid].resource.getEditor());
-	//----------------------
-	if (g_userrole!='etudiant'){
-		$('#'+destid+' input, #'+destid+' select').attr("disabled", true);
-		$('#'+destid+' button').prop("disabled", true);
+	if (type=="FTLV"){
+		var html = "";
+		html += "<div id='profil-ftlv' class='row-fluid'>";
+		//--------------------------------------
+		html += "<div class='span7'>";
+		html += "<h3>Vos informations de profil</h3>";
+		html += "<p>Votre identifiant : <span id='username'></span></p>";
+		html += "<div id='lastname'></div>";
+		html += "<div id='firstname'></div>";
+		html += "<p>Le courriel associé à votre compte : <span id='courriel'></span></p>";
+		html += "<div id='profil-photo'></div>";
+		html += "</div>";
+		//--------------------------------------
+//		html += "<div class='span4'>";
+//		html += "<div><button class='exporter' type='submit' ><a id='exporterPortfolios' href='export'>Exporter mon ePortfolio KIUT (zip)</a></button></div>";
+//		html += "<div><button class='supprimer-portfolio' type='submit' ><a id='supprimerPortfolios' href='#' onclick='javascritp:confirmDelFTLV()'>Supprimer mon portfolio</a></button></div>";
+//		html += "<div><button class='supprimer-compte' type='submit' >Supprimer mon compte</button></div>";
+//		html += "</div>";
+		//--------------------------------------
+		html += "</div>";
+		$("#"+destid).append($(html));
+		$("#username").html(USER.username_node.text());
+		$("#lastname").html(UIFactory.User.getAttributeEditor(USER.id,"lastname",USER.lastname_node.text()));
+		$("#firstname").html(UIFactory.User.getAttributeEditor(USER.id,"firstname",USER.firstname_node.text()));
+		$("#courriel").html(USER.email_node.text());
+		UICom.structure["ui"][this.photo_nodeid].resource.displayEditor("profil-photo");
+//		$("#exporterPortfolios").attr("href","../../../"+serverBCK+"/portfolios/zip?portfolios="+g_portfolioid+","+g_profileid+","+g_cvid+","+g_projetid+","+g_traitspersoid);
+
 	}
 };
 

@@ -125,22 +125,6 @@
 		<!-- ==================================================================================================== -->
 		<div id='profil' name='page' class='hide'>
 			<h3 class="align-left"><i class="fa fa-user"></i> MON COMPTE</h3>
-			<div class='row-fluid'>
-				<div class="span3">
-					<div id='profil-short' class="media"></div>
-				</div>
-				<div class="span9">
-					<div id='profil-detail' class="media">
-						<div class='profile alert alert-block'>
-						<div>Photo<span id='help-profil-photo'></span></div>
-						<div id='profil-photo'></div>
-						<br><br><label id='email_profil' class='inline'>Courriel<span id='help-profil-courriel'></span> : </label>
-						<div class='titre1' >Mon profil international</div>
-						<div id='profil-interculturel'></div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- ==================================================================================================== -->
 		<!-- ==================================================================================================== -->
@@ -843,6 +827,8 @@
 			data: "",
 			success : function(data) {
 				USER = new UIFactory["User"]($("user",data));
+				Users_byid[USER.id] = USER;
+				
 				if (elgg_installed) {
 					if( karuta_site == 'iut2') {
 						loadLanguages(function(){getElggTokenBis();getElggToken()});

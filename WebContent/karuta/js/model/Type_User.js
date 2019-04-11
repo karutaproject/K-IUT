@@ -125,7 +125,8 @@ UIFactory["User"].update = function(userid,attribute,value)
 {
 	Users_byid[userid].attributes[attribute].text(value); // update attribute value
 	var node = Users_byid[userid].node;
-	var data = xml2string(node);
+//	var data = xml2string(node);
+	var data = $(node)[0].outerHTML;
 	var url = "../../../"+serverBCK+"/users/user/" + userid;
 	$.ajax({
 		type : "PUT",

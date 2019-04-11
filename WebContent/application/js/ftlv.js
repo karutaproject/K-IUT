@@ -132,12 +132,10 @@ function displayConnection()
 	html += "<input id='useridentifier' type='text' placeholder='Courriel'>";
 	html += "<input id='password' type='password' placeholder='Mot de passe'>";
 	html += "<button type='submit' onclick='javascript:callConnect()'>Envoyer</button>";
-	html += "<h5>Inscription et Import</h5>";
-	html += "<h6>Vous n'avez pas de compte. Inscrivez-vous et importer votre portfolio</h6>";
-	html += "<img class='num' src='../img/num1.png'/>";
-	html += "<button type='submit' onclick='displayRegister()'>Inscrivez-vous!</button>";
-	html += "<img class='num' src='../img/num2.png'/>";
-	html += "<button type='submit' onclick='displayConnectionImport()'>Importer</button>";
+	html += "<h5>Création et Import</h5>";
+	html += "<h6>Créez un compte si vous n'en avez pas et importez votre portfolio</h6>";
+	html += "<button class='creer-importer-button' style='float:right' type='submit' onclick='displayConnectionImport()'>2 - Importer son portfolio</button>";
+	html += "<button class='creer-importer-button' type='submit' onclick='displayRegister()'>1 - Créer son compte</button>";
 	$("#display").html(html);
 }
 
@@ -199,7 +197,7 @@ function displayImport()
 		var html = "";
 		html += "<h2><img id='connexion-img' src='../img/login.png'/>Importer votre portfolio</h2>";
 		html += "<h5><img width='30px' class='num' src='../img/num2.png'/> Import</h5>";
-		html += "<form id='fileupload' action='../../../"+serverBCK+"/rest/api/portfolios/zip'>";
+		html += "<form id='fileupload' action='../../../"+serverBCK+"/portfolios/zip'>";
 		html += "	<input type='hidden' id='project' name='project' value='ftlv'>";
 		html += "	<input type='hidden' id='instance' name='instance' value='true'>";
 		html += "	<input type='file' id='uploadfile' name='uploadfile'>";
@@ -501,11 +499,9 @@ function deleteUser()
 				$.ajax({
 					async : false,
 					type : "DELETE",
-					contentType: "application/xml",
-					dataType : "xml",
+					dataType : 'text',
 					url : url,
-					data : "",
-					success : function(data) {
+					success : function() {
 						alert("votre compte a été supprimé.");
 						location.reload();
 					},

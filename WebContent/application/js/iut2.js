@@ -619,9 +619,9 @@ function selectPortfolio(data,usercode)
 				success : function(data) {
 					UICom.parseStructure(data);
 					UIFactory["Profile"].parse(data);
+					profiles_list[0].displayEditor('profil',applitype);
 					profiles_list[0].displayView('profile-short','short');
 					profiles_list[0].displayView('profil-short','short');
-					profiles_list[0].displayEditor('profil-detail');
 					if (l_userrole=='etudiant' && g_userrole!='etudiant'){
 						profiles_list[0].displayView('profile-etudiant','lastname_firstname');
 					}
