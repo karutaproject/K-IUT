@@ -185,15 +185,16 @@ UIFactory["Image"].prototype.displayEditor = function(destid,type,langcode)
 	if (!this.multilingual)
 		langcode = NONMULTILANGCODE;
 	//---------------------
-	var html ="";
-	html += " <span id='editimage_"+this.id+"_"+langcode+"'>"+this.getView('editimage_'+this.id+"_"+langcode,null,langcode)+"</span> ";
+	var html ="<table><tr>";
+	html += " <td id='editimage_"+this.id+"_"+langcode+"'>"+this.getView('editimage_'+this.id+"_"+langcode,null,langcode)+"</td> ";
 	var url = "../../../"+serverFIL+"/resources/resource/file/"+this.id+"?lang="+languages[langcode];
-	html +=" <div id='divfileupload_"+this.id+"_"+langcode+"'>";
+	html +=" <td><div id='divfileupload_"+this.id+"_"+langcode+"'>";
 	html +=" <input id='fileupload_"+this.id+"_"+langcode+"' type='file' name='uploadfile' data-url='"+url+"'>";
 	html += "</div>";
 	html +=" <div id='progress_"+this.id+"_"+langcode+"''><div class='bar' style='width: 0%;'></div></div>";
 	html += "<span id='fileimage_"+this.id+"_"+langcode+"'>"+$(this.filename_node[langcode]).text()+"</span>";
 	html +=  " <button type='button' class='btn btn-mini bouton-supprimer-image' onclick=\"UIFactory.Image.remove('"+this.id+"',"+langcode+")\">"+karutaStr[LANG]['button-delete']+"</button>";
+	html += "</td></tr></table>";
 	$("#"+destid).append($(html));
 	$('#fileupload_'+this.id+"_"+langcode).fileupload({
 		progressall: function (e, data) {

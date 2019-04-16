@@ -76,6 +76,51 @@ color:rgba(12, 175, 204, 0.82)
 .tab-content {
 	min-height:400px;
 }
+
+/* --------------------------*/
+
+.picto-accueil{
+	width:60px;
+	margin-top:30px;
+}
+#profil-ftlv {
+	margin-bottom:50px;
+}
+#profil-ftlv .span7{
+	padding-left:30px;
+	padding-right:30px;
+	padding-bottom:20px;
+	border: 1px solid #808080;
+	background-color: #f0f0f0;
+}
+
+.exporter {
+	padding:30px;
+	background-color:#51b9d3;
+	border: 2px solid #0099cc;
+	margin-bottom:50px;
+	margin-left:50px;
+}
+
+.supprimer-portfolio{
+	padding:30px;
+	background-color:#bc3379;
+	border: 2px solid #90084e;
+	margin-left:50px;
+}
+
+.exporter a,
+.supprimer-portfolio a {
+	color:white;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.exporter img,
+.supprimer-portfolio img {
+	height:40px;
+}
+
 /* --------------------------*/
 footer {
 	background-color:black;

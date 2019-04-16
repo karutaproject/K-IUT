@@ -31,5 +31,5 @@ var carte_metiers_url =  "https://iut2.univ-grenoble-alpes.fr/metiers/";
 var freerome = true;
 var freerome_url = "http://freerome.mugeco.com/plugin?uid=";
 var cas_url = "https://cas-uga.grenet.fr";
-var quizz_interculturel = true;
+var quizz_interculturel = false;
 var message_logo = "/application/img/logo-eportfolio4.jpg";

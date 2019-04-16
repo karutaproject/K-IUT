@@ -95,19 +95,18 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 	if (type==null || type!='FTLV') {
 		var html = "";
 		html += "<div class='row-fluid'>";
-		html += "<div class='span3'>";
-		html += "	<div id='profil-short' class='media'></div>";
-		html += "</div>";
-		html += "<div class='span9'>";
+		html += "<div class='span6'>";
 		html += "	<div id='profil-detail' class='media'>";
 		html += "		<div class='profile alert alert-block'>";
 		html += "			<div>Photo<span id='help-profil-photo'></span></div>";
 		html += "			<div id='profil-photo'></div>";
 		html += "			<br><br><label id='email_profil' class='inline'>Courriel<span id='help-profil-courriel'></span> : </label>";
-		html += "			<div class='titre1' >Mon profil international</div>";
-		html += "			<div id='profil-interculturel'></div>";
+//		html += "			<div class='titre1' >Mon profil international</div>";
+//		html += "			<div id='profil-interculturel'></div>";
 		html += "		</div>";
 		html += "	</div>";
+		html += "</div>";
+		html += "<div class='span6'>";
 		html += "</div>";
 		html += "</div>";
 		$("#"+destid).append($(html));
@@ -144,11 +143,11 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 		html += "<div id='profil-photo'></div>";
 		html += "</div>";
 		//--------------------------------------
-//		html += "<div class='span4'>";
-//		html += "<div><button class='exporter' type='submit' ><a id='exporterPortfolios' href='export'>Exporter mon ePortfolio KIUT (zip)</a></button></div>";
-//		html += "<div><button class='supprimer-portfolio' type='submit' ><a id='supprimerPortfolios' href='#' onclick='javascritp:confirmDelFTLV()'>Supprimer mon portfolio</a></button></div>";
+		html += "<div class='span4'>";
+		html += "<div><button class='exporter' type='submit' ><a id='exporterPortfolios' href='export'><img src='../img/picto-export.png'> Exporter mon ePortfolio KIUT (zip)</a></button></div>";
+		html += "<div><button class='supprimer-portfolio' type='submit' ><img src='../img/picto-trash.png'><a id='supprimerPortfolios' href='#' onclick='javascritp:confirmDelFTLV()'>Supprimer mon portfolio</a></button></div>";
 //		html += "<div><button class='supprimer-compte' type='submit' >Supprimer mon compte</button></div>";
-//		html += "</div>";
+		html += "</div>";
 		//--------------------------------------
 		html += "</div>";
 		$("#"+destid).append($(html));

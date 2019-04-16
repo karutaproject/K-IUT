@@ -85,12 +85,14 @@
 		p {
 			padding:10px;
 		}
-		#logo {
+		#logo1 {
 			margin-top:50px;
+			width:150px;
 		}
-		#accueil .span6 {
-			padding-left:50px;
-			padding-right:50px;
+		#logo2 {
+			margin-left:50px;
+			margin-top:50px;
+			width:300px;
 		}
 		.libelle {
 			display: inline-block;
@@ -98,6 +100,15 @@
 		}
 		#register-button{
 		margin-left:75px;
+		}
+		#img-accueil{
+		margin-top:50px;}
+		h4 {
+		font-size:200%;
+		line-height:120%;
+		}
+		#h4-2 {
+			color: #bb317a;
 		}
 	</style>
 </head>
@@ -107,19 +118,23 @@
 	<div id='accueil' class="container">
 		<div class='row-fluid'>
 			<div class="span6">
-				<img id='logo' src='../img/iut2-et-K-IUT.jpg'/>
-				<h4><span style='font-size:150%'>F</span>ormation <span style='font-size:150%'>T</span>out au <span style='font-size:150%'>L</span>ong de la <span style='font-size:150%'>V</span>ie</h4>
+				<img class='img-responsive' id='logo1' src='../img/logo-uga.png'/>
+				<img class='img-responsive' id='logo2' src='../img/logo-kiut-portfolio.png'/>
+				<div id='img-accueil' class='row-fluid'>
+					<div class="span6">
+						<img src='../img/personnage-accueil-kftlv.png'/>
+					</div>
+			<!-- ================================================================== -->
+					<div class='span6'>
+						<h4 id='h4-1'>Plate-forme KIUT Portfolio pour la</h4>
+						<h4 id='h4-2'>Formation Tout au Long de la Vie </h4>
+					</div>
+				</div>
 				<p>
 					Cette plateforme est développée par le milieu universitaire et grâce à un partenariat
 					 franco-canadien entre l'IUT2 Grenoble et HEC Montréal 
 					 avec la solution <span id='osk'>Open Source KARUTA</span>
 				</p>
-				<div id='specifique'>
-					<img src='../img/accueil-iut-recadre.jpg'/>
-					<p>
-					
-					</p>
-				</div>
 			</div>
 			<!-- ================================================================== -->
 			<div class='span6'>
@@ -128,7 +143,7 @@
 				<div id='fsh' class='row-fluid'>
 					<div class='span4'>
 						<img id='firefox' src='../img/firefox.png'/>
-						<p>Optimisé pour Firefox !<br/>Évitez Internet Explorer !</p>
+						<p>Optimisé pour Firefox&nbsp;!<br/>Évitez Internet Explorer&nbsp;!</p>
 					</div>
 					<div class='span4'>
 						<img id='support' src='../img/support.png'/>
@@ -139,7 +154,7 @@
 						<p><a href='https://docs.google.com/document/d/1qhi7Uf_ZMsJpDNzfdvvy-Ii_bt4ztaBUansbjNQxumQ/edit'>Afficher le <span id='guide'>guide</span> d'utilisation du portfolio</a></p>
 					</div>
 				</div>
-				<div id='lien-export'>Pour supprimer votre compte cliquer sur le lien ci-contre <a id='delUser' onclick='displayConnectionDelete()' href='#'>SUPPRIMER  <img width='20px' src='../img/icons8-delete-50.png'/></a></div>.
+				<div id='lien-export'>Pour supprimer votre compte cliquer sur le lien ci-contre <a id='delUser' onclick='displayConnectionDelete()' href='#'> SUPPRIMER  <img width='20px' src='../img/picto-trash-bleue.png'/></a></div>
 				
 			</div>
 		</div>
