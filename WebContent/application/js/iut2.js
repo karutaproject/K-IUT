@@ -38,7 +38,7 @@ function getNavbar(portfolioid) {
 	navbar += "<div class='navbar'>";
 	navbar += "    <div id='header-top' class='navbar-inner'>";
 	navbar += "          <ul class='nav pull-right'>";
-	navbar += "                <li><a id='mon-profil' href='#' onclick=\"javascript:show_view('profil','')\"><em class='fa fa-user'></em> Mon profil</a></li>";
+	navbar += "                <li><a id='mon-profil' href='#' onclick=\"javascript:show_view('profil','')\"><em class='fa fa-user'></em> Mon compte</a></li>";
 	navbar += "               <li><a id='se-deconnecter' href='../..'><em class='fa fa-sign-out'></em> Se déconnecter</a></li>";
 	navbar += "          </ul>";
 	navbar += "    </div>";
