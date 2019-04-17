@@ -231,7 +231,6 @@ function displayImport()
 						var codeProfile = "-profile";
 						var codeCV = "-cv";
 						var codeProjet = "-projet";
-						var codeTraitsPerso = "-TraitsPersonnalite";
 						var portfolios = $("portfolio",data);
 						for ( var i=0;i<portfolios.length;i++)
 						{
@@ -277,18 +276,6 @@ function displayImport()
 								xml +="		</asmResource>";
 								rename(rootid,"projet");
 								unshare_share(portfolioid,"projet");
-							}
-							if (current_code.indexOf(codeTraitsPerso)>-1) {
-								var rootid = $("asmRoot",$(portfolios[i])).attr("id");
-								var xml = "";
-								xml +="<asmResource xsi_type='nodeRes'>";
-								xml +="<code>ftlv.@@"+USER.id+"@@-TraitsPersonnalite</code>";
-								for (var j=0; j<languages.length;j++){
-									xml +="			<label lang='"+languages[j]+"'>@@"+USER.id+"@@-TraitsPersonnalite</label>";	
-								}
-								xml +="		</asmResource>";
-								rename(rootid,"TraitsPersonnalite");
-								unshare_share(portfolioid,"TraitsPersonnalite");
 							}
 						}
 					}

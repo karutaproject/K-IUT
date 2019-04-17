@@ -95,7 +95,7 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 	if (type==null || type!='FTLV') {
 		var html = "";
 		html += "<div class='row-fluid'>";
-		html += "<div class='span6'>";
+		html += "<div class='span7'>";
 		html += "	<div id='profil-detail' class='media'>";
 		html += "		<div class='profile alert alert-block'>";
 		html += "			<div>Photo<span id='help-profil-photo'></span></div>";
@@ -106,8 +106,11 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 		html += "		</div>";
 		html += "	</div>";
 		html += "</div>";
-		html += "<div class='span6'>";
+		//--------------------------------------
+		html += "<div class='span4'>";
+		html += "<div><button class='exporter' type='submit' ><a id='exporterPortfolios' href='export'><img src='../img/picto-export.png'> Exporter mon ePortfolio KIUT (zip)</a></button></div>";
 		html += "</div>";
+		//--------------------------------------
 		html += "</div>";
 		$("#"+destid).append($(html));
 		UICom.structure["ui"][this.photo_nodeid].resource.displayEditor("profil-photo");
@@ -146,7 +149,6 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 		html += "<div class='span4'>";
 		html += "<div><button class='exporter' type='submit' ><a id='exporterPortfolios' href='export'><img src='../img/picto-export.png'> Exporter mon ePortfolio KIUT (zip)</a></button></div>";
 		html += "<div><button class='supprimer-portfolio' type='submit' ><img src='../img/picto-trash.png'><a id='supprimerPortfolios' href='#' onclick='javascritp:confirmDelFTLV()'>Supprimer mon portfolio</a></button></div>";
-//		html += "<div><button class='supprimer-compte' type='submit' >Supprimer mon compte</button></div>";
 		html += "</div>";
 		//--------------------------------------
 		html += "</div>";
@@ -156,7 +158,6 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 		$("#firstname").html(UIFactory.User.getAttributeEditor(USER.id,"firstname",USER.firstname_node.text()));
 		$("#courriel").html(USER.email_node.text());
 		UICom.structure["ui"][this.photo_nodeid].resource.displayEditor("profil-photo");
-//		$("#exporterPortfolios").attr("href","../../../"+serverBCK+"/portfolios/zip?portfolios="+g_portfolioid+","+g_profileid+","+g_cvid+","+g_projetid+","+g_traitspersoid);
 
 	}
 };

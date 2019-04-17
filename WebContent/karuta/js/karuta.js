@@ -544,13 +544,6 @@ function loadLanguages(callback)
 {
 	for (var i=0; i<languages.length; i++){
 		if (i<languages.length-1) {
-			if (elgg_installed) {
-				$.ajax({
-					type : "GET",
-					dataType : "script",
-					url : "../../socialnetwork-elgg/js/languages/locale_"+languages[i]+".js"
-				});
-			}
 			$.ajax({
 				type : "GET",
 				dataType : "script",
@@ -558,13 +551,6 @@ function loadLanguages(callback)
 			});
 		}
 		else { // last one so we callback
-			if (elgg_installed) {
-				$.ajax({
-					type : "GET",
-					dataType : "script",
-					url : "../../socialnetwork-elgg/js/languages/locale_"+languages[i]+".js"
-				});
-			}
 			$.ajax({
 				type : "GET",
 				dataType : "script",

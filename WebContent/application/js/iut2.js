@@ -19,7 +19,6 @@ view_label['metiers'] = "Compétences métiers";
 view_label['transinnov'] = "Compétences transversales";
 view_label['autresperso'] = "Autres compétences personnelles";
 view_label['langues'] = "Langues";
-view_label['traitsperso'] = "Quizz interculturel";
 view_label['projet'] = "Projet";
 view_label['cours'] = "Cours";
 view_label['description'] = "Ma description";
@@ -65,8 +64,6 @@ function getNavbar(portfolioid) {
 		navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['experiencespro']);show_view('historique','experiencespro')\" href='#'>Mes expériences pro.</a></li>";
 		navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['experiencesperso']);show_view('historique','experiencesperso')\" href='#'>Mes expériences perso.</a></li>";
 		navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['langues']);show_view('historique','langues')\" href='#'>Mes langues</a></li>";
-		if (g_userrole=='etudiant' && quizz_interculturel)
-			navbar += "            	  <li><a onclick=\"$('#view_label_histo').html(view_label['traitsperso']);show_view('historique','traitsperso')\" href='#'>Quizz interculturel</a></li>";
 		navbar += "               <li class='divider'><br/></li>";
 		navbar += "                <li class='nav-header'><i class='fa fa-suitcase'></i> Mon bilan</li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['resume']);show_view('competence','resume')\">Vue d'ensemble</a></li>";
@@ -74,8 +71,6 @@ function getNavbar(portfolioid) {
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['transinnov']);show_view('competence','autres1')\">Mes compétences transversales</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['autresperso']);show_view('competence','autres2')\">Mes autres compétences personnelles</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['langues']);show_view('competence','langues')\">Mes langues</a></li>";
-		if (quizz_interculturel)
-			navbar += "                <li><a href='#' onclick=\"$('#view_label_comp').html(view_label['traitsperso']);show_view('competence','traitsperso')\">Quizz interculturel</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
 //		navbar += "            <li class='dropdown'>";
@@ -133,57 +128,7 @@ function getNavbar(portfolioid) {
 }
 
 
-//================================
-function getNavbar2(portfolioid) {
-//================================
-	var navbar = "";
-	var ids = "portfolioid="+portfolioid;
-	navbar += "<div class='navbar'>";
-	navbar += "    <div class='navbar-inner'>";
-	navbar += "      <div class='container-fluid'>";
-	navbar += "        <a data-target='.navbar-responsive-collapse' data-toggle='collapse' class='btn btn-navbar'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></a>";
-	if (l_userrole=='etudiant')
-		navbar += "        <a href='mainEtudiant.htm?"+ids+"' class='brand'>";
-	if (l_userrole=='superviseur')
-		navbar += "        <a href='mainSuperviseur.htm?"+ids+"' class='brand'>";
-	navbar += "        <em class='icon-fixed-width icon-home'></em> E-portfolio4*</a>";
-	navbar += "        <div class='nav-collapse collapse navbar-responsive-collapse'>";
-	navbar += "          <ul class='nav'>";
-	navbar += "            <!-- <li class='active'><a href='#'><em class='icon-fixed-width icon-home'></em>Accueil</a> </li>-->";
-	if (g_userrole=='etudiant' || l_userrole=='superviseur' || l_userrole=='tuteur') {
-        navbar += "            <li class='dropdown'>";
-        navbar += "              <a data-toggle='dropdown' class='dropdown-toggle' href='#'><em class='icon-heart'></em> Réseau social<strong class='caret'></strong></a>";
-        navbar += "              <ul class='dropdown-menu'>";
-        navbar += "                <li><a href='"+elgg_url_absolute+"services/api/rest/xml/?method=auth.cas&redir=/activity?authModeReq=CAS'>Mur du réseau</a></li>";
-        navbar += "                <li><a href='"+elgg_url_absolute+"services/api/rest/xml/?method=auth.cas&redir=/activity/owner/"+USER.username_node.text()+"?authModeReq=CAS' target='_blank'>Mes publications</a></li>";
-        navbar += "                <li><a href='"+elgg_url_absolute+"services/api/rest/xml/?method=auth.cas&redir=/groups/member/"+USER.username_node.text()+"?authModeReq=CAS' target='_blank'>Mes groupes</a></li>";
-        navbar += "                <li><a href='"+elgg_url_absolute+"services/api/rest/xml/?method=auth.cas&redir=/friends/"+USER.username_node.text()+"?authModeReq=CAS' target='_blank'>Mes contacts</a></li>";
-        navbar += "                <li><a href='"+elgg_url_absolute+"services/api/rest/xml/?method=auth.cas&redir=/messages/inbox/"+USER.username_node.text()+"?authModeReq=CAS' target='_blank'>Mes messages privés</a></li>";
-        navbar += "                <li><a href='"+elgg_url_absolute+"services/api/rest/xml/?method=auth.cas&redir=/profile/"+USER.username_node.text()+"?authModeReq=CAS' target='_blank'>Mon profil</a></li>";
-        navbar += "              </ul>";
-        navbar += "            </li>";
-}
-	
-	navbar += "          </ul>";
-	navbar += "          <ul class='nav pull-right'>";
-//	navbar += "            <li><a href='#'>Espace pro.</a></li>";
-//	navbar += "            <li class='divider-vertical'><br/></li>";
-//	navbar += "            <li><a href='#'><em class='icon-fixed-width icon-envelope'></em>(1)</a></li>";
-//	navbar += "            <li><a href='#'><em class='icon-fixed-width icon-flag'></em>(10)</a></li>";
-	navbar += "           <li><a data-toggle='dropdown' class='dropdown-toggle' href='#'>"+USER.firstname_node.text()+" "+USER.lastname_node.text()+"&nbsp;<em class='icon-cog'></em></a>";
-	navbar += "              <ul class='dropdown-menu'>";
-	navbar += "               <li><a href='index.html'><em class='icon-signout'></em> Se déconnecter</a></li>";
-	navbar += "                <li><a href='profile.htm?"+ids+"'><em class='icon-fixed-width icon-user'></em> Mon compte</a></li>";
-	navbar += "              </ul>";
-	navbar += "              <br/> ";
-	navbar += "            </li>";
-	navbar += "          </ul>";
-	navbar += "        </div>";
-	navbar += "      </div>";
-	navbar += "    </div>";
-	navbar += "  </div>";
-	return navbar;
-}
+
 /*
 //à déplacer dans karuta.js ???
 //==================================
@@ -571,7 +516,6 @@ function selectPortfolio(data,usercode)
 	var codeProfile = "-profile";
 	var codeCV = "-cv";
 	var codeProjet = "-projet";
-	var codeTraitsPerso = "-TraitsPersonnalite";
 	var portfolios = $("portfolio",data);
 	UIFactory["Portfolio"].parse(data);
 	for ( var i=0;i<portfolios.length;i++)
@@ -593,9 +537,6 @@ function selectPortfolio(data,usercode)
 			if (current_code.indexOf(codeProjet)>-1) {
 				g_projetcode = current_code;
 				g_projetid = $(portfolios[i]).attr("id");
-			}
-			if (current_code.indexOf(codeTraitsPerso)>-1) {
-				g_traitspersoid = $(portfolios[i]).attr("id");
 			}
 		}
 	}
@@ -625,6 +566,7 @@ function selectPortfolio(data,usercode)
 					if (l_userrole=='etudiant' && g_userrole!='etudiant'){
 						profiles_list[0].displayView('profile-etudiant','lastname_firstname');
 					}
+					$("#exporterPortfolios").attr("href","../../../"+serverBCK+"/portfolios/zip?portfolios="+g_portfolioid+","+g_profileid+","+g_cvid+","+g_projetid);
 				}
 			});
 			if (l_userrole=='etudiant' && g_userrole=='etudiant'){
@@ -678,23 +620,6 @@ function selectPortfolio(data,usercode)
 					g_mother_tongueid = $("asmContext:has(metadata[semantictag='MotherTongue'])", data).attr('id');
 					Langues_Display('langues-short_histo','short');
 					Langues_Display('langues-detail_histo','detail',$("asmUnit:has(metadata[semantictag='langues-unit'])", data).attr('id'),g_mother_tongueid);
-					//--------------------
-					if (g_traitspersoid!=''){ // superviseur n'a pas accès
-						$.ajax({
-							type : "GET",
-							dataType : "xml",
-							url : "../../../"+serverBCK+"/portfolios/portfolio/" + g_traitspersoid + "?resources=true",
-							success : function(data) {
-								UICom.parseStructure(data);
-								UIFactory["TestPerso"].parse(data);
-								TestPerso_Display('traitsperso-short_histo','short',g_traitspersoid);
-								TestPerso_Display('traitsperso-detail_histo','detail',g_traitspersoid);
-								//--------------------
-								TestPerso_Display('traitsperso-short_comp','short-result',g_traitspersoid);
-								TestPerso_Display('traitsperso-detail_comp','detail-result',g_traitspersoid);
-							}
-						});
-					}
 					//================COMPETENCE=============
 					$("#info-window-body").html("Traitement Mon bilan...");
 					displayCompetencesMetiers(data);

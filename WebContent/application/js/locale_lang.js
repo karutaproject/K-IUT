@@ -1,4 +1,4 @@
-
+var contact_stage = "";
 
 appStr = new Array();
 appStr['fr'] = new Array();

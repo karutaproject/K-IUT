@@ -81,9 +81,7 @@
 	function selectPortfolio(data)
 	//====================================
 	{
-		var etudiant = false;
 		var codePortfolio = "-portfolio";
-		var codePersonalite = "-TraitsPersonnalite";
 		var portfolios = $("portfolio",data);
 		var portfolioid = "";
 		for ( var i=0;i<portfolios.length;i++)
@@ -92,20 +90,33 @@
 			if (current_code.indexOf(codePortfolio)>-1) {
 				portfolioid = $(portfolios[i]).attr("id");
 			}
-			if (current_code.indexOf(codePersonalite)>-1) {
-				etudiant = true;
-			}
 		}
-		if (applitype=='FTLV' && portfolios.length==0) {
-			alert("Vous devez d'abord importer votre portfolio.");
-			window.location = "indexFTLV.html";
-		} 
-		else if (etudiant)
-			window.location = "mainEtudiant2.htm?portfolioid="+portfolioid;
-		else if (!USER.admin)
-			window.location = "mainSuperviseur.htm";
-		else
-			window.location = "admin.htm"
+		if (applitype=='FTLV') {
+			if (portfolios.length==0) {
+				alert("Vous devez d'abord importer votre portfolio.");
+				window.location = "indexFTLV.html";
+			} else {
+				window.location = "mainEtudiant2.htm?portfolioid="+portfolioid;
+			}
+		} else {
+			var userrole = "";
+			$.ajax({ // get group-role for the user
+				Accept: "application/xml",
+				type : "GET",
+				dataType : "xml",
+				url : "../../../"+serverBCK+"/credential/group/" + portfolioid,
+				success : function(data) {
+					var usergroups = $("group",data);
+					userrole = $("role",usergroups[0]).text();
+				}
+			});
+			if(userrole=='etudiant')
+				window.location = "mainEtudiant2.htm?portfolioid="+portfolioid;
+			else if (!USER.admin)
+				window.location = "mainSuperviseur.htm";
+			else
+				window.location = "admin.htm";
+		}
 	}
 	
 
