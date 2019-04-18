@@ -9,7 +9,7 @@ var bckname = '-ftlv';
 var serverBCK = "karuta-backend"+bckname+"/rest/api";
 var serverFIL = "karuta-backend"+bckname;
 var serverVER = "karuta-backend"+bckname;
-/----------------------------------
+//----------------------------------
 var languages = [];
 var languages_name = [];
 languages [0] = 'fr';
