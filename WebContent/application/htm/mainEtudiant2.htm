@@ -484,7 +484,7 @@
 				<ul id="tabs_projet" class="nav nav-tabs" data-tabs="tabs">
 					<li><a href="#description_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['description']);" class="text-noir">Ma description</a></li>
 					<li><a href="#competence_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['competence']);" class="text-vert">Mes compétences préférées</a></li>
-					<li><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
+					<li id='metiers1'><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
 					<li id='freerome1'><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);" class="text-bleu">Mon environnement pro</a></li>
 				</ul>
 	
@@ -806,8 +806,13 @@
 					}
 				});
 				fetchDomaineMetier();
-				$("#carte_metiers_url").attr('href',carte_metiers_url);
-				$("#carte_metiers_label").html(carte_metiers_url);
+				if (carte_metiers_url!="") {
+					$("#carte_metiers_url").attr('href',carte_metiers_url);
+					$("#carte_metiers_label").html(carte_metiers_url);
+				} else {
+					$("#metiers1").hide();
+					$("#metier_projet").hide();
+				}
 				$("#freerome_iframe").attr('src',freerome_url+USER.username_node.text());
 			},
 			error : function(jqxhr,textStatus) {

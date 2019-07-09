@@ -1,8 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<script src="application/_init.js"></script>
 </head>
 <body class="welcome">
-	<script language='javascript'>window.location="application/htm/indexFTLV.html"</script>
+	<script language='javascript'>
+		if (applitype=='FTLV')
+			window.location="application/htm/indexFTLV.html";
+		else	
+			window.location="application/htm/indexKIUT.html";
+	</script>
 </body>
 </html>

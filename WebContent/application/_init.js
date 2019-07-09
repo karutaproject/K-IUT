@@ -22,7 +22,7 @@ var LANGCODE = 0; //default value
 var LANG = languages[LANGCODE]; //default value
 //----------------------------------
 var carte_metiers_url =  "";
-var freerome = true;
+var freerome = false;
 var freerome_url = "";
 var cas_url = "";
-var message_logo = "";
+var message_logo = "/application/img/logo-eportfolio4.jpg";
