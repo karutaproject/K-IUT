@@ -2,7 +2,7 @@
 var application_version = "3.1";
 var application_date = "2019-04-18";
 //----------------------------------
-var appliname = 'iut2';
+var appliname = 'kiut';
 var applitype = 'KIUT';   // FTLV ou KIUT
 //---------
 var bckname = '-iut';
@@ -22,7 +22,5 @@ var LANGCODE = 0; //default value
 var LANG = languages[LANGCODE]; //default value
 //----------------------------------
 var carte_metiers_url =  "";
-var freerome = false;
-var freerome_url = "";
 var cas_url = "";
 var message_logo = "/application/img/logo-eportfolio4.jpg";

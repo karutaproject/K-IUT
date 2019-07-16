@@ -4,8 +4,7 @@
 	<title>K-IUT Eportfolio 4 &eacute;toiles</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-	<meta HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="http://freerome.mugeco.com"/>
-		<!-- =========================================== -->
+	<!-- =========================================== -->
 	<link rel="stylesheet" type="text/css" href="../../other/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../other/css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../other/css/bootstrap-wysihtml5.css" />
@@ -485,7 +484,6 @@
 					<li><a href="#description_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['description']);" class="text-noir">Ma description</a></li>
 					<li><a href="#competence_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['competence']);" class="text-vert">Mes compétences préférées</a></li>
 					<li id='metiers1'><a href="#metier_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['metier']);" class="text-bleu">Mon métier</a></li>
-					<li id='freerome1'><a href="#freerome_projet" data-toggle="tab" onclick="$('#view_label_projet').html(view_label['freerome']);" class="text-bleu">Mon environnement pro</a></li>
 				</ul>
 	
 				<div id="tab-content_projet" class="tab-content">
@@ -555,10 +553,6 @@
 								<img src='../img/carte-des-metiers.jpg'/>
 							</div>
 						</div>
-					</div>
-					<!-- ================================================================== -->
-					<div class="tab-pane" id="freerome_projet">
-						<iframe id='freerome_iframe' class='freerome_iframe' src="../htm/freerome.htm" style="display:block; margin:auto; border:none; width:1200px; height:1400px"></iframe>
 					</div>
 					<!-- ================================================================== -->
 				</div>
@@ -765,10 +759,6 @@
 		$("#info-spin").spin({top:'60%'});
 		$("#spin-add").spin({top:'60%'});
 		show_view('accueil');
-		if (!freerome) {
-			$("#freerome1").hide();
-			$("#freerome_projet").hide();
-		}
 		//----------------
 		fetchPPNmetier();
 		if (applitype=="FTLV")
@@ -813,7 +803,6 @@
 					$("#metiers1").hide();
 					$("#metier_projet").hide();
 				}
-				$("#freerome_iframe").attr('src',freerome_url+USER.username_node.text());
 			},
 			error : function(jqxhr,textStatus) {
 				loadLanguages(function(data) {alert(karutaStr[LANG]['not-logged']);});

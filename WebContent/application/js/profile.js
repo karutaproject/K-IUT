@@ -101,8 +101,6 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 		html += "			<div>Photo<span id='help-profil-photo'></span></div>";
 		html += "			<div id='profil-photo'></div>";
 		html += "			<br><br><label id='email_profil' class='inline'>Courriel<span id='help-profil-courriel'></span> : </label>";
-//		html += "			<div class='titre1' >Mon profil international</div>";
-//		html += "			<div id='profil-interculturel'></div>";
 		html += "		</div>";
 		html += "	</div>";
 		html += "</div>";
@@ -115,23 +113,6 @@ UIFactory["Profile"].prototype.displayEditor = function(destid,type,lang) {
 		$("#"+destid).append($(html));
 		UICom.structure["ui"][this.photo_nodeid].resource.displayEditor("profil-photo");
 		$("#email_profil").append(UICom.structure["ui"][this.email_nodeid].resource.getEditor());
-		//----------------------
-		for (var i=0; i<this.profil_inter_qs.length;i++){
-			var uuid = $(this.profil_inter_qs[i]).attr("id");
-			html  = "<label class='inline profil_inter'>";
-			html += UICom.structure["ui"][uuid].getLabel() + " <span id='profil_inter_"+uuid+"'></span>";
-			html += "</label>";
-			$("#profil-interculturel").append($(html));
-			UICom.structure["ui"][uuid].resource.displayEditor("profil_inter_"+uuid);
-		}
-		displayControlGroup_displayEditor("profil-interculturel",UICom.structure["ui"][this.periode_nodeid].getLabel(),"profil_inter_"+this.periode_nodeid,this.periode_nodeid,"radio");
-		$("#profile").append($("<label id='profil_inter_"+this.sejours_nodeid+"' class='inline profil_inter'>"+UICom.structure["ui"][this.sejours_nodeid].getLabel()+" </label>"));
-		$("#profil_inter_"+this.sejours_nodeid).append(UICom.structure["ui"][this.sejours_nodeid].resource.getEditor());
-		//----------------------
-		if (g_userrole!='etudiant'){
-			$('#'+destid+' input, #'+destid+' select').attr("disabled", true);
-			$('#'+destid+' button').prop("disabled", true);
-		}
 	}
 	if (type=="FTLV"){
 		var html = "";

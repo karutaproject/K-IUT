@@ -85,8 +85,6 @@ function getNavbar(portfolioid) {
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['description']);show_view('projet','description')\">Ma fiche projet</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['competence']);show_view('projet','competence')\">Mes compétences préférées</a></li>";
 		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['metier']);show_view('projet','metier')\">Ressources métiers</a></li>";
-		if (freerome)
-		navbar += "                <li><a href='#' onclick=\"$('#view_label_projet').html(view_label['frerome']);show_view('projet','freerome');\">Mon environnement pro</a></li>";
 		navbar += "              </ul>";
 		navbar += "            </li>";
 		navbar += "            <li class='dropdown'>";
