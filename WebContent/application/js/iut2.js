@@ -724,7 +724,7 @@ function selectPortfolio(data,usercode)
 								success : function (data){
 									var url = window.location.href;
 									var serverURL = url.substring(0,url.indexOf("/"+appliname));
-									g_carte_url = serverURL+"/iut2/application/htm/carte-publique.htm?i="+data;
+									g_carte_url = serverURL+"/"+appliname+"/application/htm/carte-publique.htm?i="+data;
 									$("#qrcode-carte").qrcode({text:g_carte_url,size:100,background: 'white'});
 									var text = document.getElementById("qrcode-carte").toDataURL("image/jpeg");
 									putQRcodePourCV(text);
